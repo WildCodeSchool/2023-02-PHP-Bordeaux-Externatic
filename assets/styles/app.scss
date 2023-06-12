@@ -1,2 +1,11 @@
 //start coding by removing this file and adding yours ;)
+@import "~bootstrap";
 @import "wcs";
+@import "_includes/variables.scss";
+@import "_includes/button.scss";
+@import "_includes/form.scss";
+
+* {
+    color: black;
+    font-family: $font-family;
+}

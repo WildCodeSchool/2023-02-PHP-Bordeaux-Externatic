@@ -1,0 +1,13 @@
+.be-form label {
+    line-height: 28px;
+    color: $super-dark-green;
+}
+
+.be-form input {
+    background: #FFFFFFFF;
+    border-radius: 3px; /* border-xs */
+    border-width: 1px;
+    border-color: #9095A0FF;
+    border-style: solid;
+    box-shadow: $box-shadow;
+}
