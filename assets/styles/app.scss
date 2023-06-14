@@ -5,11 +5,14 @@
 @import "_includes/button.scss";
 @import "_includes/form.scss";
 @import "_includes/cardsHome.scss";
-
+@import "_includes/navbar.scss";
 * {
     color: black;
     font-family: $font-family;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+a{
+    text-decoration: none;
 }
