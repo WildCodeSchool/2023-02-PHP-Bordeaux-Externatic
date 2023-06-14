@@ -69,7 +69,7 @@ class SalaryController extends AbstractController
     #[Route('/{id}', name: 'app_salary_delete', methods: ['POST'])]
     public function delete(Request $request, Salary $salary, SalaryRepository $salaryRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$salary->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $salary->getId(), $request->request->get('_token'))) {
             $salaryRepository->remove($salary, true);
         }
 

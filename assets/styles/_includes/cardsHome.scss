@@ -7,7 +7,8 @@
     margin: 20px auto;
 }
 .be-card-main{
-    height: calc((27 * #{$window-height}) / 100);
+    //height: calc((25 * #{$window-height}) / 100);
+    height: 300px;
     width: min-content;
     margin:  20px auto ;
     background-color: white;
@@ -39,10 +40,9 @@
     position: absolute;
     bottom: 0;
     padding: 0 10px 10px 10px;
-    //height: calc((50 * (30 * #{$window-height}) / 100) / 100);
 }
 
-    @media screen and (max-width: 1720px) {
+    @media screen and (max-width:1800px) {
     .be-container-card{
         overflow: scroll;
         flex-wrap: nowrap;
@@ -56,7 +56,7 @@
 
     }
     .be-card-img img{
-        //width: max-content;
+        width: max-content;
     }
     .be-card-containt{
         position: absolute;
@@ -73,6 +73,18 @@
     }
     .be-card-business-h2{
         font-size: 1.2rem;
+    }
+    @media screen and (max-width: 425px) {
+        .be-card-main{
+            //height: calc((40 * #{$window-height}) / 100);
+            height: 200px;
+        }
+        .be-card-img{
+            height: 50%;
+        }
+        .be-card-img img{
+            height: 100%;
+        }
     }
 }
 
