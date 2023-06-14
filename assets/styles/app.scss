@@ -1,15 +1,17 @@
 //start coding by removing this file and adding yours ;)
 @import "~bootstrap";
-@import "wcs";
 @import "_includes/variables.scss";
+@import "_includes/title.scss";
 @import "_includes/button.scss";
 @import "_includes/form.scss";
 @import "_includes/cardsHome.scss";
+@import "_includes/partner-companies-home.scss";
 
 * {
-    color: black;
+    color: $super-dark-green;
     font-family: $font-family;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
+
