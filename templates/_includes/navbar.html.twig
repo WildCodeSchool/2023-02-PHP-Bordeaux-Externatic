@@ -1,0 +1,47 @@
+<nav class="be-navbar navbar navbar-expand-lg bg-body-tertiary">
+    <div class="px-5 w-100 d-flex justify-content-between align-items-center">
+        <a class="navbar-brand " href="/">
+            <img class="be-img-navbar" src="{{ asset('build/images/logo-allonge.png') }}" alt="Mon image">
+        </a>
+        <div class="d-flex align-items-center">
+            <ul class="navbar-nav">
+
+                <li class="nav-item dropdown mx-3">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Accès recruteur
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Connexion</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Inscription</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown mx-3">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Emploi
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">L'emploi en France</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Mes favoris</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Ma recherche</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+            <i class="fa-regular fa-bell"></i>
+            <a href="/login" class="href">
+                <button class="be-secondary-button mx-3">Connexion</button>
+            </a>
+            <a href="/register" class="href">
+                <button class="be-secondary-button mx-3">Inscription</button>
+            </a>
+            <a href="/profile/show" class="href">
+                <button class="be-secondary-button mx-3">Alexandre Salé</button>
+            </a>
+        </div>
+    </div>
+</nav>
+<script src="https://kit.fontawesome.com/a0c2e45aa1.js" crossorigin="anonymous"></script>

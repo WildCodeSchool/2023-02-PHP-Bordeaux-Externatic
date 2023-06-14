@@ -1,0 +1,31 @@
+.be-logo-partners {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.be-logo-partners div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.be-logo-partners img {
+    width: 15rem;
+    padding: 1rem;
+}
+
+@media screen and (max-width: 768px){
+    .be-logo-partners {
+        width: 100%;
+    }
+
+    .be-logo-partners div {
+        justify-content: space-around;
+    }
+
+    .be-logo-partners img {
+        width: 10rem;
+
+    }
+}
