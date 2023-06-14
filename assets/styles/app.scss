@@ -5,6 +5,7 @@
 @import "_includes/button.scss";
 @import "_includes/form.scss";
 @import "_includes/cardsHome.scss";
+@import "_includes/navbar.scss";
 @import "_includes/partner-companies-home.scss";
 
 * {
@@ -14,4 +15,6 @@
     margin: 0;
     box-sizing: border-box;
 }
-
+a{
+    text-decoration: none;
+}
