@@ -1,0 +1,16 @@
+.be-h2 {
+    font-size: 3rem;
+    font-weight:600;
+    margin: 20px auto;
+}
+
+.be-h2 span {
+    color: $light-green;
+}
+
+@media screen and (max-width: 768px){
+    .be-h2 {
+        font-size: 2rem;
+        margin: 10px;
+    }
+}
