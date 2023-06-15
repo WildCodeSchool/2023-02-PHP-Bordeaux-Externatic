@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Joboffer{% endblock %}
+
+{% block body %}
+    <h1>Joboffer</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ joboffer.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ joboffer.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ joboffer.description }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ joboffer.city }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ joboffer.createdAt ? joboffer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ joboffer.updatedAt ? joboffer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_joboffer_index') }}">back to list</a>
+
+    <a href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">edit</a>
+
+    {{ include('joboffer/_delete_form.html.twig') }}
+{% endblock %}
