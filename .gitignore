@@ -3,6 +3,7 @@ assets/images
 .vscode/
 .DS_Store
 /public/uploads
+/assets/images
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
