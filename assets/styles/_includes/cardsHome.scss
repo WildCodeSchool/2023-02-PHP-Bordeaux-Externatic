@@ -1,11 +1,5 @@
 @import "variables";
-.be-title-green{
-    color: $dark-green;
-    font-size: 2rem;
-    font-weight: 700;
-    font-family: $font-family;
-    margin: 20px auto;
-}
+
 .be-card-main{
     //height: calc((25 * #{$window-height}) / 100);
     height: 300px;
