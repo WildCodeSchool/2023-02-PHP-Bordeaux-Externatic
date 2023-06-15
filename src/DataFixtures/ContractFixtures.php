@@ -26,6 +26,8 @@ class ContractFixtures extends Fixture
         for ($i = 0; $i < 10; $i++) {
             $contract = new Contract();
             $contract->setType(self::CONTRACTS[$i]);
+            $this->addReference('contract_' . $i, $contract);
+
             $manager->persist($contract);
         }
         $manager->flush();

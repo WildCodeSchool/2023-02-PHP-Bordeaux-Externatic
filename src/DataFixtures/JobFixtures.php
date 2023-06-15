@@ -13,6 +13,7 @@ class JobFixtures extends Fixture
         $job = new Job();
         $job->setName('Développeur web');
         $job->setCategory($this->getReference('category_technologies'));
+        $this->addReference('job_0', $job);
 
         $manager->persist($job);
 
