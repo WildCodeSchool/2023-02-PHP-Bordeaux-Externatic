@@ -31,6 +31,22 @@
                 <th>UpdatedAt</th>
                 <td>{{ joboffer.updatedAt ? joboffer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+            <tr>
+                <th>Company</th>
+                <td>{{ joboffer.company.name }}</td>
+            </tr>
+            <tr>
+                <th>Job</th>
+                <td>{{ joboffer.job.name}}</td>
+            </tr>
+            <tr>
+                <th>Contract</th>
+                <td>{{ joboffer.contract.type }}</td>
+            </tr>
+            <tr>
+                <th>Salary : min / max</th>
+                <td>{{ joboffer.salary.min }} / {{ joboffer.salary.max }}</td>
+            </tr>
         </tbody>
     </table>
 
