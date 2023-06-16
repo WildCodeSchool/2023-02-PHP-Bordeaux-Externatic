@@ -18,6 +18,14 @@
         </tbody>
     </table>
 
+
+    <ul>
+        {% for job in category.jobs %}
+            <li>
+                {{ job.name }}
+            </li>
+        {% endfor %}
+    </ul>
     <a href="{{ path('app_category_index') }}">back to list</a>
 
     <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
