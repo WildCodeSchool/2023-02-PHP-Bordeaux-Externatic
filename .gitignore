@@ -1,8 +1,9 @@
-images
+assets/images
 .idea/
 .vscode/
 .DS_Store
 /public/uploads
+/assets/images
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -34,3 +35,5 @@ yarn-error.log
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+tests
