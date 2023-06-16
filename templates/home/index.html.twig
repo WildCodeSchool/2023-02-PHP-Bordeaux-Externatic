@@ -4,9 +4,11 @@
 
 {% block body %}
 
-{% include "barSearch/_barreRecherche.html.twig" %}
-{% include '_includes/card-business-homepage.html.twig' %}
-{% include '_includes/card-home-articles.html.twig' %}
-{% include '_includes/partner-companies-homepage.html.twig' %}
+<div class="main-home-page">
+    {% include "barSearch/_barreRecherche.html.twig" %}
+    {% include '_includes/card-business-homepage.html.twig' %}
+    {% include '_includes/card-home-articles.html.twig' %}
+    {% include '_includes/partner-companies-homepage.html.twig' %}
+</div>
 
 {% endblock %}
