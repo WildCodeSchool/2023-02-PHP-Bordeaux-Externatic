@@ -4,3 +4,8 @@
 .be-img-navbar{
     height: 5.3vh;
 }
+@media screen and (max-width: 750px) {
+    .be-navbar{
+        display: none;
+    }
+}

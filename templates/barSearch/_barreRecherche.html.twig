@@ -1,15 +1,19 @@
 <div class="be-blabla">
-  <div>
+  <div class="w-100 position-relative">
     <img class="be-img-home" src="{{ asset('build/images/StatsWork2.png') }}" alt="">
-    <h2 class="be-titre">Externatic, <br>plus qu'un cabinet de <br>recrutement. <br>
-      Notre job, vous <br>aider à trouver le <br>vôtre.</h2>
+    <h2 class="be-titre h2 display-3 w-50">Externatic, plus qu'un cabinet de recrutement.
+      Notre job, vous aider à trouver le vôtre.</h2>
   </div>
   <div class="navbar be-bg-body-tertiary">
 
-    <form class="d-flex be-form" role="search">
-      <input class="form-control me-2 be-search-bar-input" type="search" placeholder="QUOI ?" aria-label="Search">
-      <input class="form-control me-2 be-search-bar-input-2" type="search" placeholder="OÙ ?" aria-label="Search">
-      <button class="be-search-button" type="submit">Search</button>
+    <form class="d-flex be-form-search" role="search">
+      <label for="what"><b>Quoi ?</b></label>
+      <input id="what" name="what" class="form-control me-2 be-search-bar-input" type="search"
+        placeholder="Quel métier cherches-tu ?" aria-label="Search">
+      <label for="where"><b>Où ?</b></label>
+      <input id="where" name="where" class="form-control me-2 be-search-bar-input-2" type="search"
+        placeholder="Dans quelle ville ?" aria-label="Search">
+      <button class="be-search-button be-search-home" type="submit">Search</button>
     </form>
 
   </div>
