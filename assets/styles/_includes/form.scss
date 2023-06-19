@@ -13,7 +13,7 @@
 }
 
 .be-form {
-    width: 30%;
+    width: 40%;
     height: 30rem;
     margin: 5rem auto;
     background-color: $light-grey;
@@ -67,6 +67,12 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and ( max-width: 768px ){
+    .be-form {
+        width: 90%;
+    }
 }
 
 @media screen and ( max-width: 425px ){
