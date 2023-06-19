@@ -46,6 +46,10 @@
     font-weight: normal;
 }
 
+.be-form-switch {
+    padding-left: 3rem;
+}
+
 .be-search-bar-input {
     width: 60%;
     height: 100%;
@@ -72,6 +76,11 @@
 @media screen and ( max-width: 768px ){
     .be-form {
         width: 90%;
+    }
+
+    .be-form-switch {
+        display: flex;
+        justify-content: center;
     }
 }
 
