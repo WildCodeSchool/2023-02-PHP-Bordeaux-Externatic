@@ -1,0 +1,21 @@
+<div class="be-joboffer-card-template-container">
+    <ul class="be-joboffer-card-template-ul">
+        {% for joboffer in joboffers %}
+            <li>
+                <div class="card be-joboffer-card-template mb-4 w-75">
+                    <div class="card-body">
+                        <h5 class="card-title text-secondary fs-6">{{ joboffer.company.name }}</h5>
+                        <h5 class="card-title mb-3 fs-5">{{ joboffer.contract.type }} - {{ joboffer.title }}</h5>
+                        <div class="d-flex flex-column-reverse">
+                            <footer class="text-secondary fs-6">{{ joboffer.city }} / {{ joboffer.salary.min }}€ - {{ joboffer.salary.max }}€</footer>
+                            <div class="d-flex flex-row justify-content-between">
+                                <footer class="text-secondary w-50 fs-6">Annonce postée le {{ joboffer.createdAt|date('d/m/Y') }}</footer>
+                                <a href="#" class="be-secondary-button w-15 fs-5">Voir l'offre</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
