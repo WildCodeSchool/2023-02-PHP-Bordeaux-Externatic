@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CompanyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
@@ -30,6 +32,14 @@ class Company
 
     #[ORM\Column(length: 255)]
     private ?string $siret = null;
+
+    #[ORM\OneToMany(mappedBy: 'company', targetEntity: Joboffer::class)]
+    private Collection $joboffers;
+
+    public function __construct()
+    {
+        $this->joboffers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -104,6 +114,36 @@ class Company
     public function setSiret(string $siret): self
     {
         $this->siret = $siret;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Joboffer>
+     */
+    public function getJoboffers(): Collection
+    {
+        return $this->joboffers;
+    }
+
+    public function addJoboffer(Joboffer $joboffer): self
+    {
+        if (!$this->joboffers->contains($joboffer)) {
+            $this->joboffers->add($joboffer);
+            $joboffer->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJoboffer(Joboffer $joboffer): self
+    {
+        if ($this->joboffers->removeElement($joboffer)) {
+            // set the owning side to null (unless already changed)
+            if ($joboffer->getCompany() === $this) {
+                $joboffer->setCompany(null);
+            }
+        }
 
         return $this;
     }

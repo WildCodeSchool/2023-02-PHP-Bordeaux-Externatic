@@ -1,3 +1,5 @@
+$primary: #05380A;
+
 //start coding by removing this file and adding yours ;)
 @import "~bootstrap";
 @import "_includes/variables.scss";
@@ -10,6 +12,8 @@
 @import "_includes/navbar.scss";
 @import "_includes/partner-companies-home.scss";
 @import "_includes/cardsSearchPage.scss";
+@import "_includes/jobofferCardTemplate.scss";
+
 
 * {
     color: $super-dark-green;

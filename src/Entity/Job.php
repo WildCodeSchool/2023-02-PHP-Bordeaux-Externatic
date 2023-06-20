@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ContractRepository;
+use App\Repository\JobRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ContractRepository::class)]
-class Contract
+#[ORM\Entity(repositoryClass: JobRepository::class)]
+class Job
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,9 +16,12 @@ class Contract
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $type = null;
+    private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'contract', targetEntity: Joboffer::class)]
+    #[ORM\ManyToOne(inversedBy: 'jobs')]
+    private ?Category $category = null;
+
+    #[ORM\OneToMany(mappedBy: 'job', targetEntity: Joboffer::class)]
     private Collection $joboffers;
 
     public function __construct()
@@ -31,14 +34,26 @@ class Contract
         return $this->id;
     }
 
-    public function getType(): ?string
+    public function getName(): ?string
     {
-        return $this->type;
+        return $this->name;
     }
 
-    public function setType(string $type): self
+    public function setName(string $name): self
     {
-        $this->type = $type;
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
@@ -55,7 +70,7 @@ class Contract
     {
         if (!$this->joboffers->contains($joboffer)) {
             $this->joboffers->add($joboffer);
-            $joboffer->setContract($this);
+            $joboffer->setJob($this);
         }
 
         return $this;
@@ -65,8 +80,8 @@ class Contract
     {
         if ($this->joboffers->removeElement($joboffer)) {
             // set the owning side to null (unless already changed)
-            if ($joboffer->getContract() === $this) {
-                $joboffer->setContract(null);
+            if ($joboffer->getJob() === $this) {
+                $joboffer->setJob(null);
             }
         }
 
