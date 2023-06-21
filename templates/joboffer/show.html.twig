@@ -3,6 +3,18 @@
 {% block title %}Joboffer{% endblock %}
 
 {% block body %}
+    <div class="card text-center">
+        <img class="be-img-home" src="{{ asset('build/images/villeAnnonce.jpg') }}" alt="">
+        {#  <img class="be-img-home" src="{{ asset('build/images/StatsWork2.png') }}" alt=""><div class="card-body">
+            <h5 class="card-title">{{ joboffer.contract.type }}</h5>
+            <p class="card-text">{{ joboffer.job.name}}</p>
+            <p class="card-text">{{ joboffer.city }} / {{ joboffer.updatedAt ? joboffer.updatedAt|date('Y-m-d H:i:s') : '' }} </p>
+            <a href="#" class="be-primary-button">Postuler</a>
+        </div>
+        <div class="card-footer text-muted" style="width: 18rem;">
+            <p class="card-text">{{ joboffer.company.name }}</p>
+        </div>#}
+    </div>
     <h1>Joboffer</h1>
 
     <table class="table">
