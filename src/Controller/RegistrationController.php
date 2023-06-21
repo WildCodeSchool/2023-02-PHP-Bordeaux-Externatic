@@ -29,7 +29,7 @@ class RegistrationController extends AbstractController
     public function register(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
     ): Response {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -51,11 +51,9 @@ class RegistrationController extends AbstractController
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user, (new TemplatedEmail())
                     ->from(new Address('bienvenue@jobitbetter.com', 'Validation de l\'adresse email Job IT Better'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Merci de confirmer ton email !')
                     ->htmlTemplate('registration/confirmation_email.html.twig'));
             // do anything else you need here, like send an email
-
-            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -77,9 +75,8 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_register');
         }
 
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Ton email est confirmé.');
 
-        return $this->redirectToRoute('app_register');
+        return $this->redirectToRoute('app_home');
     }
 }
