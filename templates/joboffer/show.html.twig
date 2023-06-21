@@ -7,48 +7,57 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ joboffer.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ joboffer.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ joboffer.description }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ joboffer.city }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ joboffer.createdAt ? joboffer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ joboffer.updatedAt ? joboffer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Company</th>
-                <td>{{ joboffer.company.name }}</td>
-            </tr>
-            <tr>
-                <th>Job</th>
-                <td>{{ joboffer.job.name}}</td>
-            </tr>
-            <tr>
-                <th>Contract</th>
-                <td>{{ joboffer.contract.type }}</td>
-            </tr>
-            <tr>
-                <th>Salary : min / max</th>
-                <td>{{ joboffer.salary.min }} / {{ joboffer.salary.max }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ joboffer.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ joboffer.title }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ joboffer.description }}</td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td>{{ joboffer.city }}</td>
+        </tr>
+        <tr>
+            <th>CreatedAt</th>
+            <td>{{ joboffer.createdAt ? joboffer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>UpdatedAt</th>
+            <td>{{ joboffer.updatedAt ? joboffer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Company</th>
+            <td>{{ joboffer.company.name }}</td>
+        </tr>
+        <tr>
+            <th>Job</th>
+            <td>{{ joboffer.job.name}}</td>
+        </tr>
+        <tr>
+            <th>Contract</th>
+            <td>{{ joboffer.contract.type }}</td>
+        </tr>
+        <tr>
+            <th>Salary : min / max</th>
+            <td>{{ joboffer.salary.min }} / {{ joboffer.salary.max }}</td>
+        </tr>
         </tbody>
     </table>
+
+    <div class="be-joboffer-apply-type">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        <button class="btn">{{ button_label|default('Update') }}</button>
+        {{ form_end(form) }}
+
+    </div>
 
     <a href="{{ path('app_joboffer_index') }}">back to list</a>
 
