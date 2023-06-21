@@ -1,0 +1,16 @@
+.be-joboffer-apply-type-container {
+    background-color: $light-grey;
+    box-shadow: $box-shadow;
+
+}
+
+.be-joboffer-apply-type-form label {
+    display: block;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    font-size: 24px;
+}
+
+textarea {
+    resize: none;
+}
