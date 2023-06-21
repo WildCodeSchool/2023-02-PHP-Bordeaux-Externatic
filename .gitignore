@@ -4,6 +4,7 @@ assets/images
 .DS_Store
 /public/uploads
 /assets/images
+/assets/uploads
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
