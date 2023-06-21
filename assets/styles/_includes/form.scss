@@ -1,3 +1,55 @@
+.hidden {
+    display: none;
+}
+
+.be-password {
+    position: relative;
+}
+
+.be-password button {
+    position: absolute;
+    top: calc(50% - 1.25rem);
+    right: 0;
+}
+
+.be-form {
+    width: 40%;
+    height: 30rem;
+    margin: 5rem auto;
+    background-color: $light-grey;
+    border-radius: $border-radius;
+    border: solid 1px #DEE1E6FF;
+    box-shadow: $box-shadow;
+    display: flex;
+    justify-content: center;
+}
+
+.be-form h2 {
+    text-align: center;
+}
+
+.be-form label {
+    font-weight: bold;
+    color: #424856FF;
+}
+
+.be-form-input {
+    background: #FFFFFFFF;
+    border-radius: 3px; /* border-xs */
+    border-width: 1px;
+    border-color: #9095A1FF;
+    border-style: solid;
+    box-shadow: $box-shadow;
+}
+
+.be-form .be-check-label {
+    font-weight: normal;
+}
+
+.be-form-switch {
+    padding-left: 3rem;
+}
+
 .be-search-bar-input {
     width: 60%;
     height: 100%;
@@ -21,6 +73,17 @@
     justify-content: center;
 }
 
+@media screen and ( max-width: 768px ){
+    .be-form {
+        width: 90%;
+    }
+
+    .be-form-switch {
+        display: flex;
+        justify-content: center;
+    }
+}
+
 @media screen and ( max-width: 425px ){
     .be-form-search {
         flex-direction: column;
@@ -38,3 +101,4 @@
         width: 80%;
     }
 }
+

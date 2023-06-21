@@ -29,6 +29,6 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-
+        "stimulus-password-visibility": "^2.1.1"
     }
 }
