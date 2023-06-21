@@ -25,7 +25,7 @@ class JobofferApplyType extends AbstractType
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
                 'attr' => [
-                    'class' => 'form-control mb-3' // Ajoute une classe CSS personnalisée
+                    'class' => 'form-control mb-3 sm-fs-1' // Ajoute une classe CSS personnalisée
                 ],
             ])
             ->add('lastname', TextType::class, [

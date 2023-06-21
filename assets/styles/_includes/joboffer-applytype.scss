@@ -14,3 +14,13 @@
 textarea {
     resize: none;
 }
+
+@media screen and (max-width: 450px) {
+    .be-joboffer-apply-type-form label {
+        font-size: 18px;
+    }
+
+    .be-joboffer-apply-type-container-ff {
+        justify-content: unset;
+    }
+}
