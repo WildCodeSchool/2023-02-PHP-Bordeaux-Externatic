@@ -39,7 +39,7 @@ class JobofferRepository extends ServiceEntityRepository
         }
     }
 
-    public function search($credentials)
+    public function search(array $credentials): array
     {
         $credential = implode(' ', $credentials);
         $query = $this->createQueryBuilder('j');

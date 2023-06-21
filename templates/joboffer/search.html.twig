@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Joboffer index{% endblock %}
+{% block body %}
+    {{ dump() }}
+
+    {% for result in results %}
+        <ul>
+            <li>result: {{ result.title }}</li>
+            <li> descrition {{ result.description }}</li>
+            <li>city {{ result.city }}</li>
+        </ul>
+    {% endfor %}
+{% endblock %}
