@@ -14,7 +14,6 @@
 
 .be-form {
     width: 40%;
-    height: 30rem;
     margin: 5rem auto;
     background-color: $light-grey;
     border-radius: $border-radius;
@@ -49,7 +48,14 @@
 .be-form-switch {
     padding-left: 3rem;
 }
+
+.be-form-check {
+    border-color: #9095A1FF;
+    border-style: solid;
+}
+
 .be-search-bar-input-container{
+
     width: 60%;
     height: 100%;
 }

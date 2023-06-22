@@ -48,6 +48,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user->setPassword($this->hasher->hashPassword($user, 'user'));
         $user->setRoles(['ROLE_USER']);
         $user->addResume($this->getReference('resume-1'));
+        $user->addResume($this->getReference('resume-2'));
         $manager->persist($user);
 
         $manager->flush();
