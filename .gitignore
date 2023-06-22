@@ -39,3 +39,5 @@ yarn-error.log
 ###< phpunit/phpunit ###
 
 tests
+
+src/Extensions

@@ -5,16 +5,8 @@
       Notre job, vous aider à trouver le vôtre.</h2>
   </div>
   <div class="navbar be-bg-body-tertiary">
-
-    <form class="d-flex be-form-search" role="search" method="get">
-      <label for="what"><b>Quoi ?</b></label>
-      <input id="what" name="what" class="form-control me-2 be-search-bar-input" type="search"
-        placeholder="Quel métier cherches-tu ?" aria-label="Search">
-      <label for="where"><b>Où ?</b></label>
-      <input id="where" name="where" class="form-control me-2 be-search-bar-input-2" type="search"
-        placeholder="Dans quelle ville ?" aria-label="Search">
-      <button class="be-search-button be-search-home" type="submit">Search</button>
-    </form>
-
+      {{ render(controller(
+          'App\\Controller\\SearchBarController::search',
+      )) }}
   </div>
 </div>
