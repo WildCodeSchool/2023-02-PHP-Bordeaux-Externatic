@@ -3,64 +3,85 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ user.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ user.lastname }}</td>
-            </tr>
-            <tr>
-                <th>Birthday</th>
-                <td>{{ user.birthday ? user.birthday|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ user.city }}</td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>{{ user.phone }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ user.status }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container d-flex justify-content-center my-5">
+    <div class="row">
+        {#Group 1#}
+        <div class="col-4 ">
+            <div class="card example-wrapper be-card-search" style="width: 18rem; height: 10rem; ">
+                <div class="card-body">
+                    <h5 class="card-title">Ma recherche</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Je precise mes criteres de recherche et je recois toutes
+                        les
+                        offres
+                        personnalisees</h6>
+                </div>
+            </div>
+            <div class="card example-wrapper be-card-information" style="width: 18rem; height: 10rem">
+                <div class="card-body">
+                    <h5 class="card-title">Mes informations personnelles</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Je renseigne mon identite et mes parametres de connexion
+                    </h6>
+                </div>
+            </div>
+            <div class="card example-wrapper be-card-favorites" style="width: 18rem; height: 10rem">
+                <div class="card-body">
+                    <h5 class="card-title">Mes favoris</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Accéder à ma liste d'offres favorites</h6>
+                </div>
+            </div>
+        </div>
+        {#Group 2#}
+        <div class="col-4">
+            <div class="card example-wrapper be-card-resume" style="width: 18rem; height: 10rem">
+                <div class="card-body">
+                    <h5 class="card-title">Mes CV</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">J'organise et je priorise mes CV</h6>
+                </div>
+            </div>
+            <div class="card example-wrapper be-card-situation" style="width: 18rem; height: 10rem">
+                <div class="card-body">
+                    <h5 class="card-title">Ma situation actuelle</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">J'augmente ma visibilite dans la base de candidats</h6>
+                </div>
+            </div>
+            <div class="card example-wrapper be-card-applications" style="width: 18rem; height: 10rem">
+                <div class="card-body">
+                    <h5 class="card-title">Mes candidatures</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Accéder à ma liste de candidature en cours</h6>
+                </div>
+            </div>
+        </div>
+        {#Group 3#}
+        <div class="col-4">
+            <div class="card example-wrapper be-card-candidate" style="width: 18rem; height: 21rem;">
+                <div class="card-body be-card-candidat">
+                    <h5 class="card-title">Bonjour {{ app.user.firstname }}</h5>
+                    <p class="be-maj">Mise à jour : {{ currentDateTime }}</p>
+                    <p class="card-text">Poste actuel : </p>
+                    <p class="card-text">
+                        Lieu de résidence :
+                        {% if app.user.city %} {{ app.user.city }}
+                        {% else %}
+                        Non renseigné
+                        {% endif %}
+                    </p>
+                    <p class="card-text">
+                        Statut :
+                        {% if app.user.status %} {{ app.user.status }}
+                        {% else %}
+                        Non renseigné
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+<a href="{{ path('app_user_index') }}">back to list</a>
 
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+<a href="{{ path('app_user_edit', {'id': app.user.id}) }}">edit</a>
 
-    {{ include('user/_delete_form.html.twig') }}
+{{ include('user/_delete_form.html.twig') }}
 {% endblock %}
