@@ -49,19 +49,23 @@
 .be-form-switch {
     padding-left: 3rem;
 }
-
-.be-search-bar-input {
+.be-search-bar-input-container{
     width: 60%;
     height: 100%;
+}
+.be-search-bar-input {
+    height: 60%;
     margin: 0 !important;
     border-radius: 0;
     border: 0;
     border-right: solid 1px rgb(185, 185, 185);
 }
-
-.be-search-bar-input-2 {
+.be-search-bar-input-2-container{
     width: 30%;
     height: 100%;
+}
+.be-search-bar-input-2 {
+    height: 60%;
     border: 0;
     margin: 0 !important;
 }
