@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Joboffer;
+use App\Form\JobofferApplyType;
 use App\Form\JobofferType;
 use App\Repository\JobofferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,8 +44,12 @@ class JobofferController extends AbstractController
     #[Route('/{id}', name: 'app_joboffer_show', methods: ['GET'])]
     public function show(Joboffer $joboffer): Response
     {
+        $user = $this->getUser();
+        $form = $this->createForm(JobofferApplyType::class, $user);
+
         return $this->render('joboffer/show.html.twig', [
             'joboffer' => $joboffer,
+            'form' => $form,
         ]);
     }
 

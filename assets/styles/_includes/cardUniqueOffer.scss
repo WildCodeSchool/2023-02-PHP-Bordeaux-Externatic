@@ -6,7 +6,7 @@
     height: 40vh;
     width: 90%;
     box-shadow: 0 6.25px 14px #c9cbcf, 0 0 2px #c9cbcf;
-    border-radius: 12px;
+    border-radius: 8px;
 
 
 }
@@ -45,4 +45,16 @@
     opacity: 1;
     border-radius: 15px;
     border: 1px $dark-green;
+}
+
+@media screen and ( max-width: 768px ){
+    .be-banner-offer {
+        height: 55vh;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+
+
+    }
+
 }
