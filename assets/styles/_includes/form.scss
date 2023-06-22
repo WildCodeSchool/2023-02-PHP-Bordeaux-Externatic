@@ -13,7 +13,6 @@
 }
 
 .be-form {
-    width: 40%;
     margin: 5rem auto;
     background-color: $light-grey;
     border-radius: $border-radius;
@@ -30,6 +29,7 @@
 .be-form label {
     font-weight: bold;
     color: #424856FF;
+    padding-left: 0.5rem;
 }
 
 .be-form-input {
