@@ -6,8 +6,11 @@ use App\Repository\JobofferRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: JobofferRepository::class)]
+#[ORM\Table(name: 'joboffer')]
+#[ORM\Index(columns: ['title', 'city'], flags: ['fulltext'])]
 class Joboffer
 {
     use TimestampableEntity;

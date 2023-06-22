@@ -4,6 +4,7 @@ assets/images
 .DS_Store
 /public/uploads
 /assets/images
+/assets/uploads
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -12,6 +13,7 @@ assets/images
 /public/bundles/
 /var/
 /vendor/
+
 ###< symfony/framework-bundle ###
 
 ###> symfony/webpack-encore-bundle ###
@@ -37,3 +39,5 @@ yarn-error.log
 ###< phpunit/phpunit ###
 
 tests
+
+src/Extensions
