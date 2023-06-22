@@ -62,7 +62,8 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'autocomplete' => 'new-password',
                     'placeholder' => 'Entre ton mot de passe',
-                    'class' => 'form-control be-form-input mb-3'
+                    'class' => 'form-control be-form-input mb-3',
+                    'data-password-visibility-target' => 'input'
                 ],
                 'constraints' => [
                     new NotBlank([
