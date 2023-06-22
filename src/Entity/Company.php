@@ -19,9 +19,6 @@ class Company
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $email = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $city = null;
 
     #[ORM\Column(length: 20)]
@@ -35,6 +32,10 @@ class Company
 
     #[ORM\OneToMany(mappedBy: 'company', targetEntity: Joboffer::class)]
     private Collection $joboffers;
+
+    #[ORM\OneToOne(inversedBy: 'company', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -54,18 +55,6 @@ class Company
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
 
         return $this;
     }
@@ -144,6 +133,18 @@ class Company
                 $joboffer->setCompany(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
