@@ -18,7 +18,8 @@ class JobCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setPageTitle('index', 'Emplois');
+        return $crud->setPageTitle('index', 'Emplois')
+            ->showEntityActionsInlined();
     }
 
     public function configureFields(string $pageName): iterable

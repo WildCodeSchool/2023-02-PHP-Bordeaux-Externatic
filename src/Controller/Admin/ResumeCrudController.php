@@ -17,7 +17,9 @@ class ResumeCrudController extends AbstractCrudController
     }
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setPageTitle('index', 'CV');
+
+        return $crud->setPageTitle('index', 'CV')
+        ->showEntityActionsInlined();
     }
 
 

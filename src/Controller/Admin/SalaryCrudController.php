@@ -18,7 +18,8 @@ class SalaryCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setPageTitle('index', 'Salaires');
+        return $crud->setPageTitle('index', 'Salaires')
+            ->showEntityActionsInlined();
     }
 
 

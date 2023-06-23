@@ -19,7 +19,8 @@ class CompanyCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setPageTitle('index', 'Entreprises');
+        return $crud->setPageTitle('index', 'Entreprises')
+            ->showEntityActionsInlined();
     }
 
     public function configureFields(string $pageName): iterable

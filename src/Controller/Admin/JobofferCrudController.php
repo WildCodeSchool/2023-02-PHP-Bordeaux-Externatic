@@ -20,7 +20,8 @@ class JobofferCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setPageTitle('index', 'Offres d\'emploi');
+        return $crud->setPageTitle('index', 'Offres d\'emploi')
+            ->showEntityActionsInlined();
     }
 
 

@@ -17,7 +17,8 @@ class CategoryCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setPageTitle('index', 'Catégories');
+        return $crud->setPageTitle('index', 'Catégories')
+            ->showEntityActionsInlined();
     }
 
 

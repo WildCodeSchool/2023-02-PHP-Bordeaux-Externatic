@@ -17,7 +17,8 @@ class ContractCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setPageTitle('index', 'Contrats');
+        return $crud->setPageTitle('index', 'Contrats')
+            ->showEntityActionsInlined();
     }
 
 
