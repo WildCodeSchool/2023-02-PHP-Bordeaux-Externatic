@@ -25,19 +25,22 @@ class JobofferApplyType extends AbstractType
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
                 'attr' => [
-                    'class' => 'form-control mb-3 sm-fs-1' // Ajoute une classe CSS personnalisée
+                    'placeholder' => 'Entre ton prénom',
+                    'class' => 'form-control mb-md-5 mb-3 be-form-input' // Ajoute une classe CSS personnalisée
                 ],
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
                 'attr' => [
-                    'class' => 'form-control mb-4' // Ajoute une classe CSS personnalisée
+                    'placeholder' => 'Entre ton nom',
+                    'class' => 'form-control be-form-input mb-md-5 mb-3' // Ajoute une classe CSS personnalisée
                 ],
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'attr' => [
-                    'class' => 'form-control mb-3' // Ajoute une classe CSS personnalisée
+                    'placeholder' => 'exemple.email@gmail.com',
+                    'class' => 'form-control be-form-input mb-md-5 mb-3' // Ajoute une classe CSS personnalisée
                 ],
             ])
             ->add('resumes', EntityType::class, [
@@ -54,7 +57,7 @@ class JobofferApplyType extends AbstractType
                     ])
                 ],
                 'attr' => [
-                    'class' => 'form-control form-group mb-3 h-auto' // Ajoute une classe CSS personnalisée
+                    'class' => 'form-control be-form-input form-group mb-md-5 mb-3 h-auto'
                 ],
             ])
             ;
