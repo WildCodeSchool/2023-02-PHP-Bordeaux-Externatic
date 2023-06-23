@@ -33,13 +33,16 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $admin->setRoles(['ROLE_ADMIN']);
         $manager->persist($admin);
 
-        $enterprise = new User();
-        $enterprise->setFirstname($faker->firstName());
-        $enterprise->setLastname($faker->lastName());
-        $enterprise->setEmail('enterprise@jobitbetter.com');
-        $enterprise->setPassword($this->hasher->hashPassword($enterprise, 'enterprise'));
-        $enterprise->setRoles(['ROLE_ENTERPRISE']);
-        $manager->persist($enterprise);
+        for ($i = 0; $i < 5; $i++) {
+            $enterprise = new User();
+            $enterprise->setFirstname($faker->firstName());
+            $enterprise->setLastname($faker->lastName());
+            $enterprise->setEmail('enterprise' . $i . '@jobitbetter.com');
+            $enterprise->setPassword($this->hasher->hashPassword($enterprise, 'enterprise'));
+            $enterprise->setRoles(['ROLE_ENTERPRISE']);
+            $this->addReference('user_' . $i, $enterprise);
+            $manager->persist($enterprise);
+        }
 
         $user = new User();
         $user->setFirstname($faker->firstName());
@@ -48,6 +51,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user->setPassword($this->hasher->hashPassword($user, 'user'));
         $user->setRoles(['ROLE_USER']);
         $user->addResume($this->getReference('resume-1'));
+        $user->addResume($this->getReference('resume-2'));
         $manager->persist($user);
 
         $manager->flush();

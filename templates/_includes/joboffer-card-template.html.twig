@@ -10,7 +10,7 @@
                             <footer class="text-secondary fs-6">{{ joboffer.city }} / {{ joboffer.salary.min }}€ - {{ joboffer.salary.max }}€</footer>
                             <div class="d-flex flex-row justify-content-between">
                                 <footer class="text-secondary w-50 fs-6">Annonce postée le {{ joboffer.createdAt|date('d/m/Y') }}</footer>
-                                <a href="#" class="be-secondary-button w-15 fs-5">Voir l'offre</a>
+                                <a href="{{ path('app_joboffer_show', {id: joboffer.id}) }}" class="be-secondary-button w-15 fs-5">Voir l'offre</a>
                             </div>
                         </div>
                     </div>

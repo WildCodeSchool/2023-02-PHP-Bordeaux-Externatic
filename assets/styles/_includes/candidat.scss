@@ -1,0 +1,70 @@
+.be-card-search {
+    background-color: $violet;
+}
+
+.be-card-information {
+    background-color: $light-belge;
+}
+
+.be-card-favorites {
+    background-color: #dbbbdb;
+}
+
+.be-card-resume {
+    background-color: $dark-belge;
+}
+
+.be-card-situation {
+    background-color: $grey-green;
+}
+
+.be-card-applications {
+    background-color: $grey-blue;
+}
+
+.be-card-candidate {
+    background-color: $light-grey;
+}
+
+.be-card-search,
+.be-card-information,
+.be-card-favorites,
+.be-card-resume,
+.be-card-situation,
+.be-card-applications,
+.be-card-candidate {
+    border-radius: $border-radius;
+    border-style: none;
+    box-shadow: $box-shadow;
+    // margin-bottom: 20px;
+    // margin-right: 20px;
+}
+
+.be-maj {
+    font-size: 10px;
+}
+
+// .be-ok-test{
+//     margin-right: -10px;
+// }
+
+// .be-search-profile{
+//     height: 8px;
+//     width: 8px;
+// }
+
+.be-search-img {
+    height: 55px;
+    width: 55px;
+    border-radius: $border-radius;
+}
+
+.be-test {
+    left: 1.5;
+}
+.card-title,
+.card-subtitle {
+    margin-top: 10px;
+}
+
+$white-green: #dbbbdb;

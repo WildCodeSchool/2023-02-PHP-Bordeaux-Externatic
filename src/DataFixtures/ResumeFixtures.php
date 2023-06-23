@@ -18,6 +18,13 @@ class ResumeFixtures extends Fixture
 
         $manager->persist($resume);
 
+        $resume = new Resume();
+        $resume->setName('CV secondaire');
+        $resume->setPath('assets/uploads/resumes/CVKevindavoust.pdf');
+        $this->addReference('resume-2', $resume);
+
+        $manager->persist($resume);
+
         $manager->flush();
     }
 }
