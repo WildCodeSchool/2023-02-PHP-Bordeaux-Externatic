@@ -20,36 +20,36 @@ class UserType extends AbstractType
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
                 'attr' => [
-                    'class' => 'form-control mb-3 sm-fs-1', // Ajoute une classe CSS personnalisée
-                    'placeholder' => 'Aline',
+                    'class' => 'form-control be-form-input mb-md-5 mb-3', // Ajoute une classe CSS personnalisée
+                    'placeholder' => 'Entre ton prénom',
                 ],
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
                 'attr' => [
-                    'class' => 'form-control mb-3 sm-fs-1', // Ajoute une classe CSS personnalisée
-                    'placeholder' => 'Legendre',
+                    'class' => 'form-control be-form-input mb-md-5 mb-3', // Ajoute une classe CSS personnalisée
+                    'placeholder' => 'Entre ton nom',
                 ],
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'attr' => [
-                    'class' => 'form-control mb-3 sm-fs-1', // Ajoute une classe CSS personnalisée
-                    'placeholder' => 'fumeur2ganja6420@wanadoo.fr',
+                    'class' => 'form-control be-form-input mb-md-5 mb-3', // Ajoute une classe CSS personnalisée
+                    'placeholder' => 'exemple.email@gmail.com',
                 ],
             ])
             ->add('city', TextType::class, [
                 'label' => 'Ville',
                 'attr' => [
-                    'class' => 'form-control mb-3 sm-fs-1', // Ajoute une classe CSS personnalisée
-                    'placeholder' => 'Saint-Seurin sur l\'Isle',
+                    'class' => 'form-control be-form-input mb-md-5 mb-3', // Ajoute une classe CSS personnalisée
+                    'placeholder' => 'Ajoute ta ville',
                 ],
             ])
             ->add('birthday', DateType::class, [
                 'label' => 'Date de naissance',
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'form-control mb-3 sm-fs-1', // Ajoute une classe CSS personnalisée
+                    'class' => 'form-control be-form-input mb-md-5 mb-3', // Ajoute une classe CSS personnalisée
                 ],
             ])
             ->add('phone', TextType::class, [
@@ -61,7 +61,7 @@ class UserType extends AbstractType
                     ]),
                 ],
                 'attr' => [
-                    'class' => 'form-control mb-3 sm-fs-1', // Ajoute une classe CSS personnalisée
+                    'class' => 'form-control be-form-input mb-md-5 mb-3', // Ajoute une classe CSS personnalisée
                     'placeholder' => '0123456789',
                 ],
             ])
