@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes informations{% endblock %}
+
+{% block body %}
+
+
+
+    <div class=" d-flex justify-content-around col-sm-12 mt-5 mb-5" >
+
+        <div class="be-user-update-infos-form-container w-75">
+            <div class="d-flex m-4">
+                <a class="be-secondary-button " href="{{ path('app_user_index') }}">Retour au profil</a>
+            </div>
+            <h1 class="text-center m-4 fs-1 fw-bold">Mes informations</h1>
+
+            <div class="be-user-update-infos-form m-5">
+            {{ form_start(form) }}
+
+            <div class="row">
+                <div class="col-md-6 sm-12">
+                    {{ form_row(form.firstname) }}
+                </div>
+                <div class="col-md-6 ">
+                    {{ form_row(form.lastname) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.email) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.city) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.birthday) }}
+                </div>
+                <div class="col-md-6">
+
+                    {{ form_row(form.phone) }}
+                </div>
+            </div>
+    </div>
+
+            <div class="text-center mt-4 mb-5">
+                <button class="be-primary-button" type="submit">Confirmer</button>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}
