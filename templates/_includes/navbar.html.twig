@@ -46,9 +46,11 @@
             <a href="/register" class="href">
                 <button class="be-secondary-button mx-3">Inscription</button>
             </a>
-            <a href="/profile/show" class="href">
-                <button class="be-secondary-button mx-3">OK</button>
+            {% if app.user %}
+            <a href="{{ path('app_user_show', {id: app.user.id}) }}" class="href">
+                <button class="be-secondary-button mx-3">Mon profil</button>
             </a>
+            {% endif %}
         </div>
     </div>
 </nav>

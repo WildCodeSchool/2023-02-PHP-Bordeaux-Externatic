@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Joboffer;
+use App\Form\JobofferApplyType;
 use App\Form\JobofferType;
 use App\Repository\JobofferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,11 +41,22 @@ class JobofferController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_joboffer_show', methods: ['GET'])]
-    public function show(Joboffer $joboffer): Response
+    #[Route('/{id}', name: 'app_joboffer_show', methods: ['GET', 'POST'])]
+    public function show(Joboffer $joboffer, Request $request): Response
     {
+        $user = $this->getUser();
+        $form = $this->createForm(JobofferApplyType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success', 'Votre candidature a bien été envoyée !');
+
+            return $this->redirectToRoute('app_joboffer_index', [], Response::HTTP_SEE_OTHER);
+        }
+
         return $this->render('joboffer/show.html.twig', [
             'joboffer' => $joboffer,
+            'form' => $form,
         ]);
     }
 
