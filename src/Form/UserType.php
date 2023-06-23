@@ -13,7 +13,6 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('roles')
             ->add('password')
             ->add('firstname')
             ->add('lastname')
@@ -22,8 +21,7 @@ class UserType extends AbstractType
             ->add('phone')
             ->add('status')
             ->add('createdAt')
-            ->add('updatedAt')
-        ;
+            ->add('updatedAt');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
