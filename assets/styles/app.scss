@@ -22,6 +22,10 @@ $primary: #05380A;
     margin: 0;
     box-sizing: border-box;
 }
+body{
+    min-height: 100vh;
+    position: relative;
+}
 a{
     text-decoration: none;
     color: $light-green;
