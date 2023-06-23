@@ -62,7 +62,7 @@ class ResetPasswordController extends AbstractController
         // Generate a fake token if the user does not exist or someone hit this page directly.
         // This prevents exposing whether or not a user was found with the given email address or not
         $resetToken = $this->getTokenObjectFromSession();
-        if (null === ($resetToken)) {
+        if (null === $resetToken) {
             $resetToken = $this->resetPasswordHelper->generateFakeResetToken();
         }
 
@@ -162,8 +162,10 @@ class ResetPasswordController extends AbstractController
             //
             // $this->addFlash('reset_password_error', sprintf(
             //     '%s - %s',
-            //     $translator->trans(ResetPasswordExceptionInterface::MESSAGE_PROBLEM_HANDLE, [],
-            // 'ResetPasswordBundle'),
+            //     $translator->trans(
+            //      ResetPasswordExceptionInterface::MESSAGE_PROBLEM_HANDLE,
+            //      [],
+            //      'ResetPasswordBundle'),
             //     $translator->trans($e->getReason(), [], 'ResetPasswordBundle')
             // ));
 
