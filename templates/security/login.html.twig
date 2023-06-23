@@ -15,7 +15,8 @@
     <h2 class="be-h2">Connexion</h2>
     <div class="col-10">
         <label for="username">Email</label>
-        <input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control be-form-input" autocomplete="email" required autofocus placeholder="exemple.email@gmail.com">
+        <input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control
+        be-form-input" autocomplete="email" required autofocus placeholder="exemple.email@gmail.com">
     </div>
     <div class="col-10" data-controller="password-visibility">
         <label for="password">Mot de passe</label>
@@ -38,10 +39,11 @@
            value="{{ csrf_token('authenticate') }}"
     >
 
-<div class="form-switch be-form-switch col-10">
+<div class="form-switch be-form-switch col-10 d-flex justify-content-between">
     <label class="be-check-label">
         <input class="form-check-input" type="checkbox" name="_remember_me" role="switch" id="flexSwitchCheckChecked" checked> Rester connecté
     </label>
+    <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié</a>
 </div>
 
     <div class="col-12 d-flex justify-content-center">
