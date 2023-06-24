@@ -6,22 +6,53 @@
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-    <div class="be-form row g-3">
+    <div class="be-form row g-3 col-7">
         <h2 class="be-h2">Créer son compte Entreprise</h2>
         {{ form_start(registrationForm) }}
-        <h3>Information de l'entreprise</h3>
-        {{ form_row(registrationForm.company.name) }}
-        {{ form_row(registrationForm.company.siret) }}
-        {{ form_row(registrationForm.company.city) }}
-        {{ form_row(registrationForm.company.phone) }}
-        {{ form_row(registrationForm.company.logo) }}
-        <h3>Information du représentant légal de l'entreprise</h3>
-        {{ form_row(registrationForm.firstname) }}
-        {{ form_row(registrationForm.lastname) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-        <button type="submit" class="btn btn-primary">Créer son compte</button>
+        <h3 class="mb-5">Information de l'entreprise</h3>
+        <div class="row mb-5 px-4">
+            <div class="col-md-6">
+                {{ form_row(registrationForm.company.name) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(registrationForm.company.siret) }}
+            </div>
+        </div>
+        <div class="row mb-5 px-4">
+            <div class="col-md-6">
+                {{ form_row(registrationForm.company.city) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(registrationForm.company.phone) }}
+            </div>
+        </div>
+        <div class="col-md-12 px-4 mb-5">
+            {{ form_row(registrationForm.company.logo) }}
+        </div>
+        <h3 class="mb-5">Information du représentant légal de l'entreprise</h3>
+        <div class="row px-4 mb-5">
+            <div class="col-md-6">
+                {{ form_row(registrationForm.firstname) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(registrationForm.lastname) }}
+            </div>
+        </div>
+        <div class="col-md-12 mb-5 px-4">
+            {{ form_row(registrationForm.email) }}
+        </div>
+        <div class="col-md-12 mb-5 px-4">
+            {{ form_row(registrationForm.plainPassword) }}
+        </div>
+        <div class="col-md-12 mb-5 form-check">
+            <div class="px-4">
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+         <button type="submit" class="be-primary-button">Créer son compte</button>
+        </div>
         {{ form_end(registrationForm) }}
+        <p class="text-center">Vous avez déjà un compte ? <a href="{{ path('app_login') }}">Se connecter</a></p>
     </div>
 {% endblock %}

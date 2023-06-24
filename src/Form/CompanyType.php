@@ -20,27 +20,27 @@ class CompanyType extends AbstractType
                 'label' => 'Nom de l\'entreprise',
                 'attr' => [
                     'placeholder' => 'Entre le nom de l\'entreprise',
-                    'class' => 'form-control be-form-input'
+                    'class' => 'form-control be-form-input mb-3'
                 ],
             ])
             ->add('city', TextType::class, [
                 'label' => 'Ville',
                 'attr' => [
                     'placeholder' => 'Entre la ville de l\'entreprise',
-                    'class' => 'form-control be-form-input'
+                    'class' => 'form-control be-form-input mb-3'
                 ],
             ])
             ->add('phone', TelType::class, [
                 'label' => 'Téléphone',
                 'attr' => [
-                    'placeholder' => 'Entre le numéro de téléphone de l\'entreprise',
-                    'class' => 'form-control be-form-input'
+                    'placeholder' => '0123456789',
+                    'class' => 'form-control be-form-input mb-3'
                 ],
             ])
             ->add('logo', FileType::class, [
                 'label' => 'Logo',
                 'attr' => [
-                    'class' => 'form-control be-form-input'
+                    'class' => 'form-control be-form-input mb-3'
                 ],
                 'mapped' => false,
                 'required' => false,
@@ -48,8 +48,8 @@ class CompanyType extends AbstractType
             ->add('siret', NumberType::class, [
                 'label' => 'Numéro Siret',
                 'attr' => [
-                    'placeholder' => 'Entre le numéro siret de l\'entreprise',
-                    'class' => 'form-control be-form-input'
+                    'placeholder' => 'Entre le numéro siret',
+                    'class' => 'form-control be-form-input mb-3'
                 ],
             ])
         ;
