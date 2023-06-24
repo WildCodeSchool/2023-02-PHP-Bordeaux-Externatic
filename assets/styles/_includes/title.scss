@@ -9,6 +9,15 @@
     color: $light-green;
 }
 
+.be-h3 {
+    font-size: 1.5rem;
+    font-weight:600;
+}
+
+.be-h3 span {
+    color: $light-green;
+}
+
 @media screen and (max-width: 768px){
     .be-h2 {
         font-size: 2rem;
