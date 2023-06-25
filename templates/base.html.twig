@@ -20,14 +20,12 @@
     {% endblock %}
 </head>
 
-<body>
+<body class="position-relative min-vh-100">
     {% include '_includes/navbar.html.twig' %}
     <main class="w-75 m-auto my-5">
         {% block body %}{% endblock %}
     </main>
-    {% block footer %}
         {% include 'footer.html.twig' %}
-    {% endblock %}
 </body>
 
 </html>
