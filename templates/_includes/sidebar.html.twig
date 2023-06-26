@@ -1,0 +1,131 @@
+<nav class="navbar bg-body-tertiary fixed-top d-md-none d-lg-none">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand m-auto" href="/">
+            <img class="be-img-navbar" src="{{ asset('build/images/logo-allonge.png')}}" alt="Mon image">
+        </a>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <img class="be-img-navbar m-auto" src="{{ asset('build/images/logo-allonge.png')}}" alt="Mon image">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-around flex-grow-1 h-100">
+
+                    {% if app.user %}
+                        <li class="nav-item d-flex justify-content-center align-items-center ">
+
+                            {% if is_granted('ROLE_COMPANY') %}
+                                <a class="nav-link mx-2 active text-center fw-bold" aria-current="page" href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                         class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+                                    </svg>
+                                    Votre espace entreprise
+                                </a>
+                            {% elseif is_granted('ROLE_USER') %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                     class="bi bi-person-video2" viewBox="0 0 16 16">
+                                    <path d="M10 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                                    <path d="M2 1a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2ZM1 3a1 1 0 0 1 1-1h2v2H1V3Zm4 10V2h9a1 1 0 0 1 1 1v9c0 .285-.12.543-.31.725C14.15 11.494 12.822 10 10 10c-3.037 0-4.345 1.73-4.798 3H5Zm-4-2h3v2H2a1 1 0 0 1-1-1v-1Zm3-1H1V8h3v2Zm0-3H1V5h3v2Z"/>
+                                </svg>
+                                <a class="nav-link mx-2 active text-center fw-bold" aria-current="page" href="#">
+                                    Votre espace candidat
+                                </a>
+                                {% elseif is_granted('ROLE_ADMIN') %}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                         class="bi bi-diagram-3-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zm-6 8A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm6 0A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm6 0a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1z"/>
+                                    </svg>
+                                    <a class="nav-link mx-2 active text-center fw-bold" aria-current="page" href="#">
+                                        Votre espace admin
+                                    </a>
+                            {% endif %}
+                        </li>
+                    {% else %}
+                        <li class="nav-item d-flex justify-content-center align-items-center dropdown">
+                        <li class="nav-item dropdown mx-3 d-flex flex-column align-items-center justify-content-center">
+                                <a class="nav-link mx-2 active text-center d-block fw-bold dropdown-toggle" href="#" role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                         class="bi bi-person" viewBox="0 0 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                                    </svg>
+                                    Inscription
+                                </a>
+                                <ul class="no-border dropdown-menu">
+                                    <li><a class="dropdown-item fw-bold"
+                                           href="{{ path('app_register_company') }}">Inscription recruteur</a></li>
+                                    <li><a class="dropdown-item fw-bold"
+                                           href="{{ path('app_register') }}">Inscription candidat</a></li>
+                                </ul>
+                        </li>
+                        <hr class="hr">
+
+                        <li class="nav-item d-flex justify-content-center align-items-center ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                            </svg>
+                            <a class="nav-link mx-2 active text-center fw-bold" aria-current="page"
+                               href="{{ path('app_login') }}">Connexion
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    <hr class="hr">
+                    {% if app.user %}
+
+                        <li class="nav-item d-flex justify-content-center align-items-center ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                            </svg>
+                            <a class="nav-link mx-2 active text-center fw-bold" aria-current="page" href="#">Vos favoris</a>
+                        </li>
+                        <li class="nav-item d-flex justify-content-center align-items-center ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                            </svg>
+                            <a class="nav-link mx-2 active text-center fw-bold" aria-current="page" href="#">Vos notifications</a>
+                        </li>
+                        <hr class="hr">
+
+                    {% endif %}
+                    <li class="nav-item d-flex justify-content-center align-items-center ">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+                            <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+                        </svg>
+                        <a class="nav-link mx-2 active text-center fw-bold" href="{{ path('app_joboffer_index') }}">Nos offres</a>
+                    </li>
+                    <hr class="hr">
+                    <li class="nav-item d-flex justify-content-center align-items-center ">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                        </svg>
+                        <a class="nav-link mx-2 active text-center fw-bold" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script !src="">
+    $(document).ready(function(){
+
+        $(".nav .dropdown").focusin( function (){
+            $(this).find(".dropdown-menu").each(function(){
+                $(this).css({"display":'block','opacity':'1','top':'60px'});
+            });
+        });
+
+        $(".nav .dropdown").focusout( function (){
+            $(this).find(".dropdown-menu").each(function(){
+                $(this).css({"display":'block','opacity':'0','top':'0px'});
+            });
+        });
+
+
+</script>
