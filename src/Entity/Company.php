@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\CompanyRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
@@ -15,6 +17,8 @@ use Symfony\Component\HttpFoundation\File\File;
 #[UniqueEntity(fields: ['siret'], message: 'Un compte existe déjà avec ce numéro de SIRET')]
 class Company
 {
+    use TimestampableEntity;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -106,6 +110,9 @@ class Company
     public function setLogoFile(File $image = null): Company
     {
         $this->logoFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
         return $this;
     }
 
