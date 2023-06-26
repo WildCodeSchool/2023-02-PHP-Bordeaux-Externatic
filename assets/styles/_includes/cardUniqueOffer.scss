@@ -1,0 +1,68 @@
+.be-banner-offer {
+    background-image: url("/assets/images/Bordeaux_job.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 40vh;
+    width: 90%;
+    box-shadow: 0 6.25px 14px #c9cbcf, 0 0 2px #c9cbcf;
+    border-radius: 8px;
+
+
+}
+
+.be-cardText-jobofferCompany {
+    height: 70px;
+    width: 150px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 22px;
+    background: #FFFFFFFF;
+    opacity: 1;
+    border-radius: 15px;
+    border: 1px $dark-green;
+    box-shadow: 0 6.25px 14px #c9cbcf, 0 0 2px #c9cbcf;
+}
+
+.be-card-joboffer {
+    bottom: -25px;
+
+}
+.be-apply-button {
+    height: 40px;
+    width: 200px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 22px;
+    color: $dark-green;
+    background: #FFFFFFFF;
+    opacity: 1;
+    border-radius: 15px;
+    border: 1px $dark-green;
+}
+
+@media screen and ( max-width: 768px ){
+    .be-banner-offer {
+        height: 55vh;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+
+
+    }
+
+}
+@media screen and ( min-width: 1024px ) and (max-width: 1440px){
+    .be-banner-offer {
+        height: 70vh;
+
+
+    }
+
+}

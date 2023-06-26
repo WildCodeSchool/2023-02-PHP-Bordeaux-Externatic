@@ -13,11 +13,9 @@ $primary: #05380A;
 @import "_includes/partner-companies-home.scss";
 @import "_includes/cardsSearchPage.scss";
 @import "_includes/jobofferCardTemplate.scss";
-@import "_includes/joboffer-applytype.scss";
 @import "_includes/candidat.scss";
-@import "_includes/userUpdateInfosForm.scss";
 @import "_includes/sidebar-mobile.scss";
-
+@import "_includes/cardUniqueOffer.scss";
 
 
 * {
@@ -27,11 +25,13 @@ $primary: #05380A;
     margin: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     min-height: 100vh;
     position: relative;
 }
-a{
+
+a {
     text-decoration: none;
     color: $light-green;
 }
