@@ -34,14 +34,14 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($admin);
 
         for ($i = 0; $i < 5; $i++) {
-            $enterprise = new User();
-            $enterprise->setFirstname($faker->firstName());
-            $enterprise->setLastname($faker->lastName());
-            $enterprise->setEmail('enterprise' . $i . '@jobitbetter.com');
-            $enterprise->setPassword($this->hasher->hashPassword($enterprise, 'enterprise'));
-            $enterprise->setRoles(['ROLE_ENTERPRISE']);
-            $this->addReference('user_' . $i, $enterprise);
-            $manager->persist($enterprise);
+            $company = new User();
+            $company->setFirstname($faker->firstName());
+            $company->setLastname($faker->lastName());
+            $company->setEmail('company' . $i . '@jobitbetter.com');
+            $company->setPassword($this->hasher->hashPassword($company, 'company'));
+            $company->setRoles(['ROLE_COMPANY']);
+            $this->addReference('user_' . $i, $company);
+            $manager->persist($company);
         }
 
         $user = new User();
