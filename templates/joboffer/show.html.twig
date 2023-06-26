@@ -4,6 +4,25 @@
 {% block title %}Joboffer{% endblock %}
 
 {% block body %}
+    <div class="m-auto be-banner-offer d-flex justify-content-center position-md-relative mt-md-2">
+          <img class="img-responsive be-img-UniqueOffer" src="{{ asset('build/images/Bordeaux_job.jpg') }}" alt="">
+        <div class="bg-transparent border border-0 w-auto h-100 card d-inline-flex align-items-center justify-content-center">
+            <h5 class="text-white fs-3 card-title">{{ joboffer.contract.type }}</h5>
+            <p class="text-white fw-bold fs-1 card-text">{{ joboffer.job.name }}</p>
+            <div class="text-white fs-5 fw-bold d-lg-none  ">{{ joboffer.company.name }}</div>
+            <p class="pt-2 text-white fs-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-geo-alt"
+                     viewBox="0 0 16 16">
+                    <path
+                        d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg> {{ joboffer.city }}</p>
+            <a href="#" class="fs-6 be-apply-button ">Postuler</a>
+             <div class="be-card-joboffer position-absolute d-none d-sm-none d-md-none d-lg-block ">
+                <div class="fs-5 fw-bold be-cardText-jobofferCompany ">{{ joboffer.company.name }}</div>
+             </div>
+        </div>
+    </div>
     <h1>Joboffer</h1>
 
     <table class="table">
@@ -57,19 +76,12 @@
     {{ include('joboffer/_delete_form.html.twig') }}
 
     {% if app.user %}
-    <div class="d-flex justify-content-around col-sm-12 mt-5" >
-    <div class="be-joboffer-apply-type-container w-75">
-    <div class="text-center">
-        <h2 class="mt-4 fs-2 fw-bold">Cette offre t'intéresse ?</h2>
-        <h2 class="mb-4 fs-2 fw-bold">Postule !</h2>
-    </div>
-
-        <div class="be-joboffer-apply-type-form m-5">
-
+        <div class="be-form row g-3 col-7">
+            <h2 class="be-h2">Cette offre t'intéresse ?</h2>
+            <h2 class="be-h2">Postule !</h2>
             {{ form_start(form) }}
-
             {{ form_errors(form) }}
-            <div class="row">
+            <div class="row px-4">
                 <div class="col-md-6">
                     {{ form_row(form.firstname) }}
                 </div>
@@ -77,32 +89,23 @@
                     {{ form_row(form.lastname) }}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    {{ form_row(form.email) }}
+            <div class="col-12 px-4">
+                {{ form_row(form.email) }}
+            </div>
+            <div class="col-12 px-4">
+                {{ form_row(form.resumes) }}
+            </div>
+            <div class="col-12 px-4">
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control be-form-input mb-4" rows="8" id="message" name="message" placeholder="Vous pouvez écrire un message personnalisé ici."></textarea>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    {{ form_row(form.resumes) }}
-                </div>
+            <div class="text-center mb-4">
+                <button class="be-primary-button" type="submit">Postuler</button>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea class="form-control" rows="8" id="message" name="message" placeholder="Vous pouvez écrire un message personnalisé ici."></textarea>
-                    </div>
-                </div>
-            </div>
+         {{ form_end(form) }}
         </div>
-
-        <div class="text-center mt-4 mb-5">
-            <button class="be-primary-button" type="submit">Postuler</button>
-        </div>
-        {{ form_end(form) }}
-    </div>
-    </div>
     {% endif %}
 
 
