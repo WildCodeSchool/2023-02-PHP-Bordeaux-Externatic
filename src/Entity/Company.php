@@ -29,7 +29,7 @@ class Company
     #[ORM\Column(length: 20)]
     private ?string $phone = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $logo = null;
 
     #[Vich\UploadableField(mapping: 'logo_file', fileNameProperty: 'logo')]

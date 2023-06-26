@@ -40,13 +40,12 @@ class CompanyType extends AbstractType
             ])
             ->add('logoFile', VichFileType::class, [
                 'label' => 'Logo',
-                'attr' => [
-                    'class' => 'form-control be-form-input mb-3'
-                ],
                 'required'      => false,
                 'allow_delete'  => true,
                 'download_uri' => true,
-                'download_label' => true,
+                'attr' => [
+                    'class' => 'form-control be-form-input mb-3'
+                ],
             ])
             ->add('siret', NumberType::class, [
                 'label' => 'Numéro Siret',
