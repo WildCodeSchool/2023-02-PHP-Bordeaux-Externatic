@@ -10,11 +10,13 @@ use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
@@ -68,6 +70,7 @@ class RegistrationController extends AbstractController
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
         EntityManagerInterface $entityManager,
+        SluggerInterface $slugger,
     ): Response {
         $user = new User();
         $company = new Company();
@@ -92,9 +95,22 @@ class RegistrationController extends AbstractController
             $company->setName($form->get('company')->get('name')->getData());
             $company->setCity($form->get('company')->get('city')->getData());
             $company->setPhone($form->get('company')->get('phone')->getData());
-            $company->setLogo($form->get('company')->get('logo')->getData());
             $company->setSiret($form->get('company')->get('siret')->getData());
 
+            $logoFile = $form->get('company')->get('logoFile')->getData();
+            if ($logoFile) {
+                $originalFilename = pathinfo($logoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $logoFile->guessExtension();
+
+                $logoFile->move(
+                    $this->getParameter('upload_directory_logo'),
+                    $newFilename
+                );
+
+                $company->setLogo($newFilename);
+            }
             $entityManager->persist($company);
             $entityManager->flush();
 

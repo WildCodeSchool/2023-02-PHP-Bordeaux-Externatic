@@ -21,7 +21,7 @@ class CompanyFixtures extends Fixture implements DependentFixtureInterface
             $company->setName($faker->company)
                ->setCity($faker->city)
                ->setPhone($faker->phoneNumber)
-               ->setSiret('14430323700834')
+               ->setSiret('1443032370083' . $i)
                ->setLogo($faker->imageUrl(640, 480, 'cats'))
                 ->setUser($this->getReference('user_' . $i));
             $this->addReference('company_' . $i, $company);
