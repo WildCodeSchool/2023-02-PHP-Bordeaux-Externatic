@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Joboffer{% endblock %}
 
 {% block body %}
@@ -7,52 +8,102 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ joboffer.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ joboffer.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ joboffer.description }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ joboffer.city }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ joboffer.createdAt ? joboffer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ joboffer.updatedAt ? joboffer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Company</th>
-                <td>{{ joboffer.company.name }}</td>
-            </tr>
-            <tr>
-                <th>Job</th>
-                <td>{{ joboffer.job.name}}</td>
-            </tr>
-            <tr>
-                <th>Contract</th>
-                <td>{{ joboffer.contract.type }}</td>
-            </tr>
-            <tr>
-                <th>Salary : min / max</th>
-                <td>{{ joboffer.salary.min }} / {{ joboffer.salary.max }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ joboffer.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ joboffer.title }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ joboffer.description }}</td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td>{{ joboffer.city }}</td>
+        </tr>
+        <tr>
+            <th>CreatedAt</th>
+            <td>{{ joboffer.createdAt ? joboffer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>UpdatedAt</th>
+            <td>{{ joboffer.updatedAt ? joboffer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Company</th>
+            <td>{{ joboffer.company.name }}</td>
+        </tr>
+        <tr>
+            <th>Job</th>
+            <td>{{ joboffer.job.name}}</td>
+        </tr>
+        <tr>
+            <th>Contract</th>
+            <td>{{ joboffer.contract.type }}</td>
+        </tr>
+        <tr>
+            <th>Salary : min / max</th>
+            <td>{{ joboffer.salary.min }} / {{ joboffer.salary.max }}</td>
+        </tr>
         </tbody>
     </table>
-
     <a href="{{ path('app_joboffer_index') }}">back to list</a>
 
     <a href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">edit</a>
 
     {{ include('joboffer/_delete_form.html.twig') }}
+
+    {% if app.user %}
+    <div class="d-flex justify-content-around col-sm-12 mt-5" >
+    <div class="be-joboffer-apply-type-container w-75">
+    <div class="text-center">
+        <h2 class="mt-4 fs-2 fw-bold">Cette offre t'intéresse ?</h2>
+        <h2 class="mb-4 fs-2 fw-bold">Postule !</h2>
+    </div>
+
+        <div class="be-joboffer-apply-type-form m-5">
+
+            {{ form_start(form) }}
+
+            {{ form_errors(form) }}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.firstname) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.lastname) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {{ form_row(form.email) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {{ form_row(form.resumes) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" rows="8" id="message" name="message" placeholder="Vous pouvez écrire un message personnalisé ici."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4 mb-5">
+            <button class="be-primary-button" type="submit">Postuler</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+    </div>
+    {% endif %}
+
+
 {% endblock %}

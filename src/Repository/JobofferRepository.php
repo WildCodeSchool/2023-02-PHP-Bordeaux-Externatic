@@ -39,6 +39,16 @@ class JobofferRepository extends ServiceEntityRepository
         }
     }
 
+    public function search(array $credentials): array
+    {
+        $credential = implode(' ', $credentials);
+        $query = $this->createQueryBuilder('j');
+        if ($credentials != null) {
+            $query->where('MATCH_AGAINST(j.title, j.city) AGAINST(:words boolean) > 0')
+                ->setParameter('words', $credential);
+        }
+        return $query->getQuery()->getResult();
+    }
 //    /**
 //     * @return Joboffer[] Returns an array of Joboffer objects
 //     */

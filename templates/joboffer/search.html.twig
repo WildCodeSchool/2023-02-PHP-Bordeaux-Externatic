@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Joboffer index{% endblock %}
+{% block body %}
+{#    {{ dump() }}#}
+<div class="d-flex justify-content-between">
+    {{ include ('_includes/joboffer-card-template.html.twig') }}
+    <div class="sidebar">
+        <div class="p4 p5">
+            {{ include ('_includes/cards-search-page.html.twig') }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
