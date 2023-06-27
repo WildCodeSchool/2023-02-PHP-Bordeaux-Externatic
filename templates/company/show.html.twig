@@ -47,22 +47,24 @@
                     </h6>
                 </div>
             </div>
-            {# <div class="card example-wrapper be-card-favorites mb-4" style="width: 20rem; height: 10rem">
-                <div class="card-body">
-                    <i class="fa-solid fa-bookmark fa-2xl" style="color: #ffffff;"></i>
-                    <h5 class="card-title">Mes favoris</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        Accéder à ma liste d'offres favorites
-                    </h6>
+            <a href="{{ path('app_company_edit', {'id': app.user.id}) }}">
+                <div class="card example-wrapper be-card-favorites mb-4" style="width: 20rem; height: 10rem">
+                    <div class="card-body">
+                        <i class="fa-solid fa-bookmark fa-2xl" style="color: #ffffff;"></i>
+                        <h5 class="card-title">Mes informations d'entreprise</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            Accéder à ma liste d'offres favorites
+                        </h6>
+                    </div>
                 </div>
-            </div> #}
+            </a>
         </div>
         {#Group 3#}
         <div class="col-lg-4 col-12 align-items-center d-flex flex-column justify-content-strat">
             {# <div class="card example-wrapper be-card-resume mb-4" style="width: 20rem; height: 10rem">
                 <div class="card-body">
                     <i class="fa-solid fa-file fa-2xl" style="color: #ffffff;"></i>
-                    <h5 class="card-title">Mes CV</h5>
+                    <h5 class="card-title">Mes informations d'etreprise</h5>
                     <h6 class="card-subtitle mb-2 text-muted">
                         J'organise et je priorise mes CV
                     </h6>
