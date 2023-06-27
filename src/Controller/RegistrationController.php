@@ -2,17 +2,21 @@
 
 namespace App\Controller;
 
+use App\Entity\Company;
 use App\Entity\User;
+use App\Form\CompanyType;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
@@ -57,6 +61,69 @@ class RegistrationController extends AbstractController
         }
 
         return $this->render('registration/register.html.twig', [
+            'registrationForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/register/company', name: 'app_register_company')]
+    public function registerCompany(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        EntityManagerInterface $entityManager,
+        SluggerInterface $slugger,
+    ): Response {
+        $user = new User();
+        $company = new Company();
+
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->add('company', CompanyType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+            $user->setRoles(['ROLE_COMPANY']);
+            $user->setCompany($company);
+
+            $entityManager->persist($user);
+
+            $company->setName($form->get('company')->get('name')->getData());
+            $company->setCity($form->get('company')->get('city')->getData());
+            $company->setPhone($form->get('company')->get('phone')->getData());
+            $company->setSiret($form->get('company')->get('siret')->getData());
+
+            $logoFile = $form->get('company')->get('logoFile')->getData();
+            if ($logoFile) {
+                $originalFilename = pathinfo($logoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $logoFile->guessExtension();
+
+                $logoFile->move(
+                    $this->getParameter('upload_directory_logo'),
+                    $newFilename
+                );
+
+                $company->setLogo($newFilename);
+            }
+            $entityManager->persist($company);
+            $entityManager->flush();
+
+            // generate a signed url and email it to the user
+            //$this->emailVerifier->sendEmailConfirmation('app_verify_email', $user, (new TemplatedEmail())
+            //    ->from(new Address('bienvenue@jobitbetter.com', 'Validation de l\'adresse email Job IT Better'))
+            //    ->to($user->getEmail())
+            //    ->subject('Merci de confirmer ton email !')
+            //    ->htmlTemplate('registration/confirmation_email.html.twig'));
+            // do anything else you need here, like send an email
+        }
+
+        return $this->render('registration/registerCompany.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }

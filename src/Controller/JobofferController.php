@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Joboffer;
+use App\Entity\Salary;
 use App\Form\JobofferApplyType;
 use App\Form\JobofferType;
 use App\Repository\JobofferRepository;
+use App\Repository\SalaryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,13 +25,26 @@ class JobofferController extends AbstractController
     }
 
     #[Route('/new', name: 'app_joboffer_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, JobofferRepository $jobofferRepository): Response
-    {
+    public function new(
+        Request $request,
+        JobofferRepository $jobofferRepository,
+        SalaryRepository $salaryRepository
+    ): Response {
         $joboffer = new Joboffer();
+        $salary = new Salary();
         $form = $this->createForm(JobofferType::class, $joboffer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $salaryMin = $form->get('salaryMin')->getData();
+            $salaryMax = $form->get('salaryMax')->getData();
+
+            $joboffer->setSalaryMin($salaryMin);
+            $joboffer->setSalaryMax($salaryMax);
+            $salary->setMin($salaryMin);
+            $salary->setMax($salaryMax);
+
+            $salaryRepository->save($salary, true);
             $jobofferRepository->save($joboffer, true);
 
             return $this->redirectToRoute('app_joboffer_index', [], Response::HTTP_SEE_OTHER);

@@ -6,14 +6,19 @@
     position: relative;
 }
 
-.be-password button {
+.be-password-register button {
     position: absolute;
-    top: calc(50% - 1.25rem);
     right: 0;
+    top: calc(50% - 0.5rem);
+}
+
+.be-password-login button {
+    position: absolute;
+    right: 1.5rem;
+    top: calc(50% - 0.5rem);
 }
 
 .be-form {
-    width: 40%;
     margin: 5rem auto;
     background-color: $light-grey;
     border-radius: $border-radius;
@@ -25,11 +30,13 @@
 
 .be-form h2 {
     text-align: center;
+    font-size: 2rem;
 }
 
 .be-form label {
     font-weight: bold;
     color: #424856FF;
+    padding-left: 0.5rem;
 }
 
 .be-form-input {
@@ -39,6 +46,7 @@
     border-color: #9095A1FF;
     border-style: solid;
     box-shadow: $box-shadow;
+    resize: none;
 }
 
 .be-form .be-check-label {
@@ -85,12 +93,13 @@
 
 @media screen and ( max-width: 768px ){
     .be-form {
-        width: 90%;
+        width: 100%;
     }
 
     .be-form-switch {
         display: flex;
         justify-content: center;
+        padding-left: 0;
     }
 }
 

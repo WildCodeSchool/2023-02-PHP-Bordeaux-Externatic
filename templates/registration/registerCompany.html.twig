@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer son compte Entreprise{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    <div class="be-form row g-3 col-7">
+        <h2 class="be-h2">Créer son compte Entreprise</h2>
+        {{ form_start(registrationForm) }}
+        <h3 class="be-h3 mb-5 px-4">Information de <span>l'entreprise</span></h3>
+        <div class="row mb-5 px-4">
+            <div class="col-md-6">
+                {{ form_row(registrationForm.company.name) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(registrationForm.company.siret) }}
+            </div>
+        </div>
+        <div class="row mb-5 px-4">
+            <div class="col-md-6">
+                {{ form_row(registrationForm.company.city) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(registrationForm.company.phone) }}
+            </div>
+        </div>
+        <div class="col-md-12 px-4 mb-5">
+            {{ form_row(registrationForm.company.logoFile) }}
+        </div>
+        <h3 class="be-h3 mb-5 px-4">Information du <span>représentant légal</span> de l'entreprise</h3>
+        <div class="row px-4 mb-5">
+            <div class="col-md-6">
+                {{ form_row(registrationForm.firstname) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(registrationForm.lastname) }}
+            </div>
+        </div>
+        <div class="col-md-12 mb-5 px-4">
+            {{ form_row(registrationForm.email) }}
+        </div>
+        <div class="col-md-12 mb-5 px-4">
+            {{ form_row(registrationForm.plainPassword) }}
+        </div>
+        <div class="col-md-12 mb-5 form-check">
+            <div class="px-4">
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+         <button type="submit" class="be-primary-button">Créer son compte</button>
+        </div>
+        {{ form_end(registrationForm) }}
+        <p class="text-center">Vous avez déjà un compte ? <a href="{{ path('app_login') }}">Se connecter</a></p>
+    </div>
+{% endblock %}
