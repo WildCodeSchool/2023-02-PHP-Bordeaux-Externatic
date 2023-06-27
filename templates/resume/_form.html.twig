@@ -1,4 +1,13 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_errors(form) }}
+<div class="col-md-12 px-4">
+    {{ form_row(form.name) }}
+</div>
+<div class="col-md-12 px-4">
+    {{ form_row(form.pathFile) }}
+</div>
+<div class="text-center mb-4">
+    <button class="be-primary-button" type="submit">Envoyer</button>
+</div>
 {{ form_end(form) }}
+
