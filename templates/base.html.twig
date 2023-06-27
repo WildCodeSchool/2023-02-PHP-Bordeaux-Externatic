@@ -22,6 +22,8 @@
 </head>
 
 <body class="position-relative min-vh-100">
+<body>
+    {% include '_includes/sidebar.html.twig' %}
     {% include '_includes/navbar.html.twig' %}
     <main class="w-75 m-auto my-5">
         {% block body %}{% endblock %}

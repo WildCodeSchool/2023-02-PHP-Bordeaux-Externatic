@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -37,13 +38,14 @@ class CompanyType extends AbstractType
                     'class' => 'form-control be-form-input mb-3'
                 ],
             ])
-            ->add('logo', FileType::class, [
+            ->add('logoFile', VichFileType::class, [
                 'label' => 'Logo',
+                'required'      => false,
+                'allow_delete'  => true,
+                'download_uri' => true,
                 'attr' => [
                     'class' => 'form-control be-form-input mb-3'
                 ],
-                'mapped' => false,
-                'required' => false,
             ])
             ->add('siret', NumberType::class, [
                 'label' => 'Numéro Siret',

@@ -41,6 +41,12 @@ class Joboffer
     #[ORM\ManyToOne(inversedBy: 'joboffers')]
     private ?Salary $salary = null;
 
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    private ?int $salaryMin = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    private ?int $salaryMax = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -126,6 +132,30 @@ class Joboffer
     public function setSalary(?Salary $salary): self
     {
         $this->salary = $salary;
+
+        return $this;
+    }
+
+    public function getSalaryMin(): ?int
+    {
+        return $this->salaryMin;
+    }
+
+    public function getSalaryMax(): int
+    {
+        return $this->salaryMax;
+    }
+
+    public function setSalaryMin(?int $salaryMin): self
+    {
+        $this->salaryMin = $salaryMin;
+
+        return $this;
+    }
+
+    public function setSalaryMax(?int $salaryMax): self
+    {
+        $this->salaryMax = $salaryMax;
 
         return $this;
     }
