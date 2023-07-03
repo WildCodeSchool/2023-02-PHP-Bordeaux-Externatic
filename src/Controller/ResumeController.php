@@ -16,8 +16,10 @@ class ResumeController extends AbstractController
     #[Route('/', name: 'app_resume_index', methods: ['GET'])]
     public function index(ResumeRepository $resumeRepository): Response
     {
+        $resumes = $resumeRepository->findBy(['user' => $this->getUser()]);
+
         return $this->render('resume/index.html.twig', [
-            'resumes' => $resumeRepository->findAll(),
+            'resumes' => $resumes,
         ]);
     }
 
@@ -75,5 +77,13 @@ class ResumeController extends AbstractController
         }
 
         return $this->redirectToRoute('app_resume_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/read', name: 'app_resume_read', methods: ['GET'])]
+    public function readResume(Resume $resume): bool|int
+    {
+        $file = $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume->getPath();
+        header('Content-type: application/pdf');
+        return readfile($file);
     }
 }
