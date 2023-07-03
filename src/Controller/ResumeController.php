@@ -31,6 +31,7 @@ class ResumeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $resume->setUser($this->getUser());
             $resumeRepository->save($resume, true);
 
             return $this->redirectToRoute('app_resume_index', [], Response::HTTP_SEE_OTHER);

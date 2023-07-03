@@ -4,8 +4,11 @@ namespace App\Entity;
 
 use App\Repository\ResumeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ResumeRepository::class)]
+#[Vich\Uploadable]
 class Resume
 {
     #[ORM\Id]
@@ -21,6 +24,9 @@ class Resume
 
     #[ORM\Column(length: 255)]
     private ?string $path = null;
+
+    #[Vich\UploadableField(mapping: 'resume_file', fileNameProperty: 'path')]
+    private ?File $pathFile = null;
 
     public function getId(): ?int
     {
@@ -61,5 +67,21 @@ class Resume
         $this->path = $path;
 
         return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getPathFile(): ?File
+    {
+        return $this->pathFile;
+    }
+
+    /**
+     * @param File|null $pathFile
+     */
+    public function setPathFile(?File $pathFile): void
+    {
+        $this->pathFile = $pathFile;
     }
 }
