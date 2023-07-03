@@ -9,3 +9,7 @@ vich_uploader:
             uri_prefix: /uploads/logo/
             upload_destination: '%upload_directory_logo%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        resume_file:
+            uri_prefix: /uploads/resume/
+            upload_destination: '%upload_directory_resume%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
