@@ -4,9 +4,9 @@
 
 {% block body %}
 
-<div class="container m-auto -flex w-75 justify-content-around align-items-center my-5">
+<div class="container m-auto d-flex justify-content-around align-items-center my-5">
     <div class="row">
-        {#Group 3#}
+        {#Group 1#}
         <div class="col-lg-4 col-12 order-md-last align-items-center d-flex flex-column">
             <div class="card example-wrapper be-card-candidate mb-4" style="width: 20rem; height: 21rem;">
                 <div class="card-body be-card-candidat">
@@ -27,10 +27,16 @@
                         Non renseigné
                         {% endif %}
                     </p>
+                    <div class="be-log-out">
+                        <a href="/logout">
+                            <i class="fa-solid fa-right-from-bracket fa-2xl WS-header" class="btn btn-primary btn2"
+                                type="button"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        {#Group 1#}
+        {#Group 2#}
         <div class="col-lg-4 col-12 align-items-center d-flex flex-column justify-content-center">
             <div class="card example-wrapper be-card-search mb-4" style="width: 20rem; height: 10rem; ">
                 <div class="card-body">
@@ -44,16 +50,19 @@
                     </h6>
                 </div>
             </div>
-            <div class="card example-wrapper be-card-information mb-4" style="width: 20rem; height: 10rem">
-                <div class="card-body">
-                    <i class="fa-solid fa-id-card fa-2xl" style="color: #ffffff;"></i>
-                    <h5 class="card-title"><a href="{{ path('app_user_edit', {'id': app.user.id}) }}">Mes informations
-                            personnelles</a></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        Je renseigne mon identite et mes parametres de connexion
-                    </h6>
+            <a href="{{ path('app_user_edit', {'id': app.user.id}) }}">
+                <div class="card example-wrapper be-card-information mb-4" style="width: 20rem; height: 10rem">
+                    <div class="card-body">
+                        <i class="fa-solid fa-id-card fa-2xl" style="color: #ffffff;"></i>
+                        <h5 class="card-title">Mes
+                            informations
+                            personnelles</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            Je renseigne mon identite et mes parametres de connexion
+                        </h6>
+                    </div>
                 </div>
-            </div>
+            </a>
             <div class="card example-wrapper be-card-favorites mb-4" style="width: 20rem; height: 10rem">
                 <div class="card-body">
                     <i class="fa-solid fa-bookmark fa-2xl" style="color: #ffffff;"></i>
@@ -64,17 +73,19 @@
                 </div>
             </div>
         </div>
-        {#Group 2#}
+        {#Group 3#}
         <div class="col-lg-4 col-12 align-items-center d-flex flex-column justify-content-center">
-            <div class="card example-wrapper be-card-resume mb-4" style="width: 20rem; height: 10rem">
-                <div class="card-body">
-                    <i class="fa-solid fa-file fa-2xl" style="color: #ffffff;"></i>
-                    <h5 class="card-title">Mes CV</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        J'organise et je priorise mes CV
-                    </h6>
+            <a href="{{ path('app_resume_index', {'id': app.user.id}) }}">
+                <div class="card example-wrapper be-card-resume mb-4" style="width: 20rem; height: 10rem">
+                    <div class="card-body">
+                        <i class="fa-solid fa-file fa-2xl" style="color: #ffffff;"></i>
+                        <h5 class="card-title">Mes CV</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            J'organise et je priorise mes CV
+                        </h6>
+                    </div>
                 </div>
-            </div>
+            </a>
             <div class="card example-wrapper be-card-situation mb-4" style="width: 20rem; height: 10rem">
                 <div class="card-body">
                     <i class="fa-solid fa-address-book fa-2xl" style="color: #ffffff;"></i>
@@ -96,8 +107,5 @@
         </div>
     </div>
 </div>
-
-{# <a href="{{ path('app_user_edit', {'id': app.user.id}) }}">edit</a> #}
-
 {# {{ include('user/_delete_form.html.twig') }} #}
 {% endblock %}

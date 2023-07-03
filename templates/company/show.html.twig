@@ -3,44 +3,112 @@
 {% block title %}Company{% endblock %}
 
 {% block body %}
-    <h1>Company</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ company.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ company.name }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ company.email }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ company.city }}</td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>{{ company.phone }}</td>
-            </tr>
-            <tr>
-                <th>Logo</th>
-                <td>{{ company.logo }}</td>
-            </tr>
-            <tr>
-                <th>Siret</th>
-                <td>{{ company.siret }}</td>
-            </tr>
-        </tbody>
-    </table>
+<pre>
+    {{ dump(app.user.roles) }}
+</pre>
 
-    <a href="{{ path('app_company_index') }}">back to list</a>
 
-    <a href="{{ path('app_company_edit', {'id': company.id}) }}">edit</a>
-
-    {{ include('company/_delete_form.html.twig') }}
+<div class="container m-auto d-flex justify-content-around align-items-center my-5">
+    <div class="row">
+        {#Group 1#}
+        <div class="col-lg-4 col-12 order-md-last align-items-center d-flex flex-column">
+            <div class="card example-wrapper be-card-candidate mb-4" style="width: 20rem; height: 21rem;">
+                <div class="card-body be-card-candidat">
+                    <h5 class="card-title">Bonjour {{ company.name }}</h5>
+                    <p class="be-maj">Mise à jour : {{ currentDateTime }}</p>
+                    <p class="card-text">
+                        Lieu de résidence :
+                        {% if company.city %} {{ company.city }}
+                        {% else %}
+                        Non renseigné
+                        {% endif %}
+                    </p>
+                    <p class="class card-text">Contact : {{ company.phone }} </p>
+                    <p class="card-text">Numéro de siret : {{company.siret}} </p>
+                    <p class="card-text">
+                        Statut :
+                        {% if app.user.status %} {{ app.user.status }}
+                        {% else %}
+                        Non renseigné
+                        {% endif %}
+                    </p>
+                    <div class="be-log-out">
+                        <a href="/logout">
+                            <i class="fa-solid fa-right-from-bracket fa-2xl WS-header" class="btn btn-primary btn2"
+                                type="button"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {#Group 2#}
+        <div class="col-lg-4 col-12 align-items-center d-flex flex-column justify-content-strat">
+            <div class="card example-wrapper be-card-search mb-4" style="width: 20rem; height: 10rem; ">
+                <div class="card-body">
+                    <i class="fa-solid fa-magnifying-glass-plus fa-2xl" style="color: #ffffff;"></i>
+                    <h5 class="card-title">Mes offres</h5>
+                    <h6 class="card-subtitle mb-2 text-muted be-test">
+                        Je modifie ou efface mes offre mise en ligne
+                    </h6>
+                </div>
+            </div>
+            <a href="{{ path('app_company_edit', {'id': app.user.id}) }}">
+                <div class="card example-wrapper be-card-favorites mb-4" style="width: 20rem; height: 10rem">
+                    <div class="card-body">
+                        <i class="fa-solid fa-bookmark fa-2xl" style="color: #ffffff;"></i>
+                        <h5 class="card-title">Mes informations d'entreprise</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            Accéder à ma liste d'offres favorites
+                        </h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {#Group 3#}
+        <div class="col-lg-4 col-12 align-items-center d-flex flex-column justify-content-strat">
+            {# <div class="card example-wrapper be-card-resume mb-4" style="width: 20rem; height: 10rem">
+                <div class="card-body">
+                    <i class="fa-solid fa-file fa-2xl" style="color: #ffffff;"></i>
+                    <h5 class="card-title">Mes informations d'etreprise</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        J'organise et je priorise mes CV
+                    </h6>
+                </div>
+            </div> #}
+            <div class="card example-wrapper be-card-situation mb-4" style="width: 20rem; height: 10rem">
+                <div class="card-body">
+                    <i class="fa-solid fa-address-book fa-2xl" style="color: #ffffff;"></i>
+                    <h5 class="card-title">Mes candidats</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        J'accède aux candidats qui on postuler a mes offres
+                    </h6>
+                </div>
+            </div>
+            <a href="{{ path('app_user_edit', {'id': app.user.id}) }}">
+                <div class="card example-wrapper be-card-information mb-4" style="width: 20rem; height: 10rem">
+                    <div class="card-body">
+                        <i class="fa-solid fa-id-card fa-2xl" style="color: #ffffff;"></i>
+                        <h5 class="card-title">Mes
+                            informations
+                            personnelles</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            Je renseigne mon identite et mes parametres de connexion
+                        </h6>
+                    </div>
+                </div>
+            </a>
+            {# <div class="card example-wrapper be-card-applications mb-4" style="width: 20rem; height: 10rem">
+                <div class="card-body">
+                    <i class="fa-solid fa-building fa-2xl" style="color: #ffffff;"></i>
+                    <h5 class="card-title">Mes candidatures</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        Accéder à ma liste de candidature en cours
+                    </h6>
+                </div>
+            </div> #}
+        </div>
+    </div>
+</div>
+{# {{ include('user/_delete_form.html.twig') }} #}
 {% endblock %}
