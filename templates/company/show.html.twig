@@ -5,7 +5,7 @@
 {% block body %}
 
 <pre>
-    {{ dump(company) }}
+    {{ dump(app.user.roles) }}
 </pre>
 
 
@@ -33,6 +33,12 @@
                         Non renseigné
                         {% endif %}
                     </p>
+                    <div class="be-log-out">
+                        <a href="/logout">
+                            <i class="fa-solid fa-right-from-bracket fa-2xl WS-header" class="btn btn-primary btn2"
+                                type="button"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
