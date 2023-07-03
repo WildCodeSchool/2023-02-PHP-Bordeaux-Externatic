@@ -6,7 +6,7 @@
     <div class="d-flex m-4">
         <a class="be-secondary-button" href="{{ path('app_user_show', {'id': app.user.id} ) }}">Retour au profil</a>
     </div>
-    <h2 class="be-h2">Gérer vos <span>CV</span></h2>
+    <h2 class="be-h2 text-center">Gérer vos <span>CV</span></h2>
     <div class="d-flex justify-content-center">
         <a class="btn be-primary-button mb-5" href="{{ path('app_resume_new') }}">Ajouter un CV</a>
     </div>
@@ -16,8 +16,8 @@
                 {% for resume in resumes %}
                 <tr>
                     <td class="col-8">{{ resume.name }}</td>
-                    <td><a class="col-2" target="_blank" href="{{ path('app_resume_read', {'id': resume.id}) }}">voir</a></td>
-                    <td><a class="col-2" href="{{ path('app_resume_delete', {'id': resume.id}) }}">supprimer</a></td>
+                    <td><a target="_blank" href="{{ path('app_resume_read', {'id': resume.id}) }}">voir</a></td>
+                    <td>{{ include('resume/_delete_form.html.twig') }}</td>
                 </tr>
                 {% else %}
                     <td>Vous n'avez pas encore de CV enregistré.</td>
