@@ -40,9 +40,15 @@
             </ul>
 
             <i class="fa-regular fa-bell"></i>
+            {% if app.user %}
+            <a href="/logout" class="href">
+                <button class="be-secondary-button mx-3">Déconnexion</button>
+            </a>
+            {% else %}
             <a href="/login" class="href">
                 <button class="be-secondary-button mx-3">Connexion</button>
             </a>
+            {% endif %}
             <a href="/register" class="href">
                 <button class="be-secondary-button mx-3">Inscription</button>
             </a>
