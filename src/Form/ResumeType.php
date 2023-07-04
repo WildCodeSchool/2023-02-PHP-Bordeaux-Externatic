@@ -27,6 +27,7 @@ class ResumeType extends AbstractType
                 'allow_delete'  => true,
                 'download_uri' => true,
                 'attr' => [
+                    'accept' => '.pdf',
                     'class' => 'form-control be-form-input mb-3'
                 ],
             ])

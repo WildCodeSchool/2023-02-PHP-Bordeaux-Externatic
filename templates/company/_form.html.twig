@@ -1,4 +1,50 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<h3 class="be-h3 mb-5 px-4">Information de <span>l'entreprise</span></h3>
+<div class="row px-4">
+    <div class="col-md-6">
+        {{ form_row(form.name) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.siret) }}
+    </div>
+</div>
+<div class="row px-4">
+    <div class="col-md-6">
+        {{ form_row(form.city) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.phone) }}
+    </div>
+</div>
+<div class="col-md-12 px-4">
+    {{ form_row(form.logoFile) }}
+</div>
+<h3 class="be-h3 my-5 px-4">Information du <span>représentant légal</span> de l'entreprise</h3>
+<div class="row px-4">
+    <div class="col-md-6">
+        {{ form_row(form.user.firstname) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.user.lastname) }}
+    </div>
+</div>
+<div class="row px-4">
+    <div class="col-md-6">
+        {{ form_row(form.user.birthday) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.user.city) }}
+    </div>
+</div>
+<div class="row px-4">
+    <div class="col-md-6">
+        {{ form_row(form.user.email) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.user.phone) }}
+    </div>
+</div>
+<div class="col-12 d-flex justify-content-center mb-5">
+    <button class="be-primary-button">{{ button_label|default('Entrer') }}</button>
+</div>
 {{ form_end(form) }}

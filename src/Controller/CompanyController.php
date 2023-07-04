@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\UserType;
+use App\Repository\UserRepository;
 use DateTime;
 use App\Entity\Company;
 use App\Form\CompanyType;
@@ -54,13 +57,20 @@ class CompanyController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_company_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Company $company, CompanyRepository $companyRepository): Response
-    {
+    public function edit(
+        Request $request,
+        Company $company,
+        User $user,
+        CompanyRepository $companyRepository,
+        UserRepository $userRepository
+    ): Response {
         $form = $this->createForm(CompanyType::class, $company);
+        $form->add('user', UserType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $companyRepository->save($company, true);
+            $userRepository->save($user, true);
 
             return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
         }
