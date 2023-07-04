@@ -63,9 +63,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Company $company = null;
 
+    #[ORM\ManyToMany(targetEntity: Joboffer::class, mappedBy: 'candidate')]
+    private Collection $joboffers;
+
     public function __construct()
     {
         $this->resumes = new ArrayCollection();
+        $this->joboffers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -273,5 +277,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // TODO: Implement __toString() method.
         return $this->getEmail();
+    }
+
+    /**
+     * @return Collection<int, Joboffer>
+     */
+    public function getJoboffers(): Collection
+    {
+        return $this->joboffers;
+    }
+
+    public function addJoboffer(Joboffer $joboffer): static
+    {
+        if (!$this->joboffers->contains($joboffer)) {
+            $this->joboffers->add($joboffer);
+            $joboffer->addCandidate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJoboffer(Joboffer $joboffer): static
+    {
+        if ($this->joboffers->removeElement($joboffer)) {
+            $joboffer->removeCandidate($this);
+        }
+
+        return $this;
     }
 }
