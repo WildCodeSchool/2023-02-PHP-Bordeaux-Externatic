@@ -6,6 +6,7 @@ use App\Repository\ResumeRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ResumeRepository::class)]
 #[Vich\Uploadable]
@@ -25,6 +26,11 @@ class Resume
     #[ORM\Column(length: 255)]
     private ?string $path = null;
 
+    #[Assert\File(
+        maxSize: '1024k',
+        extensions: ['pdf'],
+        extensionsMessage: 'Veuillez télécharger un fichier PDF valide'
+    )]
     #[Vich\UploadableField(mapping: 'resume_file', fileNameProperty: 'path')]
     private ?File $pathFile = null;
 
