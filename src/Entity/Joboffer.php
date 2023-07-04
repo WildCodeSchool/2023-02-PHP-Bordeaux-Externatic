@@ -49,13 +49,18 @@ class Joboffer
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
     private ?int $salaryMax = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'joboffers')]
-    private Collection $candidate;
+
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favlist')]
+    private Collection $usersInterested;
 
     public function __construct()
     {
+        $this->usersInterested = new ArrayCollection();
         $this->candidate = new ArrayCollection();
     }
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'joboffers')]
+    private Collection $candidate;
 
     public function getId(): ?int
     {
@@ -173,6 +178,30 @@ class Joboffer
     /**
      * @return Collection<int, User>
      */
+
+    public function getUsersInterested(): Collection
+    {
+        return $this->usersInterested;
+    }
+
+    public function addUsersInterested(User $usersInterested): static
+    {
+        if (!$this->usersInterested->contains($usersInterested)) {
+            $this->usersInterested->add($usersInterested);
+            $usersInterested->addToFavlist($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUsersInterested(User $usersInterested): static
+    {
+        if ($this->usersInterested->removeElement($usersInterested)) {
+            $usersInterested->removeFromFavlist($this);
+        }
+        return $this;
+    }
+
     public function getCandidate(): Collection
     {
         return $this->candidate;

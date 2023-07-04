@@ -10,6 +10,7 @@ use App\Repository\JobofferRepository;
 use App\Repository\SalaryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
@@ -138,5 +139,25 @@ class JobofferController extends AbstractController
         }
 
         return $this->redirectToRoute('app_joboffer_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/favlist', name: 'app_joboffer_favlist', methods: ['GET', 'POST'])]
+    public function addToFavlist(Joboffer $joboffer, UserRepository $userRepository): Response
+    {
+        /** @var  \App\Entity\User $user */
+        $user = $this->getUser();
+
+        if ($user->isInFavlist($joboffer)) {
+            $user->removeFromFavlist($joboffer);
+        } else {
+            $user->addToFavlist($joboffer);
+        }
+
+        $userRepository->save($user, true);
+
+
+        return $this->json([
+            'isInFavlist' => $user->isInFavlist($joboffer)
+        ]);
     }
 }
