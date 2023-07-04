@@ -34,7 +34,7 @@
 .be-apply-button {
     height: 40px;
     width: 200px;
-    padding: 0 12px;
+    padding: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,20 +49,30 @@
 
 @media screen and ( max-width: 768px ){
     .be-banner-offer {
-        height: 55vh;
+        height: 70vh;
         width: 100%;
         box-shadow: none;
         border-radius: 0;
-
-
+        padding-top: 4px;
     }
+    .be-apply-button{
+        height: 20px;
+        width: 150px
+    }
+
 
 }
 @media screen and ( min-width: 1024px ) and (max-width: 1440px){
     .be-banner-offer {
         height: 70vh;
-
-
     }
+.be-cardText-jobofferCompany{
+    height: 10vh;
+}
+    .be-apply-button{
+        height: 20px;
+        width: 170px;
+    }
+
 
 }
