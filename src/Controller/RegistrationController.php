@@ -52,12 +52,9 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user, (new TemplatedEmail())
-                    ->from(new Address('bienvenue@jobitbetter.com', 'Validation de l\'adresse email Job IT Better'))
-                    ->to($user->getEmail())
-                    ->subject('Merci de confirmer ton email !')
-                    ->htmlTemplate('registration/confirmation_email.html.twig'));
-            // do anything else you need here, like send an email
+            $this->sendEmail($user);
+
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -114,13 +111,9 @@ class RegistrationController extends AbstractController
             $entityManager->persist($company);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
-            //$this->emailVerifier->sendEmailConfirmation('app_verify_email', $user, (new TemplatedEmail())
-            //    ->from(new Address('bienvenue@jobitbetter.com', 'Validation de l\'adresse email Job IT Better'))
-            //    ->to($user->getEmail())
-            //    ->subject('Merci de confirmer ton email !')
-            //    ->htmlTemplate('registration/confirmation_email.html.twig'));
-            // do anything else you need here, like send an email
+            $this->sendEmail($user);
+
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/registerCompany.html.twig', [
@@ -145,5 +138,19 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Ton email est confirmé.');
 
         return $this->redirectToRoute('app_home');
+    }
+
+    public function sendEmail(User $user): void
+    {
+        $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user, (new TemplatedEmail())
+            ->from(new Address('bienvenue@jobitbetter.com', 'Validation de l\'adresse email Job IT Better'))
+            ->to($user->getEmail())
+            ->subject('Merci de confirmer ton email !')
+            ->htmlTemplate('registration/confirmation_email.html.twig'));
+
+        $this->addFlash(
+            'success',
+            'Votre compte à bien été créé ! Rendez-vous dans votre boite mail pour le valider !'
+        );
     }
 }
