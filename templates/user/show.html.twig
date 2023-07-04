@@ -63,6 +63,7 @@
                     </div>
                 </div>
             </a>
+            <a href="{{ path('app_user_favlist', {'id': app.user.id}) }}">
             <div class="card example-wrapper be-card-favorites mb-4" style="width: 20rem; height: 10rem">
                 <div class="card-body">
                     <i class="fa-solid fa-bookmark fa-2xl" style="color: #ffffff;"></i>
@@ -72,6 +73,7 @@
                     </h6>
                 </div>
             </div>
+            </a>
         </div>
         {#Group 3#}
         <div class="col-lg-4 col-12 align-items-center d-flex flex-column justify-content-center">
@@ -108,6 +110,8 @@
     </div>
 </div>
 {# {{ include('user/_delete_form.html.twig') }} #}
+
 <!-- green color for logout -->
 {# <i class="fa-solid fa-arrow-right-from-bracket" style="color: #04380a;"></i> #}
 {% endblock %}
+
