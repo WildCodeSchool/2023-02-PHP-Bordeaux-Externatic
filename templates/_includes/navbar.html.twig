@@ -6,6 +6,7 @@
         <div class="d-flex align-items-center">
             <ul class="navbar-nav">
 
+                {% if not app.user %}
                 <li class="nav-item dropdown mx-3">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -19,6 +20,7 @@
                         <li><a class="dropdown-item" href="#">Inscription</a></li>
                     </ul>
                 </li>
+                {% endif %}
                 <li class="nav-item dropdown mx-3">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -49,9 +51,11 @@
                 <button class="be-secondary-button mx-3">Connexion</button>
             </a>
             {% endif %}
+            {% if not app.user %}
             <a href="/register" class="href">
                 <button class="be-secondary-button mx-3">Inscription</button>
             </a>
+            {% endif %}
             {% if is_granted('ROLE_USER') %}
             {% if is_granted('ROLE_COMPANY') %}
             {# L'utilisateur a à la fois le rôle User et Company #}
