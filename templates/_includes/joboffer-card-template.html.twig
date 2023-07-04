@@ -5,6 +5,9 @@
                 <div class="card be-joboffer-card-template mb-4 w-75">
                     <div class="card-body">
                         <h5 class="card-title text-secondary fs-6">{{ joboffer.company.name }}</h5>
+                        <a id="favlist" href="{{ path('app_joboffer_favlist', {id: joboffer.id})}}">
+                            <i class="bi {{ app.user.isInFavlist(joboffer) ? 'bi-bookmark-x-fill' : 'bi-bookmark-plus' }}"></i>
+                        </a>
                         <h5 class="card-title mb-3 fs-5">{{ joboffer.contract.type }} - {{ joboffer.title }}</h5>
                         <div class="d-flex flex-column-reverse">
                             <footer class="text-secondary fs-6">{{ joboffer.city }} / {{ joboffer.salary.min }}€ - {{ joboffer.salary.max }}€</footer>

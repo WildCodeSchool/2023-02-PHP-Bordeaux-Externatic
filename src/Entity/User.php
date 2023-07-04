@@ -63,9 +63,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Company $company = null;
 
+    #[ORM\ManyToMany(targetEntity: Joboffer::class, inversedBy: 'usersInterested')]
+    #[ORM\JoinTable(name:'favlist')]
+    private Collection $favlist;
+
     public function __construct()
     {
         $this->resumes = new ArrayCollection();
+        $this->favlist = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -273,5 +278,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // TODO: Implement __toString() method.
         return $this->getEmail();
+    }
+
+    /**
+     * @return Collection<int, Joboffer>
+     */
+    public function getFavlist(): Collection
+    {
+        return $this->favlist;
+    }
+
+    public function addToFavlist(Joboffer $favlist): static
+    {
+        if (!$this->favlist->contains($favlist)) {
+            $this->favlist->add($favlist);
+        }
+
+        return $this;
+    }
+
+    public function removeFromFavlist(Joboffer $favlist): static
+    {
+        $this->favlist->removeElement($favlist);
+
+        return $this;
+    }
+
+    public function isInFavlist(Joboffer $joboffer): bool
+    {
+        return $this->favlist->contains($joboffer);
     }
 }

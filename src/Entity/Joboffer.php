@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\JobofferRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -46,6 +48,14 @@ class Joboffer
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
     private ?int $salaryMax = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favlist')]
+    private Collection $usersInterested;
+
+    public function __construct()
+    {
+        $this->usersInterested = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -156,6 +166,33 @@ class Joboffer
     public function setSalaryMax(?int $salaryMax): self
     {
         $this->salaryMax = $salaryMax;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsersInterested(): Collection
+    {
+        return $this->usersInterested;
+    }
+
+    public function addUsersInterested(User $usersInterested): static
+    {
+        if (!$this->usersInterested->contains($usersInterested)) {
+            $this->usersInterested->add($usersInterested);
+            $usersInterested->addToFavlist($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUsersInterested(User $usersInterested): static
+    {
+        if ($this->usersInterested->removeElement($usersInterested)) {
+            $usersInterested->removeFromFavlist($this);
+        }
 
         return $this;
     }
