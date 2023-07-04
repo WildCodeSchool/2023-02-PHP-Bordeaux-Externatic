@@ -45,9 +45,9 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/category, roles: ROLE_ADMIN }
-        - { path: ^/company, roles: ROLE_ADMIN }
+        - { path: ^/company, roles: ROLE_COMPANY }
         - { path: ^/contract, roles: ROLE_ADMIN }
-        - { path: ^/job, roles: ROLE_ADMIN }
+        - { path: ^/job/, roles: ROLE_ADMIN }
         - { path: ^/salary, roles: ROLE_ADMIN }
         - { path: ^/user, roles: ROLE_USER }
         - { path: ^/joboffer/new, roles: ROLE_COMPANY }
