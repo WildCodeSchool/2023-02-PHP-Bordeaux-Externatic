@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\JobofferRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -46,6 +48,14 @@ class Joboffer
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
     private ?int $salaryMax = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'joboffers')]
+    private Collection $candidate;
+
+    public function __construct()
+    {
+        $this->candidate = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -156,6 +166,30 @@ class Joboffer
     public function setSalaryMax(?int $salaryMax): self
     {
         $this->salaryMax = $salaryMax;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getCandidate(): Collection
+    {
+        return $this->candidate;
+    }
+
+    public function addCandidate(User $candidate): static
+    {
+        if (!$this->candidate->contains($candidate)) {
+            $this->candidate->add($candidate);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidate(User $candidate): static
+    {
+        $this->candidate->removeElement($candidate);
 
         return $this;
     }
