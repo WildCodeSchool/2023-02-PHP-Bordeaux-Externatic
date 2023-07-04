@@ -8,10 +8,16 @@ use App\Form\JobofferApplyType;
 use App\Form\JobofferType;
 use App\Repository\JobofferRepository;
 use App\Repository\SalaryRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mime\Part\DataPart;
+
 
 #[Route('/joboffer')]
 class JobofferController extends AbstractController
@@ -57,13 +63,43 @@ class JobofferController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_joboffer_show', methods: ['GET', 'POST'])]
-    public function show(Joboffer $joboffer, Request $request): Response
-    {
+    public function show(
+        Joboffer $joboffer,
+        Request $request,
+        EntityManagerInterface $manager,
+        MailerInterface $mailer
+    ): Response {
         $user = $this->getUser();
         $form = $this->createForm(JobofferApplyType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $candidate = $form->getData();
+            $candidate->addJobOffer($joboffer);
+            $manager->persist($candidate);
+            $message = $request->get('message');
+            $resumes = $candidate->getResumes();
+            $attachment = null;
+            foreach ($resumes as $resume) {
+                $attachment = new File(
+                    $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume->getPath()
+                );
+            }
+
+            $email = (new TemplatedEmail())
+                ->from('your_email@example.com')
+                ->to('a.sale@hotmail.fr')
+                ->subject('Nouvelle candidature')
+                ->addPart(new DataPart(fopen($attachment, 'r')))
+                ->html($this->renderView('joboffer/jobOfferEmail.html.twig', [
+                    'joboffer' => $joboffer,
+                    'user' => $user,
+                    'message' => $message,
+                ]));
+
+
+            $mailer->send($email);
+
             $this->addFlash('success', 'Votre candidature a bien été envoyée !');
 
             return $this->redirectToRoute('app_joboffer_index', [], Response::HTTP_SEE_OTHER);
@@ -72,6 +108,7 @@ class JobofferController extends AbstractController
         return $this->render('joboffer/show.html.twig', [
             'joboffer' => $joboffer,
             'form' => $form,
+            'message' => $message ?? '',
         ]);
     }
 

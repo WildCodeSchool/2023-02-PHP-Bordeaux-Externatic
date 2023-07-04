@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Vous avez reçu une candidature</title>
+
+</head>
+
+<body>
+
+<h1>Nouvelle candidature de {{ user.firstname}} {{ user.lastname}} </h1>
+
+<p>{{ user.firstname }} postule pour l'offre {{ joboffer.title }}.</p>
+
+{% if message is define %}
+    <p>{{ message }}</p>
+{% endif %}
+
+
+
+</body>
+
+</html>
