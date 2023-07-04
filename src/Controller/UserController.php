@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\JobofferRepository;
 use DateTime;
 use App\Entity\User;
 use App\Form\UserType;
@@ -80,5 +81,16 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/favoris', name: 'app_user_favlist', methods: ['GET'])]
+    public function favList(User $user): Response
+    {
+        $favlist = $user->getFavlist();
+
+        return $this->render('user/favlist.html.twig', [
+            'favlist' => $favlist,
+
+        ]);
     }
 }
