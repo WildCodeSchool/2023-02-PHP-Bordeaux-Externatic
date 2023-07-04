@@ -22,13 +22,14 @@
 </head>
 
 <body class="position-relative min-vh-100">
-<body>
-    {% include '_includes/sidebar.html.twig' %}
-    {% include '_includes/navbar.html.twig' %}
-    <main class="w-75 m-auto my-5">
-        {% block body %}{% endblock %}
-    </main>
+
+    <body>
+        {% include '_includes/sidebar.html.twig' %}
+        {% include '_includes/navbar.html.twig' %}
+        <main class=" col-md-9 m-auto my-5">
+            {% block body %}{% endblock %}
+        </main>
         {% include 'footer.html.twig' %}
-</body>
+    </body>
 
 </html>

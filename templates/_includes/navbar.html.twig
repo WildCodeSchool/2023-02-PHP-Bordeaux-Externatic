@@ -46,14 +46,18 @@
             <a href="/register" class="href">
                 <button class="be-secondary-button mx-3">Inscription</button>
             </a>
-            {% if app.user %}
+            {% if is_granted('ROLE_USER') %}
+            {% if is_granted('ROLE_COMPANY') %}
+            {# L'utilisateur a à la fois le rôle User et Company #}
+            <a href="{{ path('app_company_show', {id: app.user.id}) }}" class="href">
+                <button class="be-secondary-button mx-3">Mon profil</button>
+            </a>
+            {% else %}
+            {# L'utilisateur a uniquement le rôle User #}
             <a href="{{ path('app_user_show', {id: app.user.id}) }}" class="href">
                 <button class="be-secondary-button mx-3">Mon profil</button>
             </a>
-            {# {% else %}
-            <a href="{{ path('app_company_show', {id: app.user.id}) }}" class="href">
-                <button class="be-secondary-button mx-3">Mon profil</button>
-            </a> #}
+            {% endif %}
             {% endif %}
         </div>
     </div>
