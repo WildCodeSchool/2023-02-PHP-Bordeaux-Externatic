@@ -46,11 +46,6 @@
     border-radius: 15px;
     border: 1px $dark-green;
 }
-@media screen and ( max-width: 768px ){
-    .be-banner-offer{
-        padding-top: 4px;
-    }
-}
 
 @media screen and ( max-width: 768px ){
     .be-banner-offer {
@@ -58,6 +53,11 @@
         width: 100%;
         box-shadow: none;
         border-radius: 0;
+        padding-top: 4px;
+    }
+    .be-apply-button{
+        height: 20px;
+        width: 150px
     }
 
 
