@@ -3,22 +3,22 @@
 {% block title %}Company index{% endblock %}
 
 {% block body %}
-    <h1>Company index</h1>
+<h1>Company index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>City</th>
-                <th>Phone</th>
-                <th>Logo</th>
-                <th>Siret</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Phone</th>
+            <th>Logo</th>
+            <th>Siret</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for company in companies %}
             <tr>
                 <td>{{ company.id }}</td>
@@ -33,12 +33,12 @@
                 </td>
             </tr>
         {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
+        <tr>
+            <td colspan="8">no records found</td>
+        </tr>
         {% endfor %}
-        </tbody>
-    </table>
+    </tbody>
+</table>
 
-    <a href="{{ path('app_company_new') }}">Create new</a>
+<a href="{{ path('app_company_new') }}">Create new</a>
 {% endblock %}
