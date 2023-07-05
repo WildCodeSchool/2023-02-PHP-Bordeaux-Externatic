@@ -25,11 +25,11 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 document.querySelector('#favlist').addEventListener('click', addToFavlist)
 
-function addToFavlist(e)
+function addToFavlist(event)
 {
-    e.preventDefault();
+    event.preventDefault();
 
-    const favlistLink = e.currentTarget;
+    const favlistLink = event.currentTarget;
     const link = favlistLink.href;
     // Send an HTTP request with fetch to the URI defined in the href
     try {
