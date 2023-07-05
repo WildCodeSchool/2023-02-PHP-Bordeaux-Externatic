@@ -19,7 +19,6 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mime\Part\DataPart;
 
-
 #[Route('/joboffer')]
 class JobofferController extends AbstractController
 {
@@ -63,7 +62,7 @@ class JobofferController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_joboffer_show', methods: ['GET', 'POST'])]
+    #[Route('/show/{id}', name: 'app_joboffer_show', methods: ['GET'])]
     public function show(
         Joboffer $joboffer,
         Request $request,
@@ -105,17 +104,20 @@ class JobofferController extends AbstractController
 
             return $this->redirectToRoute('app_joboffer_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('joboffer/show.html.twig', [
             'joboffer' => $joboffer,
             'form' => $form,
-            'message' => $message ?? '',
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_joboffer_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Joboffer $joboffer, JobofferRepository $jobofferRepository): Response
     {
+        if ($this->getUser() !== $joboffer->getCompany()->getUser()) {
+            $this->addFlash('danger', 'Seule l\'entreprise qui est propriétaire de l\'offre peut la modifier!');
+            return $this->redirectToRoute('app_joboffer_show', ['id' => $joboffer->getId()], Response::HTTP_SEE_OTHER);
+        }
+
         $form = $this->createForm(JobofferType::class, $joboffer);
         $form->handleRequest($request);
 
