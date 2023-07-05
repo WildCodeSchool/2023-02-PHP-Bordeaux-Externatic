@@ -30,6 +30,7 @@
     <img src="{{ asset('build/images/GroupWork.jpg') }}" class="w-25 be-pictureStyle " alt="Groupe3">
     </div>
 </div>
+
     <div class="container-fluid my-5">
     <h5 class="text-black fs-3">{{ joboffer.company.name }}recherche:</h5>
     <p class="text-black fs-4">{{ joboffer.description }}</p>
@@ -42,12 +43,12 @@
         <h5 class="text-black fs-3">Vous êtes:</h5>
         <p class="text-black fs-4">{{ joboffer.description }}</p>
     </div>
-
-    <div class="container-fluid text-center mt-4 fs-4">
-    <a href="{{ path('app_joboffer_index') }}">Back to list</a>&nbsp&nbsp
-    <a href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">Edit</a>
+     {% if is_granted('ROLE_COMPANY') and not is_granted('ROLE_USER') %}
+    <div class="container-fluid d-flex justify-content-center mt-5 fs-4">
+    <a class="be-primary-button btn me-4" href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">Edit</a>
         {{ include('joboffer/_delete_form.html.twig') }}
     </div>
+    {% endif %}
 
 
 
@@ -129,6 +130,7 @@
              {{ form_end(form) }}
         </div>
     {% endif %}
+    <a class="d-lg-none be-secondary-button " href="{{ path('app_joboffer_index') }}">Retour aux offres</a>
 
 </div>
 {% endblock %}
