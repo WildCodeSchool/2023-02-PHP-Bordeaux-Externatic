@@ -26,7 +26,14 @@
     <body>
         {% include '_includes/sidebar.html.twig' %}
         {% include '_includes/navbar.html.twig' %}
-        <main class=" col-md-9 m-auto my-5">
+        {% for category, messages in app.flashes %}
+            {% for message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endfor %}
+        <main class="col-md-9 m-auto my-5">
             {% block body %}{% endblock %}
         </main>
         {% include 'footer.html.twig' %}
