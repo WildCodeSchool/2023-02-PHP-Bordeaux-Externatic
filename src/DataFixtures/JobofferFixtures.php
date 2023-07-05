@@ -25,10 +25,10 @@ class JobofferFixtures extends Fixture implements DependentFixtureInterface
             $city = $cities[$randCity];
 
             $joboffer
-                ->setTitle($faker->word)
+                ->setTitle($this->getReference('job_' . $number))
                 ->setDescription($faker->text)
                 ->setCompany($this->getReference('company_' . $number))
-                ->setJob($this->getReference('job_0'))
+                ->setJob($this->getReference('job_' . $number))
                 ->setSalary($this->getReference('salary_' . $number))
                 ->setCity($city)
                 ->setContract($this->getReference('contract_' . $number));
