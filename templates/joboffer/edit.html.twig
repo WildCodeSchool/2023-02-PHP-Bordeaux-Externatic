@@ -1,13 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Joboffer{% endblock %}
+{% block title %}Modifier offre d'emploi{% endblock %}
 
 {% block body %}
-    <h1>Edit Joboffer</h1>
-
-    {{ include('joboffer/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_joboffer_index') }}">back to list</a>
+    <div class="be-form row g-3 col-7">
+        <div class="d-flex m-4">
+            <a class="be-secondary-button " href="{{ path('app_joboffer_show', {'id': joboffer.id} ) }}">Retour à la page de l'offre</a>
+        </div>
+        <h2 class="be-h2">Modification d'une offre</h2>
+        {{ form_start(form) }}
+        <div class="row px-4">
+            <div class="col-md-6">
+                {{ form_row(form.company) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.job) }}
+            </div>
+        </div>
+        <div class="row px-4">
+            <div class="col-md-6">
+                {{ form_row(form.contract) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.city) }}
+            </div>
+        </div>
+        <div class="row px-4">
+            <div class="col-md-6">
+                {{ form_row(form.salaryMin) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.salaryMax) }}
+            </div>
+        </div>
+        <div class="row px-4">
+            <div class="col-12">
+                {{ form_row(form.title) }}
+            </div>
+        </div>
+        <div class="row px-4">
+            <div class="col-12">
+                {{ form_row(form.description) }}
+            </div>
+        </div>
+        <div class="text-center mt-4 mb-5">
+            <button class="be-primary-button" type="submit">Confirmer</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
 
     {{ include('joboffer/_delete_form.html.twig') }}
 {% endblock %}
