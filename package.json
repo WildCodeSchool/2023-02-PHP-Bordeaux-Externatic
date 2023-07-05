@@ -29,6 +29,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "bootstrap-icons": "^1.10.5",
         "stimulus-password-visibility": "^2.1.1"
     }
 }

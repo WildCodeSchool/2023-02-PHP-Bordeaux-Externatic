@@ -63,12 +63,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Company $company = null;
 
+
+    #[ORM\ManyToMany(targetEntity: Joboffer::class, inversedBy: 'usersInterested')]
+    #[ORM\JoinTable(name:'favlist')]
+    private Collection $favlist;
+
     #[ORM\ManyToMany(targetEntity: Joboffer::class, mappedBy: 'candidate')]
     private Collection $joboffers;
 
     public function __construct()
     {
         $this->resumes = new ArrayCollection();
+        $this->favlist = new ArrayCollection();
         $this->joboffers = new ArrayCollection();
     }
 
@@ -282,6 +288,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Joboffer>
      */
+
+    public function getFavlist(): Collection
+    {
+        return $this->favlist;
+    }
+
+    public function addToFavlist(Joboffer $favlist): static
+    {
+        if (!$this->favlist->contains($favlist)) {
+            $this->favlist->add($favlist);
+        }
+        return $this;
+    }
+
+    public function removeFromFavlist(Joboffer $favlist): static
+    {
+        $this->favlist->removeElement($favlist);
+
+        return $this;
+    }
+
+    public function isInFavlist(Joboffer $joboffer): bool
+    {
+        return $this->favlist->contains($joboffer);
+    }
+
     public function getJoboffers(): Collection
     {
         return $this->joboffers;
@@ -293,16 +325,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->joboffers->add($joboffer);
             $joboffer->addCandidate($this);
         }
-
         return $this;
     }
-
     public function removeJoboffer(Joboffer $joboffer): static
     {
         if ($this->joboffers->removeElement($joboffer)) {
             $joboffer->removeCandidate($this);
         }
-
         return $this;
     }
 }
