@@ -28,14 +28,16 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">L'emploi en France</a></li>
+                        {% if is_granted('ROLE_USER') and not is_granted('ROLE_COMPANY') %}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Mes favoris</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_user_favlist', {'id': app.user.id}) }}">Mes favoris</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li><a class="dropdown-item" href="#">Ma recherche</a></li>
+                        {% endif %}
                     </ul>
                 </li>
 
