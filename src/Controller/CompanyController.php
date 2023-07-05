@@ -72,7 +72,9 @@ class CompanyController extends AbstractController
             $companyRepository->save($company, true);
             $userRepository->save($user, true);
 
-            return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_company_show', [
+                'id' => $company->getId(),
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('company/edit.html.twig', [
