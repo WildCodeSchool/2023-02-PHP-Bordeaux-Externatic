@@ -64,7 +64,7 @@ class JobofferType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'placeholder' => 'Choisissez un métier',
-                'label' => 'Choisissez un métier',
+                'label' => 'Métier',
                 'attr' => [
                     'class' => 'form-control be-form-input form-group mb-md-5 mb-3 h-auto'
                 ]
@@ -79,7 +79,7 @@ class JobofferType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'placeholder' => 'Choisissez un contrat',
-                'label' => 'Choisissez un contrat',
+                'label' => 'Type de contrat',
                 'attr' => [
                     'class' => 'form-control be-form-input form-group mb-md-5 mb-3 h-auto'
                 ]
@@ -109,7 +109,7 @@ class JobofferType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'placeholder' => 'Choisissez une entreprise',
-                'label' => 'Choisissez une entreprise',
+                'label' => 'Entreprise',
                 'attr' => [
                     'class' => 'form-control be-form-input form-group mb-md-5 mb-3'
                 ]
