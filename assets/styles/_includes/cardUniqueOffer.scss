@@ -4,8 +4,8 @@
     background-position: center;
     background-size: cover;
     height: 40vh;
-    box-shadow: $box-shadow;
-    border-radius: $border-radius;
+    box-shadow: 0 6.25px 14px #c9cbcf, 0 0 2px #c9cbcf;
+    border-radius: 8px;
 
 
 }
@@ -23,7 +23,7 @@
     opacity: 1;
     border-radius: 15px;
     border: 1px $dark-green;
-    box-shadow: $box-shadow;
+    box-shadow: 0 6.25px 14px #c9cbcf, 0 0 2px #c9cbcf;
 }
 
 .be-card-joboffer {
@@ -48,7 +48,7 @@
 
 @media screen and ( max-width: 768px ){
     .be-banner-offer {
-        height: 70vh;
+        height: 110vh;
         box-shadow: none;
         border-radius: 0;
         padding-top: 4px;
@@ -62,10 +62,10 @@
 }
 @media screen and ( min-width: 1024px ) and (max-width: 1440px){
     .be-banner-offer {
-        height: 70vh;
+        height: 120vh;
     }
 .be-cardText-jobofferCompany{
-    height: 10vh;
+    height: 15vh;
 }
     .be-apply-button{
         height: 20px;

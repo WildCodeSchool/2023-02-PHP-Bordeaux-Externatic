@@ -43,6 +43,12 @@
         <p class="text-black fs-4">{{ joboffer.description }}</p>
     </div>
 
+    <div class="container-fluid text-center mt-4 fs-4">
+    <a href="{{ path('app_joboffer_index') }}">Back to list</a>&nbsp&nbsp
+    <a href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">Edit</a>
+        {{ include('joboffer/_delete_form.html.twig') }}
+    </div>
+
 
 
 
@@ -89,12 +95,7 @@
             <td>{{ joboffer.salary.min }} / {{ joboffer.salary.max }}</td>
         </tr>
         </tbody>
-    </table>
-    <a href="{{ path('app_joboffer_index') }}">back to list</a>
-
-    <a href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">edit</a>
-
-    {{ include('joboffer/_delete_form.html.twig') }}#}
+    </table>#}
 <div class="container-fluid">
     {% if app.user %}
         <div class="be-form row g-3 col-7" id="be-apply-form">
