@@ -4,8 +4,8 @@
     background-position: center;
     background-size: cover;
     height: 40vh;
-    box-shadow: 0 6.25px 14px #c9cbcf, 0 0 2px #c9cbcf;
-    border-radius: 8px;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
 
 
 }
@@ -23,7 +23,7 @@
     opacity: 1;
     border-radius: 15px;
     border: 1px $dark-green;
-    box-shadow: 0 6.25px 14px #c9cbcf, 0 0 2px #c9cbcf;
+    box-shadow: $box-shadow;
 }
 
 .be-card-joboffer {
