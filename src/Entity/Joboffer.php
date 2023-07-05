@@ -72,9 +72,9 @@ class Joboffer
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(Job $title): self
     {
-        $this->title = $title;
+        $this->title = $title->getName();
 
         return $this;
     }
