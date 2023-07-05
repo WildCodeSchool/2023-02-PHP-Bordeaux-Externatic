@@ -16,7 +16,7 @@ class CompanyFixtures extends Fixture implements DependentFixtureInterface
         // $fakerSiret = new Generator();
         // $fakerSiret->addProvider(new FakerCompany($fakerSiret));
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $company = new Company();
             $company->setName($faker->company)
                ->setCity($faker->city)

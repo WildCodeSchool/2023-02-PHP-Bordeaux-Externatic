@@ -33,7 +33,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $admin->setRoles(['ROLE_ADMIN']);
         $manager->persist($admin);
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $company = new User();
             $company->setFirstname($faker->firstName());
             $company->setLastname($faker->lastName());
