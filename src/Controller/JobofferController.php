@@ -19,7 +19,6 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mime\Part\DataPart;
 
-
 #[Route('/joboffer')]
 class JobofferController extends AbstractController
 {
@@ -109,7 +108,6 @@ class JobofferController extends AbstractController
         return $this->render('joboffer/show.html.twig', [
             'joboffer' => $joboffer,
             'form' => $form,
-            'message' => $message ?? '',
         ]);
     }
 
