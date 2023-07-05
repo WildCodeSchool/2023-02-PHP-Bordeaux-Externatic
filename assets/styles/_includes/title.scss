@@ -2,7 +2,7 @@
     font-size: 3rem;
     font-weight:600;
     margin: 20px auto;
-    margin-left: 0px;
+    margin-left: 0;
 }
 
 .be-h2 span {
@@ -10,7 +10,7 @@
 }
 
 .be-h3 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight:600;
 }
 
@@ -22,5 +22,9 @@
     .be-h2 {
         font-size: 2rem;
         margin: 10px;
+    }
+
+    .be-h3 {
+        font-size: 1.5rem;
     }
 }
