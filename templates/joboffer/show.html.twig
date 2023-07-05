@@ -23,7 +23,24 @@
              </div>
         </div>
     </div>
-    <h1>Joboffer</h1>
+<div class="d-none d-lg-block container-fluid be-marginpict">
+    <div class="row justify-content-around">
+    <img src= "{{ asset('build/images/GourpWork2.jpg') }}" class="w-25 be-pictureStyle " alt="Groupe1">
+    <img src="{{ asset('build/images/GourpWork4.jpg') }}" class="w-25 be-pictureStyle " alt="Groupe2">
+    <img src="{{ asset('build/images/GroupWork.jpg') }}" class="w-25 be-pictureStyle " alt="Groupe3">
+    </div>
+</div>
+    <div class=" d-none d-lg-block container-fluid">
+    <h5 class="text-black fs-3">{{ joboffer.company.name }}recherche:</h5>
+    <p class="text-black fs-4">{{ joboffer.description }}</p>
+    </div>
+    <div class="d-none d-lg-block container-fluid text-center be-marginpict ">
+        <img src= "{{ asset('build/images/HommeWork.jpg') }}" class="w-25 be-pictureStyle" alt="Homework">
+
+    </div>
+
+
+
 
     <table class="table">
         <tbody>
