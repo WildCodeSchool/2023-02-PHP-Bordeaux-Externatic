@@ -49,13 +49,14 @@
                 </div>
             </div>
             <div class="card example-wrapper be-card-situation mb-4" style="width: 20rem; height: 10rem">
-                <div class="card-body">
-                    <i class="fa-solid fa-address-book fa-2xl" style="color: #ffffff;"></i>
-                    <h5 class="card-title">Mes candidats</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        J'accède aux candidats qui on postuler a mes offres
-                    </h6>
-                </div>
+                <a href="{{ path('app_company_show_candidate', {'id': app.user.id}) }}">
+                    <div class="card-body">
+                        <i class="fa-solid fa-address-book fa-2xl" style="color: #ffffff;"></i>
+                        <h5 class="card-title">Mes candidats</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            J'accède aux candidats qui on postuler a mes offres
+                        </h6>
+                    </div></a>
             </div>
         </div>
         {#Group 3#}
