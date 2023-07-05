@@ -90,4 +90,14 @@ class CompanyController extends AbstractController
 
         return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{id}/offers', name: 'app_company_offers', methods: ['GET'])]
+    public function showCompanyOffers(Company $company): Response
+    {
+        $offers = $company->getJoboffers();
+
+        return $this->render('company/offers.html.twig', [
+            'offers' => $offers,
+        ]);
+    }
 }
