@@ -1,17 +1,17 @@
-.be-card-alerte{
-    box-shadow: 0px 6.25px 14px #c9cbcf, 0px 0px 2px #c9cbcf;
+.be-card-alerte {
+    box-shadow: $box-shadow;
     margin-bottom: 60px;
 }
 
-.be-alert{
+.be-alert {
     background-color: #F2D7BA;
 }
 
-.be-card-candidatures{
-    box-shadow: 0px 6.25px 14px #c9cbcf, 0px 0px 2px #c9cbcf;
+.be-card-candidatures {
+    box-shadow: $box-shadow;
 }
 
-.be-candidature{
+.be-candidature {
     background-color: #D2CBE3;
 }
 

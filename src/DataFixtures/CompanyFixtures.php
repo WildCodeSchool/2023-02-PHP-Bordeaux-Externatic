@@ -15,10 +15,22 @@ class CompanyFixtures extends Fixture implements DependentFixtureInterface
         $faker = Factory::create('fr_FR');
         // $fakerSiret = new Generator();
         // $fakerSiret->addProvider(new FakerCompany($fakerSiret));
+        $companies = [
+            'Société Générale',
+            'Konbini',
+            'Conforama',
+            'Ikea',
+            'Fnac',
+            'Apple',
+            'Cdiscount',
+            'Microsoft',
+            'Guarani',
+            'Citadium'
+        ];
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $company = new Company();
-            $company->setName($faker->company)
+            $company->setName($companies[$i])
                ->setCity($faker->city)
                ->setPhone($faker->phoneNumber)
                ->setSiret('1443032370083' . $i)
