@@ -10,7 +10,7 @@
     justify-content: center;
 }
 
-.be-banner-home > .navbar{
+.be-banner-home > .navbar {
     position: absolute;
     bottom: -40px;
 
@@ -56,8 +56,12 @@
         width: 60%;
     }
 
-    .be-blabla {
+     .be-banner-home {
         height: 30vh;
+    }
+
+    .be-banner-home>.navbar {
+        bottom: -97px;
     }
 
     .be-img-home {
@@ -79,5 +83,10 @@
         bottom: 30%;
         max-width: 70px;
         right: 10px;
+    }
+
+    .be-img-home {
+        border-radius: 0;
+        height: initial;
     }
 }

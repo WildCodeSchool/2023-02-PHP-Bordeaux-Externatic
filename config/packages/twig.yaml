@@ -5,3 +5,7 @@ twig:
 when@test:
     twig:
         strict_variables: true
+
+#services:
+#    App\Extensions\Twig\DateTwigExtension:
+#        tags: ['twig.extension']
