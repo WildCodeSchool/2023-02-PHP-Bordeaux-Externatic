@@ -52,22 +52,6 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-
-        //$roles = $this->security->getUser()->getRoles();
-        //$idCompany = $this->security->getUser()->getCompany()->getId();
-        //$idUser = $this->security->getUser()->getId();
-
-        //if($this->security->isGranted('ROLE_COMPANY')) {
-            // c'est une entreprise : on la redirige vers l'espace entreprise
-            //$redirection = new RedirectResponse(
-        //$this->urlGenerator->generate('app_company_show', ['id' => $idCompany]
-        //));
-        //} else {
-            // c'est un utilisateur lambda : on le redirige vers l'espace candidat
-            //$redirection = new RedirectResponse($this->urlGenerator->generate('app_user_show', ['id' => $idUser]));
-        //}
-
-        //return $redirection;
     }
 
     protected function getLoginUrl(Request $request): string
