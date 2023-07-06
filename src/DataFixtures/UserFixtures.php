@@ -25,14 +25,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create('fr_FR');
 
-        $admin = new User();
-        $admin->setFirstname($faker->firstName());
-        $admin->setLastname($faker->lastName());
-        $admin->setEmail('admin@jobitbetter.com');
-        $admin->setPassword($this->hasher->hashPassword($admin, 'admin'));
-        $admin->setRoles(['ROLE_ADMIN']);
-        $manager->persist($admin);
-
         for ($i = 0; $i < 10; $i++) {
             $company = new User();
             $company->setFirstname($faker->firstName());
@@ -53,6 +45,14 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user->addResume($this->getReference('resume-1'));
         $user->addResume($this->getReference('resume-2'));
         $manager->persist($user);
+
+        $admin = new User();
+        $admin->setFirstname($faker->firstName());
+        $admin->setLastname($faker->lastName());
+        $admin->setEmail('admin@jobitbetter.com');
+        $admin->setPassword($this->hasher->hashPassword($admin, 'admin'));
+        $admin->setRoles(['ROLE_ADMIN']);
+        $manager->persist($admin);
 
         $manager->flush();
     }

@@ -56,6 +56,18 @@ class CompanyController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/candidate', name: 'app_company_show_candidate', methods: ['GET'])]
+    public function showCandidate(Company $company): Response
+    {
+        $date = new DateTime();
+        $dateString = $date->format('Y-m-d H:i:s');
+
+        return $this->render('company/showCandidate.html.twig', [
+            'company' => $company,
+            'currentDateTime' => $dateString
+        ]);
+    }
+
     #[Route('/{id}/edit', name: 'app_company_edit', methods: ['GET', 'POST'])]
     public function edit(
         Request $request,
@@ -72,7 +84,9 @@ class CompanyController extends AbstractController
             $companyRepository->save($company, true);
             $userRepository->save($user, true);
 
-            return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_company_show', [
+                'id' => $company->getId(),
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('company/edit.html.twig', [
@@ -89,5 +103,15 @@ class CompanyController extends AbstractController
         }
 
         return $this->redirectToRoute('app_company_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/offers', name: 'app_company_offers', methods: ['GET'])]
+    public function showCompanyOffers(Company $company): Response
+    {
+        $offers = $company->getJoboffers();
+
+        return $this->render('company/offers.html.twig', [
+            'offers' => $offers,
+        ]);
     }
 }
