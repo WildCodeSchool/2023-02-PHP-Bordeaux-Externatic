@@ -1,8 +1,12 @@
 <div class="be-joboffer-card-template-container">
     <ul class="be-joboffer-card-template-ul">
+        {% if joboffers.0 is not defined %}
+            <h1>Pas de résultats pour votre recherche</h1>
+        {% endif %}
         {% for joboffer in joboffers %}
+
             <li>
-                <div class="card be-joboffer-card-template mb-4 w-75">
+                <div class="card be-joboffer-card-template mb-4 w-100">
                     <div class="card-body">
                         <div class="row">
                             <h5 class="card-title text-secondary fs-6 col-10">{{ joboffer.company.name }}</h5>
@@ -22,5 +26,5 @@
                 </div>
             </li>
         {% endfor %}
-    </ul>
+
 </div>

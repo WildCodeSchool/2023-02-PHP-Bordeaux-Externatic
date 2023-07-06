@@ -62,7 +62,7 @@ class JobofferController extends AbstractController
         ]);
     }
 
-    #[Route('/show/{id}', name: 'app_joboffer_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_joboffer_show', methods: ['GET', 'POST'])]
     public function show(
         Joboffer $joboffer,
         Request $request,
@@ -78,13 +78,11 @@ class JobofferController extends AbstractController
             $candidate->addJobOffer($joboffer);
             $manager->persist($candidate);
             $message = $request->get('message');
-            $resumes = $candidate->getResumes();
-            $attachment = null;
-            foreach ($resumes as $resume) {
+            $resume = $request->get('resume');
                 $attachment = new File(
-                    $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume->getPath()
+                    $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume
                 );
-            }
+
 
             $email = (new TemplatedEmail())
                 ->from('your_email@example.com')
