@@ -4,7 +4,10 @@
 {% block title %}Joboffer{% endblock %}
 
 {% block body %}
-    <div class="m-auto be-banner-offer d-flex justify-content-center position-md-relative mt-md-2">
+    <div class="m-auto be-banner-offer d-flex justify-content-center position-md-relative ">
+        <div class="position-absolute top-0 end-0 mt-2 mt-md-1 me-1"><a id="favlist" href="{{ path('app_joboffer_favlist', {id: joboffer.id}) }}">
+            <i class="fa-2x bi {{ app.user.isInFavlist(joboffer) ? 'bi-bookmark-x-fill text-light' : 'bi-bookmark-plus text-light' }}"></i>
+            </a></div>
         {#  <img class="img-responsive be-img-UniqueOffer" src="{{ asset('build/images/Bordeaux_job.jpg') }}" alt="">#}
         <div class="bg-transparent border border-0 w-auto h-100 card d-inline-flex align-items-center justify-content-center">
             <h5 class="text-white fs-3 card-title">{{ joboffer.contract.type }}</h5>
@@ -34,7 +37,11 @@
 </div>
 
     <div class="container-fluid my-5">
-    <h5 class="text-black fs-3">{{ joboffer.company.name }}recherche:</h5>
+
+        <div class="d-flex justify-content-end">
+
+        </div>
+    <h5 class="text-black fs-3">{{ joboffer.company.name }} recherche:</h5>
     <p class="text-black fs-4">{{ joboffer.description }}</p>
     </div>
     <div class="d-none d-lg-block container-fluid text-center my-5 ">
@@ -134,7 +141,7 @@
         </div>
     {% endif %}
 </div>
-    <div class="d-flex justify-content-center mt-4">
+    <div class="d-flex justify-content-center">
         <a class="be-secondary-button  w-auto " href="{{ path('app_joboffer_index') }}">Retour aux offres</a>
     </div>
 {% endblock %}
