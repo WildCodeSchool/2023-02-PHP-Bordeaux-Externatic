@@ -3,7 +3,6 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-
 <div class="container m-auto d-flex justify-content-around align-items-center my-5">
     <div class="row">
         {#Group 1#}
@@ -11,7 +10,7 @@
             <div class="card example-wrapper be-card-candidate mb-4" style="width: 20rem; height: 21rem;">
                 <div class="card-body be-card-candidat">
                     <h5 class="card-title">Bonjour {{ app.user.firstname }}</h5>
-                    <p class="be-maj">Mise à jour : {{ currentDateTime }}</p>
+                    <p class="be-maj">Mise à jour : {{ app.user.updatedAt|ago }}</p>
                     <p class="card-text">Poste actuel : </p>
                     <p class="card-text">
                         Lieu de résidence :
