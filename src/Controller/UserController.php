@@ -46,13 +46,9 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
-        $date = new DateTime();
-        $dateString = $date->format('Y-m-d H:i:s');
 
 
-        return $this->render('user/show.html.twig', [
-            'currentDateTime' => $dateString
-        ]);
+        return $this->render('user/show.html.twig');
     }
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
