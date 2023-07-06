@@ -39,6 +39,7 @@ class UserType extends AbstractType
                 ],
             ])
             ->add('city', TextType::class, [
+                'required' => false,
                 'label' => 'Ville',
                 'attr' => [
                     'class' => 'form-control be-form-input mb-md-5 mb-3', // Ajoute une classe CSS personnalisée
@@ -46,6 +47,7 @@ class UserType extends AbstractType
                 ],
             ])
             ->add('birthday', DateType::class, [
+                'required' => false,
                 'label' => 'Date de naissance',
                 'widget' => 'single_text',
                 'attr' => [
@@ -53,6 +55,7 @@ class UserType extends AbstractType
                 ],
             ])
             ->add('phone', TextType::class, [
+                'required' => false,
                 'label' => 'Téléphone',
                 'constraints' => [
                     new Regex([
@@ -64,8 +67,7 @@ class UserType extends AbstractType
                     'class' => 'form-control be-form-input mb-md-5 mb-3', // Ajoute une classe CSS personnalisée
                     'placeholder' => '0123456789',
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
