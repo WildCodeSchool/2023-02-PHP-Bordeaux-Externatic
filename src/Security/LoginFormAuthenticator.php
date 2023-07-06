@@ -16,6 +16,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Bundle\SecurityBundle\Security as SecurityBundleSecurity;
 
 class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
@@ -34,7 +35,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         $email = $request->request->get('username');
         $user = $this->userRepository->findOneBy(['email' => $email]);
         if ($user->isVerified() === false) {
-            throw new CustomUserMessageAuthenticationException('Veuillez vérifier votre email.');
+            throw new CustomUserMessageAuthenticationException(
+                'Votre compte n\'est pas encore validé. Veuillez vérifier vos mails.'
+            );
         }
         $request->getSession()->set(Security::LAST_USERNAME, $email);
 
@@ -49,14 +52,6 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        $targetPath = $this->getTargetPath($request->getSession(), $firewallName);
-        if ($targetPath) {
-            return new RedirectResponse($targetPath);
-        }
-
-        return new RedirectResponse(
-            $this->urlGenerator->generate('app_user_show', ['id' => $token->getUser()->getId()])
-        );
     }
 
     protected function getLoginUrl(Request $request): string
