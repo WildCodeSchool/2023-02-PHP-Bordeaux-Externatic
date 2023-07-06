@@ -24,10 +24,15 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
     private $userRepository;
+    private SecurityBundleSecurity $security;
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator, UserRepository $userRepository)
-    {
+    public function __construct(
+        private UrlGeneratorInterface $urlGenerator,
+        UserRepository $userRepository,
+        SecurityBundleSecurity $security
+    ) {
         $this->userRepository = $userRepository;
+        $this->security = $security;
     }
 
     public function authenticate(Request $request): Passport
@@ -52,6 +57,25 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            // c'est un admin : on le redirige vers l'espace admin
+            $redirection = new RedirectResponse(
+                $this->urlGenerator->generate('admin')
+            );
+        } elseif ($this->security->isGranted('ROLE_COMPANY')) {
+            $idCompany = $this->security->getUser()->getCompany()->getId();
+            // c'est une entreprise : on la redirige vers l'espace entreprise
+            $redirection = new RedirectResponse(
+                $this->urlGenerator->generate('app_company_show', ['id' => $idCompany])
+            );
+        } else {
+            $idUser = $this->security->getUser()->getId();
+            // c'est un utilisateur lambda : on le redirige vers l'espace candidat
+            $redirection = new RedirectResponse(
+                $this->urlGenerator->generate('app_user_show', ['id' => $idUser])
+            );
+        }
+        return $redirection;
     }
 
     protected function getLoginUrl(Request $request): string
