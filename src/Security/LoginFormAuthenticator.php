@@ -14,6 +14,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Bundle\SecurityBundle\Security as SecurityBundleSecurity;
 
 class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
@@ -21,7 +22,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    public function __construct(private UrlGeneratorInterface $urlGenerator, private SecurityBundleSecurity $security)
     {
     }
 
@@ -42,12 +43,22 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        $targetPath = $this->getTargetPath($request->getSession(), $firewallName);
-        if ($targetPath) {
-            return new RedirectResponse($targetPath);
-        }
 
-        return new RedirectResponse($this->urlGenerator->generate('app_home'));
+        //$roles = $this->security->getUser()->getRoles();
+        //$idCompany = $this->security->getUser()->getCompany()->getId();
+        //$idUser = $this->security->getUser()->getId();
+
+        //if($this->security->isGranted('ROLE_COMPANY')) {
+            // c'est une entreprise : on la redirige vers l'espace entreprise
+            //$redirection = new RedirectResponse(
+        //$this->urlGenerator->generate('app_company_show', ['id' => $idCompany]
+        //));
+        //} else {
+            // c'est un utilisateur lambda : on le redirige vers l'espace candidat
+            //$redirection = new RedirectResponse($this->urlGenerator->generate('app_user_show', ['id' => $idUser]));
+        //}
+
+        //return $redirection;
     }
 
     protected function getLoginUrl(Request $request): string
