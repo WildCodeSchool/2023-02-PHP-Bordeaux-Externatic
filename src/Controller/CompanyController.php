@@ -56,6 +56,18 @@ class CompanyController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/candidate', name: 'app_company_show_candidate', methods: ['GET'])]
+    public function showCandidate(Company $company): Response
+    {
+        $date = new DateTime();
+        $dateString = $date->format('Y-m-d H:i:s');
+
+        return $this->render('company/showCandidate.html.twig', [
+            'company' => $company,
+            'currentDateTime' => $dateString
+        ]);
+    }
+
     #[Route('/{id}/edit', name: 'app_company_edit', methods: ['GET', 'POST'])]
     public function edit(
         Request $request,

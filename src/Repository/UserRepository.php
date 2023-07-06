@@ -80,4 +80,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function isVerified(User $user): bool
+    {
+        $user->isVerified();
+
+        return $user->isVerified();
+    }
 }
