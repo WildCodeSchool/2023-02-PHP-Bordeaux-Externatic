@@ -3,9 +3,22 @@
 {% block title %}Joboffer index{% endblock %}
 {% block body %}
 {#    {{ dump() }}#}
-<div class="d-flex justify-content-between">
+<div style="height: 120px; background-color: #B4C9C6FF; left: 0; top: 80px" class="position-absolute w-100 d-flex
+align-items-center
+justify-content-center">
+    <div class="w-100 mx-auto">
+        <div class="navbar be-bg-body-tertiary px-3 mx-auto">
+            {{ render(controller(
+                'App\\Controller\\SearchBarController::search',
+            )) }}
+        </div>
+    </div>
+</div>
+<div class="be-container-search d-flex justify-content-center">
+
     {{ include ('_includes/joboffer-card-template.html.twig') }}
-    <div class="sidebar">
+
+    <div class="be-container-sidebar sidebar d-none  d-lg-block">
         <div class="p4 p5">
             {{ include ('_includes/cards-search-page.html.twig') }}
         </div>

@@ -17,7 +17,9 @@
                         d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
                     <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                 </svg> {{ joboffer.city }}</p>
-            <a href="#be-apply-form" class="fs-5 be-apply-button ">Postuler</a>
+            {% if app.user and not is_granted('ROLE_COMPANY') %}
+                <a href="#be-apply-form" class="fs-5 be-apply-button ">Postuler</a>
+            {% endif %}
              <div class=" be-card-joboffer position-absolute d-none d-sm-none d-md-none d-lg-block ">
                 <div class="w-auto fs-5 fw-bold be-cardText-jobofferCompany ">{{ joboffer.company.name }}</div>
              </div>
@@ -43,7 +45,7 @@
         <h5 class="text-black fs-3">Vous êtes:</h5>
         <p class="text-black fs-4">{{ joboffer.description }}</p>
     </div>
-     {% if is_granted('ROLE_COMPANY') and not is_granted('ROLE_USER') %}
+     {% if is_granted('ROLE_COMPANY')  %}
     <div class="container-fluid d-flex justify-content-center mt-5 fs-4">
     <a class="be-primary-button btn me-4" href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">Edit</a>
         {{ include('joboffer/_delete_form.html.twig') }}
@@ -96,9 +98,10 @@
             <td>{{ joboffer.salary.min }} / {{ joboffer.salary.max }}</td>
         </tr>
         </tbody>
+<<<<<<< HEAD
     </table>#}
 <div class="container-fluid">
-    {% if app.user %}
+    {% if is_granted('ROLE_USER') and not is_granted('ROLE_COMPANY') %}
         <div class="be-form row g-3 col-7" id="be-apply-form">
             <h2 class="be-h2 fs-1">Cette offre t'intéresse ?</h2>
             <h2 class="be-h2 fs-1">Postule !</h2>
@@ -130,8 +133,9 @@
              {{ form_end(form) }}
         </div>
     {% endif %}
-    <a class="d-lg-none be-secondary-button " href="{{ path('app_joboffer_index') }}">Retour aux offres</a>
-
 </div>
+    <div class="d-flex justify-content-center mt-4">
+        <a class="be-secondary-button  w-auto " href="{{ path('app_joboffer_index') }}">Retour aux offres</a>
+    </div>
 {% endblock %}
 
