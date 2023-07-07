@@ -107,14 +107,13 @@
             <td>{{ joboffer.salary.min }} / {{ joboffer.salary.max }}</td>
         </tr>
         </tbody>
-<<<<<<< HEAD
     </table>#}
 <div class="container-fluid">
     {% if is_granted('ROLE_USER') and not is_granted('ROLE_COMPANY') %}
         <div class="be-form row g-3 col-7" id="be-apply-form">
             <h2 class="be-h2 fs-1">Cette offre t'intéresse ?</h2>
             <h2 class="be-h2 fs-1">Postule !</h2>
-            {{ form_start(form) }}
+            {{ form_start(form, {'attr': {'class': 'be-chado-hidden'}}) }}
                 {{ form_errors(form) }}
                 <div class="row px-4">
                     <div class="col-md-6">
@@ -127,8 +126,14 @@
                 <div class="col-12 px-4">
                     {{ form_row(form.email) }}
                 </div>
-                <div class="col-12 px-4">
-                    {{ form_row(form.resumes) }}
+                <div class="col-12 px-4 mb-4">
+                    <label for="resume"> </label>
+
+                    <select class=" be-form-input p-0" name="resume" id="resume">
+                            {% for resume in app.user.resumes %}
+                               <option value="{{ resume.path }}">{{ resume.name }}</option>
+                            {% endfor %}
+                        </select>
                 </div>
                 <div class="col-12 px-4">
                     <div class="form-group">
@@ -139,6 +144,8 @@
                 <div class="text-center mb-4">
                     <button class="be-primary-button" type="submit">Postuler</button>
                 </div>
+            {% do form.resumes.setRendered() %}
+
              {{ form_end(form) }}
         </div>
     {% endif %}
