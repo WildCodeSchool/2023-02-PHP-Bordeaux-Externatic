@@ -9,13 +9,19 @@
 .be-password-register button {
     position: absolute;
     right: 0;
-    top: calc(50% - 0.5rem);
+    bottom: 0.1rem;
+}
+
+.be-password-register-company button {
+    position: absolute;
+    right: 28rem;
+    bottom: 20.8rem;
 }
 
 .be-password-login button {
     position: absolute;
     right: 1.5rem;
-    top: calc(50% - 0.5rem);
+    bottom: calc(50% - 1.9rem);
 }
 
 .be-form {
@@ -30,7 +36,6 @@
 
 .be-form h2 {
     text-align: center;
-    font-size: 2rem;
 }
 
 .be-form label {
