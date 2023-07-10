@@ -50,7 +50,6 @@
 
 @media screen and ( max-width: 768px ){
     .be-banner-offer {
-        height: 110vh;
         box-shadow: none;
         border-radius: 0;
         padding-top: 4px;
@@ -62,9 +61,9 @@
 
 
 }
-@media screen and ( min-width: 1024px ) and (max-width: 1440px){
+@media screen and (max-width: 1440px){
     .be-banner-offer {
-        height: 120vh;
+        height: 80vh;
     }
 .be-cardText-jobofferCompany{
     height: 15vh;
