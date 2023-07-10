@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Joboffer;
 use App\Repository\JobofferRepository;
 use DateTime;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -88,5 +90,28 @@ class UserController extends AbstractController
             'favlist' => $favlist,
 
         ]);
+    }
+
+    #[Route('/candidature/{id}', name: 'app_user_candidatures', methods: ['GET','POST'])]
+    public function candidatures(User $user): Response
+    {
+        $candidatures = $user->getJoboffers();
+
+        return $this->render('user/candidatures.html.twig', [
+            'candidatures' => $candidatures,
+
+        ]);
+    }
+
+    #[Route('/candidature/delete/{id}', name: 'app_user_candidatures_delete', methods: ['GET','POST'])]
+    public function candidaturesDelete(Joboffer $joboffer, EntityManagerInterface $manager): Response
+    {
+        $user = $this->getUser();
+
+        if ($user->isCandidate($joboffer)) {
+            $user->removeJoboffer($joboffer);
+            $manager->flush();
+        }
+            return $this->redirectToRoute('app_user_candidatures', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
     }
 }

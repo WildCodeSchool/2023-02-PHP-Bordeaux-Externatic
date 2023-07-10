@@ -77,6 +77,7 @@ class JobofferController extends AbstractController
             $candidate = $form->getData();
             $candidate->addJobOffer($joboffer);
             $manager->persist($candidate);
+            $manager->flush();
             $message = $request->get('message');
             $resume = $request->get('resume');
                 $attachment = new File(
