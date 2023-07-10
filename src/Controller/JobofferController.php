@@ -167,4 +167,14 @@ class JobofferController extends AbstractController
             'isInFavlist' => $user->isInFavlist($joboffer)
         ]);
     }
+
+    #[Route('/company/{id}', name: 'app_joboffer_company_filter', methods: ['GET'])]
+    public function getJoboffersByCompany(int $id, JobofferRepository $jobofferRepository): Response
+    {
+        $company = $jobofferRepository->findBy(['company' => $id]);
+
+        return $this->render('joboffer/companyfilter.html.twig', [
+            'company' => $company,
+        ]);
+    }
 }

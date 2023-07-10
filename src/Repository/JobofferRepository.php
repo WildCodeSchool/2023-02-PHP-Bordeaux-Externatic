@@ -53,7 +53,7 @@ class JobofferRepository extends ServiceEntityRepository
     public function findByCompany(): array
     {
         $query = $this->createQueryBuilder('j')
-            ->select('c.name, COUNT(j.id) as total', 'c.logo')
+            ->select('c.name, COUNT(j.id) as total', 'c.logo', 'c.id')
             ->innerJoin('j.company', 'c')
             ->groupBy('c.id')
             ->orderBy('count(c)', 'DESC')

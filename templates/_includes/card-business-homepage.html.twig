@@ -20,9 +20,9 @@
                             {{ company.total }} postes à pouvoir
                         </div>
                         <div class="d-flex align-items-center">
-                            <button type="button" class="be-secondary-button" data-toggle="modal" data-target="#exampleModal">
+                            <a class="be-secondary-button" href="{{ path('app_joboffer_company_filter', {'id': company.id}) }}">
                                 Voir les offres
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
