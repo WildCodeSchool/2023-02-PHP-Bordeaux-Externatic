@@ -70,40 +70,45 @@ class JobofferController extends AbstractController
         MailerInterface $mailer
     ): Response {
         $user = $this->getUser();
-        $form = $this->createForm(JobofferApplyType::class, $user);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $candidate = $form->getData();
-            $candidate->addJobOffer($joboffer);
-            $manager->persist($candidate);
-            $manager->flush();
-            $message = $request->get('message');
-            $resume = $request->get('resume');
-                $attachment = new File(
-                    $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume
-                );
+        $form = null;
+        if ($user !== null) {
+            $form = $this->createForm(JobofferApplyType::class, $user);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $candidate = $form->getData();
+                $candidate->addJobOffer($joboffer);
+                $manager->persist($candidate);
+                $message    = $request->get('message');
+                $resumes    = $candidate->getResumes();
+                $attachment = null;
+                foreach ($resumes as $resume) {
+                    $attachment = new File(
+                        $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume->getPath()
+                    );
+                }
+
+                $email = (new TemplatedEmail())
+                    ->from('your_email@example.com')
+                    ->to('a.sale@hotmail.fr')
+                    ->subject('Nouvelle candidature')
+                    ->addPart(new DataPart(fopen($attachment, 'r')))
+                    ->html($this->renderView('joboffer/jobOfferEmail.html.twig', [
+                        'joboffer' => $joboffer,
+                        'user'     => $user,
+                        'message'  => $message,
+                    ]));
 
 
-            $email = (new TemplatedEmail())
-                ->from('your_email@example.com')
-                ->to('a.sale@hotmail.fr')
-                ->subject('Nouvelle candidature')
-                ->addPart(new DataPart(fopen($attachment, 'r')))
-                ->html($this->renderView('joboffer/jobOfferEmail.html.twig', [
-                    'joboffer' => $joboffer,
-                    'user' => $user,
-                    'message' => $message,
-                ]));
+                $mailer->send($email);
 
+                $this->addFlash('success', 'Votre candidature a bien été envoyée !');
 
-            $mailer->send($email);
-
-            $this->addFlash('success', 'Votre candidature a bien été envoyée !');
-
-            return $this->redirectToRoute('app_joboffer_show', [
-                'id' => $joboffer->getId(),
-            ], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_joboffer_show', [
+                    'id' => $joboffer->getId(),
+                ], Response::HTTP_SEE_OTHER);
+            }
         }
         return $this->render('joboffer/show.html.twig', [
             'joboffer' => $joboffer,
