@@ -14,8 +14,8 @@ class SearchOfferType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class)
-            ->add('city', TextType::class);
+            ->add('title', TextType::class, ['required' => false])
+            ->add('city', TextType::class, ['required' => false]);
     }
 
 //    public function configureOptions(OptionsResolver $resolver): void

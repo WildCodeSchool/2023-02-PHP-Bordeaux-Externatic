@@ -6,6 +6,7 @@ use App\Entity\Company;
 use App\Entity\User;
 use App\Form\CompanyType;
 use App\Form\RegistrationFormType;
+use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -122,22 +123,35 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/verify/email', name: 'app_verify_email')]
-    public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    public function verifyUserEmail(
+        Request $request,
+        TranslatorInterface $translator,
+        UserRepository $userRepository
+    ): Response {
+        $id = $request->get('id');
 
-        // validate email confirmation link, sets User::isVerified=true and persists
-        try {
-            $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
-        } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
-
+        if (null === $id) {
             return $this->redirectToRoute('app_register');
         }
 
-        $this->addFlash('success', 'Ton email est confirmé.');
+        $user = $userRepository->find($id);
 
-        return $this->redirectToRoute('app_home');
+        if (null === $user) {
+            return $this->redirectToRoute('app_register');
+        }
+
+        // validate email confirmation link, sets User::isVerified=true and persists
+        try {
+            $this->emailVerifier->handleEmailConfirmation($request, $user);
+        } catch (VerifyEmailExceptionInterface $exception) {
+            $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
+
+            return $this->redirectToRoute('app_login');
+        }
+
+        $this->addFlash('success', 'Votre email a bien été vérifié.');
+
+        return $this->redirectToRoute('app_login');
     }
 
     public function sendEmail(User $user): void

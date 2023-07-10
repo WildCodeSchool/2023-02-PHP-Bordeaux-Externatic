@@ -22,7 +22,7 @@ class SearchBarController extends AbstractController
         $form = $formFactory->create(SearchOfferType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $credentials = $form->getData();
             $results = $jobofferRepository->search($credentials);
             return $this->render('joboffer/search.html.twig', [

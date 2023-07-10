@@ -4,7 +4,12 @@
 {% block title %}Joboffer{% endblock %}
 
 {% block body %}
-    <div class="m-auto be-banner-offer d-flex justify-content-center position-md-relative mt-md-2">
+    <div class="m-auto be-banner-offer d-flex justify-content-center position-md-relative ">
+        {% if is_granted('ROLE_USER') and not is_granted('ROLE_COMPANY') %}
+        <div class="position-absolute top-0 end-0 mt-2 mt-md-1 me-1"><a id="favlist" href="{{ path('app_joboffer_favlist', {id: joboffer.id}) }}">
+            <i class="fa-2x bi {{ app.user.isInFavlist(joboffer) ? 'bi-bookmark-x-fill text-light' : 'bi-bookmark-plus text-light' }}"></i>
+            </a></div>
+        {% endif %}
         {#  <img class="img-responsive be-img-UniqueOffer" src="{{ asset('build/images/Bordeaux_job.jpg') }}" alt="">#}
         <div class="bg-transparent border border-0 w-auto h-100 card d-inline-flex align-items-center justify-content-center">
             <h5 class="text-white fs-3 card-title">{{ joboffer.contract.type }}</h5>
@@ -25,63 +30,42 @@
              </div>
         </div>
     </div>
-    <h1>Joboffer</h1>
+<div class="d-none d-lg-block container-fluid my-5">
+    <div class="row justify-content-around">
+    <img src= "{{ asset('build/images/GourpWork2.jpg') }}" class="w-25 be-pictureStyle " alt="Groupe1">
+    <img src="{{ asset('build/images/GourpWork4.jpg') }}" class="w-25 be-pictureStyle " alt="Groupe2">
+    <img src="{{ asset('build/images/GroupWork.jpg') }}" class="w-25 be-pictureStyle " alt="Groupe3">
+    </div>
+</div>
 
-    <table class="table">
-        <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ joboffer.id }}</td>
-        </tr>
-        <tr>
-            <th>Title</th>
-            <td>{{ joboffer.title }}</td>
-        </tr>
-        <tr>
-            <th>Description</th>
-            <td>{{ joboffer.description }}</td>
-        </tr>
-        <tr>
-            <th>City</th>
-            <td>{{ joboffer.city }}</td>
-        </tr>
-        <tr>
-            <th>CreatedAt</th>
-            <td>{{ joboffer.createdAt ? joboffer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-        </tr>
-        <tr>
-            <th>UpdatedAt</th>
-            <td>{{ joboffer.updatedAt ? joboffer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-        </tr>
-        <tr>
-            <th>Company</th>
-            <td>{{ joboffer.company.name }}</td>
-        </tr>
-        <tr>
-            <th>Job</th>
-            <td>{{ joboffer.job.name}}</td>
-        </tr>
-        <tr>
-            <th>Contract</th>
-            <td>{{ joboffer.contract.type }}</td>
-        </tr>
-        <tr>
-            <th>Salary : min / max</th>
-            <td>{{ joboffer.salary.min }} / {{ joboffer.salary.max }}</td>
-        </tr>
-        </tbody>
-    </table>
-    <a href="{{ path('app_joboffer_index') }}">back to list</a>
+    <div class="container-fluid my-5">
 
-    <a href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">edit</a>
+        <div class="d-flex justify-content-end">
 
-    {{ include('joboffer/_delete_form.html.twig') }}
+        </div>
+    <h5 class="text-black fs-3">{{ joboffer.company.name }} recherche:</h5>
+    <p class="text-black fs-4">{{ joboffer.description }}</p>
+    </div>
+    <div class="d-none d-lg-block container-fluid text-center my-5 ">
+        <img src= "{{ asset('build/images/HommeWork.jpg') }}" class="be-pictureSize be-pictureStyle" alt="Homework">
 
+    </div>
+    <div class="container-fluid">
+        <h5 class="text-black fs-3">Vous êtes:</h5>
+        <p class="text-black fs-4">{{ joboffer.description }}</p>
+    </div>
+     {% if is_granted('ROLE_COMPANY')  %}
+    <div class="container-fluid d-flex justify-content-center mt-5 fs-4">
+    <a class="be-primary-button btn me-4" href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">Edit</a>
+        {{ include('joboffer/_delete_form.html.twig') }}
+    </div>
+    {% endif %}
+<div class="container-fluid">
     {% if is_granted('ROLE_USER') and not is_granted('ROLE_COMPANY') %}
         <div class="be-form row g-3 col-7" id="be-apply-form">
-            <h2 class="be-h2">Cette offre t'intéresse ?</h2>
-            <h2 class="be-h2">Postule !</h2>
-            {{ form_start(form) }}
+            <h2 class="be-h2 fs-1">Cette offre t'intéresse ?</h2>
+            <h2 class="be-h2 fs-1">Postule !</h2>
+            {{ form_start(form, {'attr': {'class': 'be-chado-hidden'}}) }}
                 {{ form_errors(form) }}
                 <div class="row px-4">
                     <div class="col-md-6">
@@ -94,8 +78,14 @@
                 <div class="col-12 px-4">
                     {{ form_row(form.email) }}
                 </div>
-                <div class="col-12 px-4">
-                    {{ form_row(form.resumes) }}
+                <div class="col-12 px-4 mb-4">
+                    <label for="resume"> </label>
+
+                    <select class=" be-form-input p-0" name="resume" id="resume">
+                            {% for resume in app.user.resumes %}
+                               <option value="{{ resume.path }}">{{ resume.name }}</option>
+                            {% endfor %}
+                        </select>
                 </div>
                 <div class="col-12 px-4">
                     <div class="form-group">
@@ -106,9 +96,14 @@
                 <div class="text-center mb-4">
                     <button class="be-primary-button" type="submit">Postuler</button>
                 </div>
+            {% do form.resumes.setRendered() %}
+
              {{ form_end(form) }}
         </div>
     {% endif %}
-
-
+</div>
+    <div class="d-flex justify-content-center mt-5">
+        <a class="be-secondary-button  w-auto " href="{{ path('app_joboffer_index') }}">Retour aux offres</a>
+    </div>
 {% endblock %}
+
