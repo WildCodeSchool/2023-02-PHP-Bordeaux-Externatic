@@ -70,6 +70,7 @@ class JobofferController extends AbstractController
         MailerInterface $mailer
     ): Response {
         $user = $this->getUser();
+
         $form = null;
         if ($user !== null) {
             $form = $this->createForm(JobofferApplyType::class, $user);
