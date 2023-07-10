@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Joboffer;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -18,10 +19,17 @@ class JobofferCrudController extends AbstractCrudController
         return Joboffer::class;
     }
 
+    public function configureAssets(Assets $assets): Assets
+    {
+        return $assets->addCssFile('admin-style/admin-style.css');
+    }
+
     public function configureCrud(Crud $crud): Crud
     {
         return $crud->setPageTitle('index', 'Offres d\'emploi')
-            ->showEntityActionsInlined();
+            ->showEntityActionsInlined()
+            ->setEntityLabelInSingular('offre d\'emploi')
+            ->setEntityLabelInPlural('offres d\'emploi');
     }
 
 

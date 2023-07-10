@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Contract;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -15,10 +16,17 @@ class ContractCrudController extends AbstractCrudController
         return Contract::class;
     }
 
+    public function configureAssets(Assets $assets): Assets
+    {
+        return $assets->addCssFile('admin-style/admin-style.css');
+    }
+
     public function configureCrud(Crud $crud): Crud
     {
         return $crud->setPageTitle('index', 'Contrats')
-            ->showEntityActionsInlined();
+            ->showEntityActionsInlined()
+            ->setEntityLabelInSingular('contrat')
+            ->setEntityLabelInPlural('contrats');
     }
 
 

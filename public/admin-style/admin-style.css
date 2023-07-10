@@ -1,0 +1,13 @@
+:root {
+    --body-bg: #f8f9fa;
+    --link-color: #475569;
+    --form-switch-checked-bg: #0A7014;
+    --form-type-check-input-checked-bg: #0A7014;
+    --sidebar-menu-active-item-color: #0A7014;
+    --button-primary-bg: #0A7014;
+    --pagination-active-bg: #0A7014;
+    --pagination-color: #0A7014;
+    --pagination-disabled-color: #0A7014;
+    --sidebar-menu-icon-color: #05380A;
+    --sidebar-menu-color: #05380A;
+}
