@@ -89,4 +89,12 @@ class UserController extends AbstractController
 
         ]);
     }
+
+    #[Route('/{id}/search', name: 'app_user_search', methods: ['GET','POST'])]
+    public function mySearch(User $user): Response
+    {
+
+
+        return $this->render('user/search.html.twig');
+    }
 }
