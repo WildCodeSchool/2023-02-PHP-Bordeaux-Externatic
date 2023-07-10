@@ -18,6 +18,14 @@
     color: $light-green;
 }
 
+h4 {
+    font-weight: 600;
+}
+
+h5 {
+    font-weight: 600;
+}
+
 @media screen and (max-width: 768px){
     .be-h2 {
         font-size: 2rem;
