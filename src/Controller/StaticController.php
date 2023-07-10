@@ -25,6 +25,4 @@ class StaticController extends AbstractController
     {
         return $this->render('static/cookie_policy.html.twig');
     }
-
-
 }
