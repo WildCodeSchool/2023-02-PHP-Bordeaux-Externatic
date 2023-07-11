@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Company;
 use App\Entity\Joboffer;
+use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -58,6 +59,32 @@ class JobofferRepository extends ServiceEntityRepository
             ->groupBy('c.id')
             ->orderBy('count(c)', 'DESC')
             ->setMaxResults(6)
+            ->getQuery();
+        return $query->getResult();
+    }
+
+    public function findByMySearch(Search $search): array
+    {
+        $query = $this->createQueryBuilder('jo')
+            ->where('jo.company IN (
+        SELECT c.id FROM App\Entity\Company c WHERE :companyId IS NULL OR c.id = :companyId
+    )')
+            ->andWhere('jo.job IN (
+        SELECT j.id FROM App\Entity\Job j WHERE :jobId IS NULL OR j.id = :jobId
+    )')
+            ->andWhere('jo.contract IN (
+        SELECT ct.id FROM App\Entity\Contract ct WHERE :contractId IS NULL OR ct.id = :contractId
+    )')
+            ->andWhere('jo.salary IN (
+        SELECT s.id FROM App\Entity\Salary s WHERE :salaryId IS NULL OR s.id = :salaryId
+    )')
+            ->andWhere(':city IS NULL OR jo.city = :city')
+            ->setParameter('companyId', $search->getCompany())
+            ->setParameter('jobId', $search->getJob()?->getId())
+            ->setParameter('contractId', $search->getContract()?->getId())
+            ->setParameter('salaryId', $search->getSalary()?->getId())
+            ->setParameter('city', $search->getCity())
+            ->orderBy('jo.createdAt', 'DESC')
             ->getQuery();
         return $query->getResult();
     }
