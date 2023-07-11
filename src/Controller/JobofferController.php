@@ -70,6 +70,8 @@ class JobofferController extends AbstractController
         MailerInterface $mailer
     ): Response {
         $user = $this->getUser();
+        $attachment = null;
+        $message = null;
 
         $form = null;
         if ($user !== null) {
@@ -81,13 +83,12 @@ class JobofferController extends AbstractController
                 $candidate->addJobOffer($joboffer);
                 $manager->persist($candidate);
                 $message    = $request->get('message');
-                $resumes    = $candidate->getResumes();
-                $attachment = null;
-                foreach ($resumes as $resume) {
-                    $attachment = new File(
-                        $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume->getPath()
-                    );
-                }
+                $resume = $request->get('resume');
+                $attachment = new File(
+                    $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume
+                );
+            }
+
 
                 $email = (new TemplatedEmail())
                     ->from('your_email@example.com')
@@ -108,8 +109,8 @@ class JobofferController extends AbstractController
                 return $this->redirectToRoute('app_joboffer_show', [
                     'id' => $joboffer->getId(),
                 ], Response::HTTP_SEE_OTHER);
-            }
         }
+
         return $this->render('joboffer/show.html.twig', [
             'joboffer' => $joboffer,
             'form' => $form,
