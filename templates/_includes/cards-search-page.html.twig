@@ -16,7 +16,7 @@
         Mes candidatures
     </div>
     <div class="card-body">
-
+        {% if app.user.joboffers is defined %}
         {% for candidature in app.user.joboffers | slice (0,5)%}
             <h5 class="card-title text-center">
                 <a href="{{ path('app_joboffer_show', {id: candidature.id}) }}" class="text-dark">
@@ -31,5 +31,8 @@
                 Voir mes candidatures
             </a>
         </button>
+        {% else %}
+            <p class="card-text">Connectez-vous pour voir vos candidatures.</p>
+        {% endif %}
     </div>
 </div>

@@ -5,7 +5,7 @@
 
 {% block body %}
     <div class="m-auto be-banner-offer d-flex justify-content-center position-md-relative ">
-        {% if not is_granted('ROLE_COMPANY') %}
+        {% if is_granted('ROLE_USER') and not is_granted('ROLE_COMPANY') %}
         <div class="position-absolute top-0 end-0 mt-2 mt-md-1 me-1"><a id="favlist" href="{{ path('app_joboffer_favlist', {id: joboffer.id}) }}">
             <i class="fa-2x bi {{ app.user.isInFavlist(joboffer) ? 'bi-bookmark-x-fill text-light' : 'bi-bookmark-plus text-light' }}"></i>
             </a></div>
