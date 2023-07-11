@@ -21,22 +21,23 @@
     {% endblock %}
 </head>
 
-<body class="position-relative min-vh-100">
-
 <body>
-{% include '_includes/sidebar.html.twig' %}
-{% include '_includes/navbar.html.twig' %}
-{% for category, messages in app.flashes %}
-    {% for message in messages %}
-        <div class="alert alert-{{ category }}">
-            {{ message }}
-        </div>
+{#<main class="d-flex flex-column justify-content-between min-vh-100">#}
+    {% include '_includes/sidebar.html.twig' %}
+    {% include '_includes/navbar.html.twig' %}
+    {% for category, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
     {% endfor %}
-{% endfor %}
-<main class="col-lg-9 m-auto my-5">
-    {% block body %}{% endblock %}
-</main>
-{% include 'footer.html.twig' %}
+    <main class="col-lg-9 m-auto my-5">
+        {% block body %}{% endblock %}
+    </main>
+    {% include 'footer.html.twig' %}
+
+{#</main>#}
 
 <script>
     function addToFavlist(event)
