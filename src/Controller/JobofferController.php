@@ -70,6 +70,7 @@ class JobofferController extends AbstractController
         MailerInterface $mailer
     ): Response {
         $user = $this->getUser();
+
         $form = null;
         if ($user !== null) {
             $form = $this->createForm(JobofferApplyType::class, $user);
@@ -165,6 +166,16 @@ class JobofferController extends AbstractController
 
         return $this->json([
             'isInFavlist' => $user->isInFavlist($joboffer)
+        ]);
+    }
+
+    #[Route('/company/{id}', name: 'app_joboffer_company_filter', methods: ['GET'])]
+    public function getJoboffersByCompany(int $id, JobofferRepository $jobofferRepository): Response
+    {
+        $company = $jobofferRepository->findBy(['company' => $id]);
+
+        return $this->render('joboffer/companyfilter.html.twig', [
+            'company' => $company,
         ]);
     }
 }

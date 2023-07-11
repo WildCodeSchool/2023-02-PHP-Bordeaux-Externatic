@@ -16,10 +16,20 @@
         Mes candidatures
     </div>
     <div class="card-body">
-        <h5 class="card-title">Pour ne rien rater</h5>
+
+        {% for candidature in app.user.joboffers | slice (0,5)%}
+            <h5 class="card-title text-center">
+                <a href="{{ path('app_joboffer_show', {id: candidature.id}) }}" class="text-dark">
+                    {{ candidature.title }} sur {{ candidature.city }}
+                </a>
+            </h5>
+
+        {% endfor %}
         <p class="card-text"></p>
         <button type="button" class="be-secondary-button m-auto " data-toggle="modal" data-target="#exampleModal">
-            Voir mes candidatures
+            <a href="{{ path('app_user_candidatures', {id: app.user.id}) }}" class="text-dark">
+                Voir mes candidatures
+            </a>
         </button>
     </div>
 </div>

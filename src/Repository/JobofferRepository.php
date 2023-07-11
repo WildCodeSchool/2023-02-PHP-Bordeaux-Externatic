@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Company;
 use App\Entity\Joboffer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -48,6 +49,17 @@ class JobofferRepository extends ServiceEntityRepository
                 ->setParameter('words', $credential);
         }
         return $query->getQuery()->getResult();
+    }
+    public function findByCompany(): array
+    {
+        $query = $this->createQueryBuilder('j')
+            ->select('c.name, COUNT(j.id) as total', 'c.logo', 'c.id')
+            ->innerJoin('j.company', 'c')
+            ->groupBy('c.id')
+            ->orderBy('count(c)', 'DESC')
+            ->setMaxResults(6)
+            ->getQuery();
+        return $query->getResult();
     }
 //    /**
 //     * @return Joboffer[] Returns an array of Joboffer objects
