@@ -21,9 +21,13 @@ class Contract
     #[ORM\OneToMany(mappedBy: 'contract', targetEntity: Joboffer::class)]
     private Collection $joboffers;
 
+    #[ORM\OneToMany(mappedBy: 'contract', targetEntity: Search::class)]
+    private Collection $searches;
+
     public function __construct()
     {
         $this->joboffers = new ArrayCollection();
+        $this->searches = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,5 +81,35 @@ class Contract
     {
         // TODO: Implement __toString() method.
         return $this->getType();
+    }
+
+    /**
+     * @return Collection<int, Search>
+     */
+    public function getSearches(): Collection
+    {
+        return $this->searches;
+    }
+
+    public function addSearch(Search $search): static
+    {
+        if (!$this->searches->contains($search)) {
+            $this->searches->add($search);
+            $search->setContract($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSearch(Search $search): static
+    {
+        if ($this->searches->removeElement($search)) {
+            // set the owning side to null (unless already changed)
+            if ($search->getContract() === $this) {
+                $search->setContract(null);
+            }
+        }
+
+        return $this;
     }
 }
