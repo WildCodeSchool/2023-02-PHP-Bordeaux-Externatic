@@ -28,7 +28,7 @@
                     </p>
                     <div class="be-log-out position-absolute bottom-0 end-0 my-2 mx-2">
                         <a href="/logout">Déconnexion
-                            <i class="fa-solid fa-right-from-bracket fa-2xl WS-header" class="btn btn-primary btn2"
+                            <i class="fa-solid fa-right-from-bracket fa-2xl WS-header btn btn-primary btn2"
                                 type="button" style="color: #04380a;"></i>
                         </a>
                     </div>
@@ -40,7 +40,11 @@
             <div class="card example-wrapper be-card-search mb-4" style="width: 20rem; height: 10rem; ">
                 <div class="card-body">
                     <i class="fa-solid fa-magnifying-glass-plus fa-2xl" style="color: #ffffff;"></i>
-                    <h5 class="card-title">Ma recherche</h5>
+                    <h5 class="card-title">
+                        <a href="{{ path('app_user_search', {id: app.user.id}) }}" class="text-dark">
+                            Mes recherches
+                        </a>
+                    </h5>
                     <h6 class="card-subtitle mb-2 text-muted be-test">
                         Je precise mes criteres de recherche et je recois toutes
                         les

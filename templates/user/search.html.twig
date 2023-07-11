@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+
+    <div class="be-form row g-3 col-7">
+        <div class="d-flex m-4">
+            <a class="be-secondary-button " href="{{ path('app_user_show', {'id': app.user.id} ) }}">Retour au profil</a>
+        </div>
+        <h2 class="be-h2">Ajouter une recherche</h2>
+        {{ form_start(form) }}
+        <div class="row px-4">
+            <div class="col-md-12 d-flex justify-content-evenly">
+                {{ form_row(form.company) }}
+                {{ form_row(form.job) }}
+                {{ form_row(form.city) }}
+                {{ form_row(form.contract) }}
+                {{ form_row(form.salary) }}
+            </div>
+        </div>
+        <div class="row px-4">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+        <div class="row px-4">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+        <div class="text-center mt-4 mb-5">
+            <button class="be-primary-button" type="submit">Confirmer</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+    <h1 class="be-h2"> Vos recherches</h1>
+    <div class="container m-auto d-flex justify-content-around align-items-center my-5">
+        <ul class="be-joboffer-card-template-ul">
+            {% if app.user.searches is empty %}
+                <div class="container m-auto d-flex justify-content-around align-items-center my-5">
+                    <h2 class="be-h3">Vous n'avez pas de recherche enregistrée</h2>
+                </div>
+            {% endif %}
+            {% for search in app.user.searches %}
+                <li>
+                    <div class="card be-joboffer-card-template mb-4 w-100 ">
+                        <div class="card-body"  aria-expanded="false">
+                            <div class="row">
+                                {% if search.company is defined and search.company.name is defined %}
+                                    <h5 class="card-title text-secondary fs-6 col-10">{{ search.company.name }}</h5>
+                                {% endif %}
+                                <a class="col-2" id="favlist" href="">
+                                    <i class=" fa-2x bi  ? 'bi-bookmark-x-fill' : 'bi-bookmark-plus' }}"></i>
+                                </a>
+                            </div>
+                            <h5 class="card-title mb-3 fs-5">
+                                {% if search.job.name is defined  %}
+                                    {{ search.job.name}}
+                                {% endif %}
+                            </h5>
+                            <div class="d-flex flex-column-reverse">
+                                <footer class="text-secondary fs-6">
+                                    {{ search.salary }}
+
+                                </footer>
+                                <div class="d-flex flex-row justify-content-between">
+                                    <footer class="text-secondary w-50 fs-6">
+                                        {{ search.city }}
+                                        {% if search.contract.type  is defined %}
+                                            {{ search.contract.type }}
+                                        {% endif %}
+                                    </footer>
+                                    <form action="{{ path('app_joboffer_Mysearch') }}" method="post">
+                                        <input type="hidden" name="searchId" value="{{ search.id }}">
+                                        <div class="text-center">
+                                            <button class="be-primary-button" type="submit">Voir les offres</button>
+                                        </div>
+                                    </form>
+
+                                    <a href="{{ path('app_search_delete', {'id': search.id} ) }}"
+                                       class="be-secondary-button w-15 fs-5">
+                                        Supprimer cette recherche
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            {% endfor %}
+
+        </ul>
+    </div>
+
+{% endblock %}
+

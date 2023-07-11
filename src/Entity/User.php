@@ -71,11 +71,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Joboffer::class, mappedBy: 'candidate')]
     private Collection $joboffers;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Search::class)]
+    private Collection $searches;
+
     public function __construct()
     {
         $this->resumes = new ArrayCollection();
         $this->favlist = new ArrayCollection();
         $this->joboffers = new ArrayCollection();
+        $this->searches = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -337,5 +341,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function isCandidate(Joboffer $joboffer): bool
     {
         return $this->joboffers->contains($joboffer);
+    }
+
+    /**
+     * @return Collection<int, Search>
+     */
+    public function getSearches(): Collection
+    {
+        return $this->searches;
     }
 }
