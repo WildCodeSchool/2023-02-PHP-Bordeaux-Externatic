@@ -82,14 +82,12 @@ class JobofferController extends AbstractController
                 $candidate = $form->getData();
                 $candidate->addJobOffer($joboffer);
                 $manager->persist($candidate);
+                $manager->flush();
                 $message    = $request->get('message');
                 $resume = $request->get('resume');
                 $attachment = new File(
                     $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume
                 );
-            }
-
-
                 $email = (new TemplatedEmail())
                     ->from('your_email@example.com')
                     ->to('a.sale@hotmail.fr')
@@ -109,6 +107,7 @@ class JobofferController extends AbstractController
                 return $this->redirectToRoute('app_joboffer_show', [
                     'id' => $joboffer->getId(),
                 ], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->render('joboffer/show.html.twig', [
