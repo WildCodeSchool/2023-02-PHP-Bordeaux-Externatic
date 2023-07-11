@@ -49,9 +49,13 @@ class Company
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\OneToMany(mappedBy: 'company', targetEntity: Search::class)]
+    private Collection $searches;
+
     public function __construct()
     {
         $this->joboffers = new ArrayCollection();
+        $this->searches = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -179,5 +183,35 @@ class Company
     {
         // TODO: Implement __toString() method.
         return $this->name;
+    }
+
+    /**
+     * @return Collection<int, Search>
+     */
+    public function getSearches(): Collection
+    {
+        return $this->searches;
+    }
+
+    public function addSearches(Search $job): static
+    {
+        if (!$this->searches->contains($job)) {
+            $this->searches->add($job);
+            $job->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSearch(Search $job): static
+    {
+        if ($this->searches->removeElement($job)) {
+            // set the owning side to null (unless already changed)
+            if ($job->getCompany() === $this) {
+                $job->setCompany(null);
+            }
+        }
+
+        return $this;
     }
 }
