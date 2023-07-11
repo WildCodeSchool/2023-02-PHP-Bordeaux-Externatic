@@ -3,10 +3,9 @@
 {% block title %}New Joboffer{% endblock %}
 
 {% block body %}
-<h1>Create new Joboffer</h1>
 
 <div class="be-form row g-3 col-7">
-    <h2 class="be-h2">Création d'une nouvelle offre</h2>
+    <h1 class="be-h2 text-center">Création d'une nouvelle offre</h1>
     {{ form_start(form) }}
     {{ form_errors(form) }}
     <div class="row px-4">
@@ -45,5 +44,5 @@
         {{ form_end(form) }}
     </div>
 
-    <a href="{{ path('app_joboffer_index') }}">back to list</a>
+{#    <a href="{{ path('app_joboffer_index') }}">back to list</a>#}
     {% endblock %}
