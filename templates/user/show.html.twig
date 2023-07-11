@@ -3,122 +3,126 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-<div class="container m-auto d-flex justify-content-around align-items-center my-5">
-    <div class="row">
-        {#Group 1#}
-        <div class="col-lg-4 col-12 order-md-last align-items-center d-flex flex-column">
-            <div class="card example-wrapper be-card-candidate mb-4" style="width: 20rem; height: 21rem;">
-                <div class="card-body be-card-candidat">
-                    <h5 class="card-title">Bonjour {{ app.user.firstname }}</h5>
-                    <p class="be-maj">Mise à jour : {{ app.user.updatedAt|ago }}</p>
-                    <p class="card-text">Poste actuel : </p>
-                    <p class="card-text">
-                        Lieu de résidence :
-                        {% if app.user.city %} {{ app.user.city }}
-                        {% else %}
-                        Non renseigné
-                        {% endif %}
-                    </p>
-                    <p class="card-text">
-                        Statut :
-                        {% if app.user.status %} {{ app.user.status }}
-                        {% else %}
-                        Non renseigné
-                        {% endif %}
-                    </p>
-                    <div class="be-log-out position-absolute bottom-0 end-0 my-2 mx-2">
-                        <a href="/logout">Déconnexion
-                            <i class="fa-solid fa-right-from-bracket fa-2xl WS-header btn btn-primary btn2"
-                                type="button" style="color: #04380a;"></i>
-                        </a>
+    <div class="container m-auto d-flex justify-content-around align-items-center my-5">
+        <div class="row">
+            {#Group 1#}
+            <div class="col-lg-4 col-12 order-md-last align-items-center d-flex flex-column">
+                <div class="card example-wrapper be-card-candidate mb-4" style="width: 20rem; height: 21rem;">
+                    <div class="card-body be-card-candidat">
+                        <h5 class="card-title">Bonjour {{ app.user.firstname }}</h5>
+                        <p class="be-maj">Mise à jour : {{ app.user.updatedAt|ago }}</p>
+                        <p class="card-text">Poste actuel : </p>
+                        <p class="card-text">
+                            Lieu de résidence :
+                            {% if app.user.city %} {{ app.user.city }}
+                            {% else %}
+                                Non renseigné
+                            {% endif %}
+                        </p>
+                        <p class="card-text">
+                            Statut :
+                            {% if app.user.status %} {{ app.user.status }}
+                            {% else %}
+                                Non renseigné
+                            {% endif %}
+                        </p>
+                        <div class="be-log-out position-absolute bottom-0 end-0 my-2 mx-2">
+                            <a href="/logout">Déconnexion
+                                <i class="fa-solid fa-right-from-bracket fa-2xl WS-header btn btn-primary btn2"
+                                   type="button" style="color: #04380a;"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {#Group 2#}
-        <div class="col-lg-4 col-12 align-items-center d-flex flex-column justify-content-center">
-            <div class="card example-wrapper be-card-search mb-4" style="width: 20rem; height: 10rem; ">
-                <div class="card-body">
-                    <i class="fa-solid fa-magnifying-glass-plus fa-2xl" style="color: #ffffff;"></i>
-                    <h5 class="card-title">
-                        <a href="{{ path('app_user_search', {id: app.user.id}) }}" class="text-dark">
-                            Mes recherches
-                        </a>
-                    </h5>
-                    <h6 class="card-subtitle mb-2 text-muted be-test">
-                        Je precise mes criteres de recherche et je recois toutes
-                        les
-                        offres
-                        personnalisees
-                    </h6>
-                </div>
+            {#Group 2#}
+            <div class="col-lg-4 col-12 align-items-center d-flex flex-column justify-content-center">
+                <a href="{{ path('app_user_search', {id: app.user.id}) }}" class="text-dark">
+                    <div class="card example-wrapper be-card-search mb-4" style="width: 20rem; height: 10rem; ">
+                        <div class="card-body">
+                            <i class="fa-solid fa-magnifying-glass-plus fa-2xl" style="color: #ffffff;"></i>
+                            <h5 class="card-title">
+
+                                Mes recherches
+
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted be-test">
+                                Je precise mes criteres de recherche et je recois toutes
+                                les
+                                offres
+                                personnalisees
+                            </h6>
+                        </div>
+                    </div>
+                </a>
+                <a href="{{ path('app_user_edit', {'id': app.user.id}) }}">
+                    <div class="card example-wrapper be-card-information mb-4" style="width: 20rem; height: 10rem">
+                        <div class="card-body">
+                            <i class="fa-solid fa-id-card fa-2xl" style="color: #ffffff;"></i>
+                            <h5 class="card-title">Mes
+                                informations
+                                personnelles</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Je renseigne mon identite et mes parametres de connexion
+                            </h6>
+                        </div>
+                    </div>
+                </a>
+                <a href="{{ path('app_user_favlist', {'id': app.user.id}) }}">
+                    <div class="card example-wrapper be-card-favorites mb-4" style="width: 20rem; height: 10rem">
+                        <div class="card-body">
+                            <i class="fa-solid fa-bookmark fa-2xl" style="color: #ffffff;"></i>
+                            <h5 class="card-title">Mes favoris</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Accéder à ma liste d'offres favorites
+                            </h6>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <a href="{{ path('app_user_edit', {'id': app.user.id}) }}">
-                <div class="card example-wrapper be-card-information mb-4" style="width: 20rem; height: 10rem">
+            {#Group 3#}
+            <div class="col-lg-4 col-12 align-items-center d-flex flex-column justify-content-center">
+                <a href="{{ path('app_resume_index', {'id': app.user.id}) }}">
+                    <div class="card example-wrapper be-card-resume mb-4" style="width: 20rem; height: 10rem">
+                        <div class="card-body">
+                            <i class="fa-solid fa-file fa-2xl" style="color: #ffffff;"></i>
+                            <h5 class="card-title">Mes CV</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                J'organise et je priorise mes CV
+                            </h6>
+                        </div>
+                    </div>
+                </a>
+                <div class="card example-wrapper be-card-situation mb-4" style="width: 20rem; height: 10rem">
                     <div class="card-body">
-                        <i class="fa-solid fa-id-card fa-2xl" style="color: #ffffff;"></i>
-                        <h5 class="card-title">Mes
-                            informations
-                            personnelles</h5>
+                        <i class="fa-solid fa-address-book fa-2xl" style="color: #ffffff;"></i>
+                        <h5 class="card-title">Ma situation actuelle</h5>
                         <h6 class="card-subtitle mb-2 text-muted">
-                            Je renseigne mon identite et mes parametres de connexion
+                            J'augmente ma visibilite dans la base de candidats
                         </h6>
                     </div>
                 </div>
-            </a>
-            <a href="{{ path('app_user_favlist', {'id': app.user.id}) }}">
-            <div class="card example-wrapper be-card-favorites mb-4" style="width: 20rem; height: 10rem">
-                <div class="card-body">
-                    <i class="fa-solid fa-bookmark fa-2xl" style="color: #ffffff;"></i>
-                    <h5 class="card-title">Mes favoris</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        Accéder à ma liste d'offres favorites
-                    </h6>
-                </div>
-            </div>
-            </a>
-        </div>
-        {#Group 3#}
-        <div class="col-lg-4 col-12 align-items-center d-flex flex-column justify-content-center">
-            <a href="{{ path('app_resume_index', {'id': app.user.id}) }}">
-                <div class="card example-wrapper be-card-resume mb-4" style="width: 20rem; height: 10rem">
-                    <div class="card-body">
-                        <i class="fa-solid fa-file fa-2xl" style="color: #ffffff;"></i>
-                        <h5 class="card-title">Mes CV</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            J'organise et je priorise mes CV
-                        </h6>
+                <a href="{{ path('app_user_candidatures', {id: app.user.id}) }}" class="text-dark">
+
+                    <div class="card example-wrapper be-card-applications mb-4" style="width: 20rem; height: 10rem">
+                        <div class="card-body">
+                            <i class="fa-solid fa-building fa-2xl" style="color: #ffffff;"></i>
+                            <h5 class="card-title">
+                                Mes candidatures
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Accéder à ma liste de candidature en cours
+                            </h6>
+                        </div>
                     </div>
-                </div>
-            </a>
-            <div class="card example-wrapper be-card-situation mb-4" style="width: 20rem; height: 10rem">
-                <div class="card-body">
-                    <i class="fa-solid fa-address-book fa-2xl" style="color: #ffffff;"></i>
-                    <h5 class="card-title">Ma situation actuelle</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        J'augmente ma visibilite dans la base de candidats
-                    </h6>
-                </div>
+                </a>
             </div>
-            <div class="card example-wrapper be-card-applications mb-4" style="width: 20rem; height: 10rem">
-                <div class="card-body">
-                    <i class="fa-solid fa-building fa-2xl" style="color: #ffffff;"></i>
-                    <h5 class="card-title">
-                        <a href="{{ path('app_user_candidatures', {id: app.user.id}) }}" class="text-dark">
-                            Mes candidatures
-                        </a>
-                    </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        Accéder à ma liste de candidature en cours
-                    </h6>
-                </div>
-            </div>
+
         </div>
     </div>
-</div>
-{# {{ include('user/_delete_form.html.twig') }} #}
+    {# {{ include('user/_delete_form.html.twig') }} #}
 
-<!-- green color for logout -->
-{# <i class="fa-solid fa-arrow-right-from-bracket" style="color: #04380a;"></i> #}
+    <!-- green color for logout -->
+    {# <i class="fa-solid fa-arrow-right-from-bracket" style="color: #04380a;"></i> #}
 {% endblock %}
 
