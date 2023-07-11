@@ -334,4 +334,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
         return $this;
     }
+    public function isCandidate(Joboffer $joboffer): bool
+    {
+        return $this->joboffers->contains($joboffer);
+    }
 }
