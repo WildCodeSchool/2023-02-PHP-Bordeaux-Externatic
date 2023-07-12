@@ -7,69 +7,82 @@
             <ul class="navbar-nav">
 
                 {% if not app.user %}
-                <li class="nav-item dropdown mx-3">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Accès recruteur
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/login">Connexion</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="/register/company">Inscription</a></li>
-                    </ul>
-                </li>
+                    <li class="nav-item dropdown mx-3">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Accès recruteur
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/login">Connexion</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/register/company">Inscription</a></li>
+                        </ul>
+                    </li>
                 {% endif %}
-                <li class="nav-item dropdown mx-3">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Emploi
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">L'emploi en France</a></li>
-                        {% if is_granted('ROLE_USER') and not is_granted('ROLE_COMPANY') %}
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="{{ path('app_user_favlist', {'id': app.user.id}) }}">Mes favoris</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Ma recherche</a></li>
-                        {% endif %}
-                    </ul>
-                </li>
+                {% if is_granted('ROLE_USER') and not is_granted('ROLE_COMPANY') %}
+                    <li class="nav-item dropdown mx-3">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Emploi
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <a class="dropdown-item" href="{{ path('app_user_favlist', {'id': app.user.id}) }}">
+                                    Mes favoris
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ path('app_user_candidatures', {'id': app.user.id}) }}">
+                                    Mes candidatures
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ path('app_user_search', {'id': app.user.id}) }}">
+                                    Mes recherches
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
 
             </ul>
 
             <i class="fa-regular fa-bell"></i>
             {% if app.user %}
-            <a href="/logout" class="href">
-                <button class="be-secondary-button mx-3">Déconnexion</button>
-            </a>
+                <a href="/logout" class="href">
+                    <button class="be-secondary-button mx-3">Déconnexion</button>
+                </a>
             {% else %}
-            <a href="/login" class="href">
-                <button class="be-secondary-button mx-3">Connexion</button>
-            </a>
+                <a href="/login" class="href">
+                    <button class="be-secondary-button mx-3">Connexion</button>
+                </a>
             {% endif %}
             {% if not app.user %}
-            <a href="/register" class="href">
-                <button class="be-secondary-button mx-3">Inscription</button>
-            </a>
+                <a href="/register" class="href">
+                    <button class="be-secondary-button mx-3">Inscription</button>
+                </a>
             {% endif %}
             {% if is_granted('ROLE_USER') %}
-            {% if is_granted('ROLE_COMPANY') %}
-            {# L'utilisateur a à la fois le rôle User et Company #}
-            <a href="{{ path('app_company_show', {id: app.user.id}) }}" class="href">
-                <button class="be-secondary-button mx-3">Mon profil</button>
-            </a>
-            {% else %}
-            {# L'utilisateur a uniquement le rôle User #}
-            <a href="{{ path('app_user_show', {id: app.user.id}) }}" class="href">
-                <button class="be-secondary-button mx-3">Mon profil</button>
-            </a>
-            {% endif %}
+                {% if is_granted('ROLE_COMPANY') %}
+                    {# L'utilisateur a à la fois le rôle User et Company #}
+                    <a href="{{ path('app_company_show', {id: app.user.id}) }}" class="href">
+                        <button class="be-secondary-button mx-3">Mon profil</button>
+                    </a>
+                {% else %}
+                    {# L'utilisateur a uniquement le rôle User #}
+                    <a href="{{ path('app_user_show', {id: app.user.id}) }}" class="href">
+                        <button class="be-secondary-button mx-3">Mon profil</button>
+                    </a>
+                {% endif %}
             {% endif %}
         </div>
     </div>
