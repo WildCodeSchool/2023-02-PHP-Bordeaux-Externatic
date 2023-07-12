@@ -70,6 +70,9 @@ class JobofferController extends AbstractController
         MailerInterface $mailer
     ): Response {
         $user = $this->getUser();
+        $attachment = null;
+        $message = null;
+
         $form = null;
         if ($user !== null) {
             $form = $this->createForm(JobofferApplyType::class, $user);
@@ -79,15 +82,12 @@ class JobofferController extends AbstractController
                 $candidate = $form->getData();
                 $candidate->addJobOffer($joboffer);
                 $manager->persist($candidate);
+                $manager->flush();
                 $message    = $request->get('message');
-                $resumes    = $candidate->getResumes();
-                $attachment = null;
-                foreach ($resumes as $resume) {
-                    $attachment = new File(
-                        $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume->getPath()
-                    );
-                }
-
+                $resume = $request->get('resume');
+                $attachment = new File(
+                    $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume
+                );
                 $email = (new TemplatedEmail())
                     ->from('your_email@example.com')
                     ->to('a.sale@hotmail.fr')
@@ -109,6 +109,7 @@ class JobofferController extends AbstractController
                 ], Response::HTTP_SEE_OTHER);
             }
         }
+
         return $this->render('joboffer/show.html.twig', [
             'joboffer' => $joboffer,
             'form' => $form,
@@ -165,6 +166,16 @@ class JobofferController extends AbstractController
 
         return $this->json([
             'isInFavlist' => $user->isInFavlist($joboffer)
+        ]);
+    }
+
+    #[Route('/company/{id}', name: 'app_joboffer_company_filter', methods: ['GET'])]
+    public function getJoboffersByCompany(int $id, JobofferRepository $jobofferRepository): Response
+    {
+        $company = $jobofferRepository->findBy(['company' => $id]);
+
+        return $this->render('joboffer/companyfilter.html.twig', [
+            'company' => $company,
         ]);
     }
 }

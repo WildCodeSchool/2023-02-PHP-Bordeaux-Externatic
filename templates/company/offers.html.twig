@@ -1,12 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    <div class="d-flex justify-content-center">
-        <h1 class="text-center mb-5">Mes offres d'emploi publiées</h1>
+    <div class="d-flex">
+        <a class="be-secondary-button" href="{{ path('app_company_show', {'id': company.id} ) }}">Retour au profil</a>
     </div>
 
-    <div>
+    <div class="d-flex justify-content-center">
+        <h1 class="text-center mb-5 mt-5">Mes offres d'emploi publiées</h1>
+    </div>
+    <div class="text-center mb-4">
+        <a href="{{ path('app_joboffer_new') }}"><button class="be-primary-button" type="button">Créer une offre</button></a>
+    </div>
+    <div class="d-flex justify-content-center">
         <ul class="be-joboffer-card-template-ul">
             {% for joboffer in offers %}
                 <li>
@@ -17,7 +22,9 @@
                             </div>
                             <h5 class="card-title mb-3 fs-5">{{ joboffer.contract.type }} - {{ joboffer.title }}</h5>
                             <div class="d-flex flex-column-reverse">
-                                <footer class="text-secondary fs-6">{{ joboffer.city }} / {{ joboffer.salary.min }}€ - {{ joboffer.salary.max }}€</footer>
+                                {% if joboffer.salary.min is defined %}
+                                    <footer class="text-secondary fs-6">{{ joboffer.city }} / {{ joboffer.salary.min }}€ - {{ joboffer.salary.max }}€</footer>
+                                {% endif %}
                                 <div class="d-flex flex-row justify-content-between">
                                     <footer class="text-secondary w-50 fs-6">Annonce postée le {{ joboffer.createdAt|date('d/m/Y') }}</footer>
                                     <a href="{{ path('app_joboffer_show', {id: joboffer.id}) }}" class="be-secondary-button w-15 fs-5">Voir l'offre</a>
@@ -28,6 +35,7 @@
                 </li>
             {% endfor %}
         </ul>
+
     </div>
 
 

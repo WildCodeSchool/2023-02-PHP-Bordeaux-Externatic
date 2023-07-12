@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Joboffer;
+use App\Entity\Search;
+use App\Form\UserPersonalSearchType;
 use App\Repository\JobofferRepository;
 use DateTime;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -87,6 +91,58 @@ class UserController extends AbstractController
         return $this->render('user/favlist.html.twig', [
             'favlist' => $favlist,
 
+        ]);
+    }
+
+    #[Route('/candidature/{id}', name: 'app_user_candidatures', methods: ['GET', 'POST'])]
+    public function candidatures(User $user): Response
+    {
+        $candidatures = $user->getJoboffers();
+
+        return $this->render('user/candidatures.html.twig', [
+            'candidatures' => $candidatures,
+
+        ]);
+    }
+
+    #[Route('/candidature/delete/{id}', name: 'app_user_candidatures_delete', methods: ['GET', 'POST'])]
+    public function candidaturesDelete(Joboffer $joboffer, EntityManagerInterface $manager): Response
+    {
+        $user = $this->getUser();
+
+        if ($user->isCandidate($joboffer)) {
+            $user->removeJoboffer($joboffer);
+            $manager->flush();
+        }
+        return $this->redirectToRoute('app_user_candidatures', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/search', name: 'app_user_search', methods: ['GET', 'POST'])]
+    public function mySearch(User $user, Request $request, EntityManagerInterface $manager): Response
+    {
+        $joboffer = new Joboffer();
+        $search = new Search();
+        $user = $this->getUser();
+        $form = $this->createForm(UserPersonalSearchType::class, $joboffer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $form = $form->getData();
+            $search->setUser($user);
+            $search->setJob($form->getJob());
+            $search->setCity($form->getCity());
+            $search->setContract($form->getContract());
+            $search->setSalary($form->getSalary());
+            $search->setCompany($form->getCompany());
+
+            $manager->persist($search);
+            $manager->flush();
+
+            return $this->redirectToRoute('app_user_search', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('user/search.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
