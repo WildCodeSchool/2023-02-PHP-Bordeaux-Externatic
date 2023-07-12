@@ -1,0 +1,44 @@
+{# templates/bundles/TwigBundle/Exception/error500.html.twig #}
+{% extends 'base.html.twig' %}
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}" />
+    <script src="https://kit.fontawesome.com/b285d1d178.js" crossorigin="anonymous"></script>
+    {# link fontawesome #}
+    <script src="https://kit.fontawesome.com/db90ec0135.js" crossorigin="anonymous"></script>
+    <title>
+        {% block title %}Projet 3 Name{% endblock %}
+    </title>
+    {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+
+<div class="main500 ">
+
+    <div class="text">
+        <div class="errorTitle">ERROR</div>
+        <h1 class="errorH1">404</h1>
+        <hr>
+        <div class="errorPage">Page Not Found</div>
+    </div>
+
+    <div class="astronaut">
+        <img src="https://images.vexels.com/media/users/3/152639/isolated/preview/506b575739e90613428cdb399175e2c8-space-astronaut-cartoon-by-vexels.png"
+            alt="" class="src">
+    </div>
+
+</div>
+
+</html>
