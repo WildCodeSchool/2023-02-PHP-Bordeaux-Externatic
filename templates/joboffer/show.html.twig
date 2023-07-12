@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Joboffer{% endblock %}
+{% block title %}{{ joboffer.job.name }} - {{ joboffer.city }}{% endblock %}
 
 {% block body %}
     <div class="m-auto be-banner-offer d-flex justify-content-center position-md-relative ">
         {% if not is_granted('ROLE_COMPANY') and app.user.isInFavlist is defined %}
-        <div class="position-absolute top-0 end-0 mt-2 mt-md-1 me-1"><a id="favlist" href="{{ path('app_joboffer_favlist', {id: joboffer.id}) }}">
+        <div class="position-absolute top-0 end-0 mt-2 mt-md-1 me-1">
+            <a onclick="addToFavlist(event)" id="favlist" href="{{ path('app_joboffer_favlist', {id: joboffer.id}) }}">
             <i class="fa-2x bi {{ app.user.isInFavlist(joboffer) ? 'bi-bookmark-x-fill text-light' : 'bi-bookmark-plus text-light' }}"></i>
             </a></div>
         {% endif %}
@@ -105,5 +106,6 @@
     <div class="d-flex justify-content-center mt-5">
         <a class="be-secondary-button w-auto" href="#" onclick="history.back(); return false;">Retour aux résultats</a>
     </div>
+
 {% endblock %}
 
