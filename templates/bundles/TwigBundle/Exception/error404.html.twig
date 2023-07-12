@@ -1,0 +1,49 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="main404 ">
+
+    <div class="text">
+        <div class="errorTitle">ERROR</div>
+        <h1 class="errorH1">404</h1>
+        <hr>
+        <div class="errorPage">Page Not Found</div>
+        <div class="d-flex align-items-center be-spaces">
+            <a href="/">
+                <button type="button" class="be-secondary-button" data-toggle="modal" data-target="#exampleModal">
+                    Acceuil
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="astronaut">
+        <img src="https://images.vexels.com/media/users/3/152639/isolated/preview/506b575739e90613428cdb399175e2c8-space-astronaut-cartoon-by-vexels.png"
+            alt="" class="src">
+    </div>
+
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let body = document.querySelector(".main404");
+        setInterval(createStar, 888);
+        function createStar() {
+            let right = Math.random() * 500;
+            let top = Math.random() * screen.height;
+            let star = document.createElement("div");
+            star.classList.add("star");
+            body.appendChild(star);
+
+            star.style.top = top + "px";
+            function runStar() {
+                if (right >= screen.width) {
+                    star.remove();
+                }
+                right += 3;
+                star.style.right = right + "px";
+            }
+            setInterval(runStar, 10);
+        }
+    });
+</script>
+{% endblock %}

@@ -25,4 +25,16 @@ class StaticController extends AbstractController
     {
         return $this->render('static/cookie_policy.html.twig');
     }
+
+    #[Route('/404error', name: '404_error')]
+    public function error404(): Response
+    {
+        return $this->render('static/error404.html.twig');
+    }
+
+    #[Route('/403error', name: '403_error')]
+    public function error403(): Response
+    {
+        return $this->render('static/error403.html.twig');
+    }
 }
