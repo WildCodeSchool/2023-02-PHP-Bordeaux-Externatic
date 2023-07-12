@@ -7,7 +7,7 @@
     <div class="d-flex m-4">
         <a class="be-secondary-button " href="{{ path('app_user_show', {'id': app.user.id} ) }}">Retour au profil</a>
     </div>
-    <h2 class="be-h2 text-center">Mes recherches</h2>
+    <h2 class="be-h2 text-center">Mes <span>recherches</span></h2>
     <div class="container m-auto d-flex justify-content-around align-items-center my-5">
         <ul class="be-joboffer-card-template-ul">
             {% if app.user.searches is empty %}
