@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Joboffer index{% endblock %}
+{% block title %}Offres d'emploi{% endblock %}
 
 {% block body %}
-    <h1>Joboffer index</h1>
+    <h1>Offres d'emploi</h1>
 
     {% for category, messages in app.flashes %}
         {% for message in messages %}
@@ -35,8 +35,8 @@
                 <td>{{ joboffer.createdAt ? joboffer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ joboffer.updatedAt ? joboffer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_joboffer_show', {'id': joboffer.id}) }}">show</a>
-                    <a href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">edit</a>
+                    <a href="{{ path('app_joboffer_show', {'id': joboffer.id}) }}">Voir</a>
+                    <a href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -47,5 +47,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_joboffer_new') }}">Create new</a>
+    <a href="{{ path('app_joboffer_new') }}">Créer offre d'emploi</a>
 {% endblock %}

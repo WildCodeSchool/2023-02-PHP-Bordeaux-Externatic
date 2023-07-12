@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Search{% endblock %}
+{% block title %}Modifier recherche{% endblock %}
 
 {% block body %}
-    <h1>Edit Search</h1>
+    <h1>Modifier recherche</h1>
 
-    {{ include('search/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('search/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('app_search_index') }}">back to list</a>
+    <a href="{{ path('app_search_index') }}">Retour à la liste</a>
 
     {{ include('search/_delete_form.html.twig') }}
 {% endblock %}
