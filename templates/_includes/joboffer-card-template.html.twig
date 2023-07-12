@@ -1,7 +1,7 @@
 <div class="be-joboffer-card-template-container">
     <ul class="be-joboffer-card-template-ul">
         {% if joboffers.0 is not defined %}
-            <h1>Pas de résultats pour votre recherche</h1>
+        <h1>Pas de résultats pour votre recherche</h1>
         {% endif %}
         {% for joboffer in joboffers %}
 
@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <div class="row">
                             <h5 class="card-title text-secondary fs-6 col-10">{{ joboffer.company.name }}</h5>
-                            {% if is_granted('ROLE_USER')%}
+                            {% if is_granted('ROLE_USER') and not is_granted('ROLE_COMPANY')%}
                             <a class="col-2" id="favlist" href="{{ path('app_joboffer_favlist', {id: joboffer.id})}}" onclick="addToFavlist(event)">
                                 <i class=" fa-2x bi {{ app.user.isInFavlist(joboffer) ? 'bi-bookmark-x-fill' : 'bi-bookmark-plus' }}"></i>
                             </a>
@@ -26,7 +26,9 @@
                         </div>
                     </div>
                 </div>
-            </li>
+            </div>
+        </li>
         {% endfor %}
     </ul>
 </div>
+

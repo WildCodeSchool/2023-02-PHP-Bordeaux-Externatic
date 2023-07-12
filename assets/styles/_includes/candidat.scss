@@ -57,3 +57,9 @@
 .card-subtitle {
     margin-top: 10px;
 }
+
+@media screen and (max-width: 425px) {
+    .be-user-h1-fav {
+        margin-top: 30px;
+    }
+}

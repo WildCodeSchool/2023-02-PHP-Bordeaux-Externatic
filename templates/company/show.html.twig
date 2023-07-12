@@ -7,11 +7,11 @@
 <div class="container m-auto d-flex justify-content-around align-items-center my-5">
     <div class="row">
         {#Group 1#}
-        <div class="col-lg-4 col-12 order-md-last align-items-center d-flex flex-column">
+        <div class="col-lg-4 col-12 order-md-first order-lg-last align-items-center d-flex flex-column be-user-h1-fav">
             <div class="card example-wrapper be-card-candidate mb-4" style="width: 20rem; height: 21rem;">
                 <div class="card-body be-card-candidat">
                     <h5 class="card-title">Bonjour {{ company.name }}</h5>
-                    <p class="be-maj">Mise à jour : {{ currentDateTime }}</p>
+                    <p class="be-maj">Dernière mise à jour {{ currentDateTime | ago }}</p>
                     <p class="card-text">
                         Lieu de résidence :
                         {% if company.city %} {{ company.city }}
@@ -21,16 +21,10 @@
                     </p>
                     <p class="class card-text">Contact : {{ company.phone }} </p>
                     <p class="card-text">Numéro de siret : {{company.siret}} </p>
-                    <p class="card-text">
-                        Statut :
-                        {% if app.user.status %} {{ app.user.status }}
-                        {% else %}
-                        Non renseigné
-                        {% endif %}
-                    </p>
+                    <p class="card-text">Nombre d'offres en ligne : {{ company.joboffers | length }} </p>
                     <div class="be-log-out position-absolute bottom-0 end-0 my-2 mx-2">
                         <a href="/logout">Déconnexion
-                            <i class="fa-solid fa-right-from-bracket fa-2xl WS-header" class="btn btn-primary btn2"
+                            <i class="fa-solid fa-right-from-bracket fa-2xl WS-header"
                                 type="button" style="color: #04380a;"></i>
                         </a>
                     </div>
@@ -51,10 +45,10 @@
             </div>
             </a>
             <div class="card example-wrapper be-card-situation mb-4" style="width: 20rem; height: 10rem">
-                <a href="{{ path('app_company_show_candidate', {'id': app.user.id}) }}">
+                <a href="{{ path('app_company_show_candidate', {'id': company.id}) }}">
                     <div class="card-body">
                         <i class="fa-solid fa-address-book fa-2xl" style="color: #ffffff;"></i>
-                        <h5 class="card-title">Mes candidats</h5>
+                        <h5 class="card-title text-dark">Mes candidats</h5>
                         <h6 class="card-subtitle mb-2 text-muted">
                             J'accède aux candidats qui on postuler a mes offres
                         </h6>
@@ -63,7 +57,7 @@
         </div>
         {#Group 3#}
         <div class="col-lg-4 col-12 align-items-center d-flex flex-column justify-content-strat">
-            <a href="{{ path('app_company_edit', {'id': app.user.id}) }}">
+            <a href="{{ path('app_company_edit', {'id': company.id}) }}">
                 <div class="card example-wrapper be-card-resume mb-4" style="width: 20rem; height: 10rem">
                     <div class="card-body">
                         <i class="fa-solid fa-bookmark fa-2xl" style="color: #ffffff;"></i>
