@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+Mes offres d'emploi publiées
+{% endblock %}
+
 {% block body %}
     <div class="d-flex">
         <a class="be-secondary-button" href="{{ path('app_company_show', {'id': company.id} ) }}">Retour au profil</a>

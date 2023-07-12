@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Utilisateurs{% endblock %}
 
 {% block body %}
 
-    <h1>User index</h1>
+    <h1>Utilisateurs</h1>
 
 
 <table class="table">
@@ -13,15 +13,15 @@
             <th>Id</th>
             <th>Email</th>
             <th>Roles</th>
-            <th>Password</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Birthday</th>
-            <th>City</th>
-            <th>Phone</th>
-            <th>Status</th>
-            <th>CreatedAt</th>
-            <th>UpdatedAt</th>
+            <th>Mot de passe</th>
+            <th>Prénom</th>
+            <th>Nom de famille</th>
+            <th>Anniversaire</th>
+            <th>Ville</th>
+            <th>Téléphone</th>
+            <th>Statut</th>
+            <th>Crée le</th>
+            <th>Modifier le</th>
             <th>actions</th>
         </tr>
     </thead>
@@ -41,8 +41,8 @@
             <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             <td>
-                <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-                <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                <a href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a>
+                <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
             </td>
         </tr>
         {% else %}
@@ -50,20 +50,10 @@
             <td colspan="13">no records found</td>
         </tr>
         {% endfor %}
-<<<<<<< HEAD
-<<<<<<< HEAD
-    </tbody>
-</table>
-=======
-        </tbody>
-    </table>
->>>>>>> 88c1e7796663217353f3ecc7ef42dc79a28765f5
-=======
+
         </tbody>
     </table>
 
->>>>>>> 8f1df26ea8f4dc8ae615d53324250617f1f1bf9b
 
-
-<a href="{{ path('app_user_new') }}">Create new</a>
+<a href="{{ path('app_user_new') }}">Créer nouveau</a>
 {% endblock %}
