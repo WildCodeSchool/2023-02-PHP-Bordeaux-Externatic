@@ -6,11 +6,10 @@
     <div class="d-flex m-4">
         <a class="be-secondary-button " href="{{ path('app_company_show', {'id': company.id}) }}">Retour au profil</a>
     </div>
+    <h2 class="be-h2 text-center">Mes <span>candidats</span></h2>
     <div class="container m-auto d-flex justify-content-around align-items-center my-5">
         <ul class="be-joboffer-card-template-ul be-user-h1-fav ps-0">
-
             {% for joboffer in company.joboffers %}
-
                 <li>
                     <div class="card be-joboffer-card-template mb-4 w-100 dropdown">
                         <div class="card-body" data-bs-toggle="dropdown" aria-expanded="false">
@@ -27,64 +26,62 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne{{ joboffer.id }}" aria-expanded="false"
+                                            aria-controls="collapseOne{{ joboffer.id }}">
+                                        Voir les candidats ({{ joboffer.candidate | length }})
+                                    </button>
+                                </h2>
+                                <div id="collapseOne{{ joboffer.id }}" class="accordion-collapse collapse " aria-labelledby="headingOne{{ joboffer.id }}" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        {% if joboffer.candidate is empty  %}
+                                            <div class="text-center">
+                                                <p>Aucun candidat</p>
+                                            </div>
 
-                                <div class="accordion" id="accordionExample">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingOne">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseOne{{ joboffer.id }}" aria-expanded="false"
-                                                    aria-controls="collapseOne{{ joboffer.id }}">
-                                                Voir les candidats
-                                            </button>
-                                        </h2>
-                                        <div id="collapseOne{{ joboffer.id }}" class="accordion-collapse collapse " aria-labelledby="headingOne{{ joboffer.id }}" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
-                                                {% if joboffer.candidate is empty  %}
-                                                    <div class="text-center">
-                                                        <p>Aucun candidat</p>
+                                        {% else %}
+                                            {% for candidate in joboffer.candidate %}
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="text-center w-25">
+                                                        {{ candidate.firstname }}
+                                                        {{ candidate.lastname }}
+                                                    </div>
+                                                    <div class="text-center w-25">
+                                                        {{ candidate.email }}
                                                     </div>
 
-                                                {% else %}
-                                                    {% for candidate in joboffer.candidate %}
-                                                        <div class="d-flex justify-content-between">
-                                                            <div class="text-center w-25">
-                                                                {{ candidate.firstname }}
-                                                                {{ candidate.lastname }}
-                                                            </div>
-                                                            <div class="text-center w-25">
-                                                                {{ candidate.email }}
-                                                            </div>
-
-                                                            {% if candidate.phone is empty %}
-                                                                <div class="text-center w-25">
-                                                                    Aucun numéro
-                                                                </div>
-                                                            {% else %}
-                                                                <div class="text-center w-25">
-                                                                    {{ candidate.phone }}
-                                                                </div>
-                                                            {% endif %}
-
-                                                            {% if candidate.resumes is empty %}
-                                                                <div class="text-center w-25">
-                                                                    <p>Aucun CV</p>
-                                                                </div>
-                                                            {% else %}
-                                                                {% for resume in candidate.resumes | slice (0,1) %}
-                                                                    <div class="text-center w-25">
-                                                                        <p><a target="_blank" href="{{ path('app_resume_read',  {'id': resume.id}) }}">voir le CV</a></p>
-
-                                                                    </div>
-                                                                {% endfor %}
-                                                            {% endif %}
-
+                                                    {% if candidate.phone is empty %}
+                                                        <div class="text-center w-25">
+                                                            Aucun numéro
                                                         </div>
-                                                    {% endfor %}
-                                                {% endif %}
-                                            </div>
-                                        </div>
+                                                    {% else %}
+                                                        <div class="text-center w-25">
+                                                            {{ candidate.phone }}
+                                                        </div>
+                                                    {% endif %}
+
+                                                    {% if candidate.resumes is empty %}
+                                                        <div class="text-center w-25">
+                                                            <p>Aucun CV</p>
+                                                        </div>
+                                                    {% else %}
+                                                        {% for resume in candidate.resumes | slice (0,1) %}
+                                                            <div class="text-center w-25">
+                                                                <p><a target="_blank" href="{{ path('app_resume_read',  {'id': resume.id}) }}">voir le CV</a></p>
+                                                            </div>
+                                                        {% endfor %}
+                                                    {% endif %}
+
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
                                     </div>
                                 </div>
+                            </div>
+                        </div>
                     </div>
                 </li>
 
