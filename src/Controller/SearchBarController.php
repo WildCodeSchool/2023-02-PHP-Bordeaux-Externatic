@@ -13,6 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SearchBarController extends AbstractController
 {
+    #[Route('/search/all', name: 'app_joboffer_search_all', methods: ['GET', 'POST'])]
+    public function searchAll(JobofferRepository $jobofferRepository): Response
+    {
+        return $this->render('joboffer/search.html.twig', [
+            'joboffers' => $jobofferRepository->findAll(),
+        ]);
+    }
+
     #[Route('/search', name: 'app_joboffer_search', methods: ['GET', 'POST'])]
     public function search(
         FormFactoryInterface $formFactory,
