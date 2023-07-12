@@ -60,3 +60,20 @@ a {
     margin-top: 200px;
 }
 
+.be-search-div-top {
+    height: 120px;
+    background-color: #B4C9C6FF;
+    left: 0;
+    top: 80px
+}
+
+@media screen and (max-width:768px) {
+    .be-container-search {
+        margin-top: 0;
+    }
+
+    .be-search-div-top {
+        top: 0;
+    }
+}
+
