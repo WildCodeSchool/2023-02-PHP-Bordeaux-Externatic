@@ -11,32 +11,6 @@
             </button>
         </div>
     </div>
-
-<<<<<<< HEAD
-<div class="card be-card-candidatures" style="width: 100%; min-height: 13.75rem;">
-    <div class="card-header be-candidature">
-        Mes candidatures
-    </div>
-    <div class="card-body">
-        {% if app.user.joboffers is defined %}
-        {% for candidature in app.user.joboffers | slice (0,5)%}
-            <h5 class="card-title text-center">
-                <a href="{{ path('app_joboffer_show', {id: candidature.id}) }}" class="text-dark">
-                    {{ candidature.title }} sur {{ candidature.city }}
-                </a>
-            </h5>
-
-        {% endfor %}
-        <p class="card-text"></p>
-        <button type="button" class="be-secondary-button m-auto " data-toggle="modal" data-target="#exampleModal">
-            <a href="{{ path('app_user_candidatures', {id: app.user.id}) }}" class="text-dark">
-                Voir mes candidatures
-            </a>
-        </button>
-        {% else %}
-            <p class="card-text">Connectez-vous pour voir vos candidatures.</p>
-        {% endif %}
-=======
     <div class="card be-card-candidatures" style="width: 100%; min-height: 13.75rem;">
         <div class="card-header be-candidature">
             Mes candidatures
@@ -58,7 +32,6 @@
                 </a>
             </button>
         </div>
->>>>>>> cd22ab839d2b0298cc2071fd80391f1083bf3ff5
     </div>
 
 {% endif %}
