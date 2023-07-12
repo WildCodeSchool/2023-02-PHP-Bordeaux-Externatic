@@ -1,4 +1,15 @@
 .be-no-border {
-  border: none !important
+    border: none ;
+    border-color: initial;
 }
 
+.accordion-button:not(.collapsed){
+    background-color: white;
+}
+.accordion-button:focus{
+    border-color: white;
+    box-shadow: none;
+}
+.be-accordion-button-sidebar{
+    display: contents;
+}
