@@ -54,6 +54,10 @@
     resize: none;
 }
 
+.be-input-color {
+    color: #424856FF;
+}
+
 .be-form .be-check-label {
     font-weight: normal;
 }
@@ -101,7 +105,7 @@
 
 @media screen and ( max-width: 768px ){
     .be-form {
-        width: 100%;
+        width: 90%;
     }
 
     .be-form-switch {

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Search{% endblock %}
+{% block title %}Recherche {{ search.id }}{% endblock %}
 
 {% block body %}
-    <h1>Search</h1>
+    <h1>Recherche {{ search.id }}</h1>
 
     <table class="table">
         <tbody>
@@ -12,15 +12,15 @@
                 <td>{{ search.id }}</td>
             </tr>
             <tr>
-                <th>City</th>
+                <th>Ville</th>
                 <td>{{ search.city }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_search_index') }}">back to list</a>
+    <a href="{{ path('app_search_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_search_edit', {'id': search.id}) }}">edit</a>
+    <a href="{{ path('app_search_edit', {'id': search.id}) }}">Modifier</a>
 
     {{ include('search/_delete_form.html.twig') }}
 {% endblock %}

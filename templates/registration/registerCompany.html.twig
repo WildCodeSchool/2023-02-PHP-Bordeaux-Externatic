@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer son compte Entreprise{% endblock %}
+{% block title %}Créer son compte entreprise{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
     <div class="be-form row g-3 col-7">
-        <h2 class="be-h2">Créer son compte Entreprise</h2>
+        <h2 class="be-h2">Créer son compte entreprise</h2>
         {{ form_start(registrationForm) }}
-        <h3 class="be-h3 px-4 mb-5">Information de <span>l'entreprise</span></h3>
+        <h3 class="be-h3 px-4 mb-5">Informations de <span>l'entreprise</span></h3>
         <div class="row px-4">
             <div class="col-md-6">
                 {{ form_row(registrationForm.company.name) }}
@@ -29,7 +29,7 @@
         <div class="col-md-12 px-4">
             {{ form_row(registrationForm.company.logoFile) }}
         </div>
-        <h3 class="be-h3 px-4">Information du <span>représentant légal</span> de l'entreprise</h3>
+        <h3 class="be-h3 px-4">Informations du <span>représentant légal</span> de l'entreprise</h3>
         <div class="row px-4">
             <div class="col-md-6">
                 {{ form_row(registrationForm.firstname) }}
