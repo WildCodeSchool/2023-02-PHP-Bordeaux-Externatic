@@ -46,44 +46,32 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
-        yield MenuItem::section('Utilisateurs');
-
-        yield MenuItem::subMenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::subMenu('Utilisateurs', 'fa-solid fa-users')->setSubItems([
             MenuItem::linkToCrud('Créer utilisateur', 'fas fa-plus-circle', User::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir utilisateurs', 'fas fa-eye', User::class),
         ]);
 
-        yield MenuItem::section('Catégories');
-
-        yield MenuItem::subMenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::subMenu('Catégories', 'fa-solid fa-tag')->setSubItems([
             MenuItem::linkToCrud('Créer catégorie', 'fas fa-plus-circle', Category::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir catégories', 'fas fa-eye', Category::class),
         ]);
 
-        yield MenuItem::section('Entreprises');
-
-        yield MenuItem::subMenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::subMenu('Entreprises', 'fa-solid fa-building')->setSubItems([
             MenuItem::linkToCrud('Créer entreprise', 'fas fa-plus-circle', Company::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir entreprise', 'fas fa-eye', Company::class),
         ]);
 
-        yield MenuItem::section('Contrats');
-
-        yield MenuItem::subMenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::subMenu('Contrats', 'fa-solid fa-file-contract')->setSubItems([
             MenuItem::linkToCrud('Créer contrat', 'fas fa-plus-circle', Contract::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir contrats', 'fas fa-eye', Contract::class),
         ]);
 
-        yield MenuItem::section('Emplois');
-
-        yield MenuItem::subMenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::subMenu('Emplois', 'fa-solid fa-microchip')->setSubItems([
             MenuItem::linkToCrud('Créer emploi', 'fas fa-plus-circle', Job::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir emplois', 'fas fa-eye', Job::class),
         ]);
 
-        yield MenuItem::section('Offres d\'emploi');
-
-        yield MenuItem::subMenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::subMenu('Offres d\'emploi', 'fa-solid fa-clipboard')->setSubItems([
             MenuItem::linkToCrud(
                 'Créer offre d\'emploi',
                 'fas fa-plus-circle',
@@ -92,15 +80,11 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Voir offre d\'emploi', 'fas fa-eye', Joboffer::class),
         ]);
 
-        yield MenuItem::section('CV');
-
-        yield MenuItem::subMenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::subMenu('CV', 'fa-solid fa-file')->setSubItems([
             MenuItem::linkToCrud('Voir CV', 'fas fa-eye', Resume::class),
         ]);
 
-        yield MenuItem::section('Salaires');
-
-        yield MenuItem::subMenu('Actions', 'fas fa-bar')->setSubItems([
+        yield MenuItem::subMenu('Salaires', 'fa-solid fa-sack-dollar')->setSubItems([
             MenuItem::linkToCrud('Créer salaire', 'fas fa-plus-circle', Salary::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir salaires', 'fas fa-eye', Salary::class),
         ]);
