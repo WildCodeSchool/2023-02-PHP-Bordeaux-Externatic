@@ -19,7 +19,8 @@ $primary: #05380A;
 @import "_includes/sidebar-mobile.scss";
 @import "_includes/cardUniqueOffer.scss";
 @import "_includes/pictureUniqueOffer.scss";
-
+@import "_includes/page_404.scss";
+@import "_includes/page_403.scss";
 
 * {
     color: $super-dark-green;
