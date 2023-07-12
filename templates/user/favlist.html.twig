@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <div class="row">
                             <h5 class="card-title text-secondary fs-6 col-md-11">{{ fav.company.name }}</h5>
-                            <a class="col-md-1" id="favlist" href="{{ path('app_joboffer_favlist', {id: fav.id})}}">
+                            <a class="col-md-1" id="favlist" onclick="addToFavlist(event)" href="{{ path('app_joboffer_favlist', {id: fav.id})}}">
                                 <i class=" fa-2x bi {{ app.user.isInFavlist(fav) ? 'bi-bookmark-x-fill' : 'bi-bookmark-plus' }}"></i>
                             </a>
                         </div>
