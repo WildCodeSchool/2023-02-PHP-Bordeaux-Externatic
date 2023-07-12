@@ -1,0 +1,19 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container be-error-403">
+    <div class="forbidden-sign"></div>
+    <h1 class="be-restriction">Access to this page is restricted.</h1>
+    <p class="be-text-restriction">Ensure you have sufficient permissions to access the same.</p>
+    <div class="d-flex align-items-center be-spaces my-5">
+        <a href="/">
+            <button type="button" class="be-secondary-button" data-toggle="modal" data-target="#exampleModal">
+                Acceuil
+            </button>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
