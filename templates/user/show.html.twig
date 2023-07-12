@@ -37,22 +37,24 @@
             </div>
             {#Group 2#}
             <div class="col-lg-4 col-12 align-items-center d-flex flex-column justify-content-center">
-                <div class="card example-wrapper be-card-search mb-4" style="width: 20rem; height: 10rem; ">
-                    <div class="card-body">
-                        <i class="fa-solid fa-magnifying-glass-plus fa-2xl" style="color: #ffffff;"></i>
-                        <h5 class="card-title">
-                            <a href="{{ path('app_user_search', {id: app.user.id}) }}" class="text-dark">
+                <a href="{{ path('app_user_search', {id: app.user.id}) }}" class="text-dark">
+                    <div class="card example-wrapper be-card-search mb-4" style="width: 20rem; height: 10rem; ">
+                        <div class="card-body">
+                            <i class="fa-solid fa-magnifying-glass-plus fa-2xl" style="color: #ffffff;"></i>
+                            <h5 class="card-title">
+
                                 Mes recherches
-                            </a>
-                        </h5>
-                        <h6 class="card-subtitle mb-2 text-muted be-test">
-                            Je precise mes criteres de recherche et je recois toutes
-                            les
-                            offres
-                            personnalisees
-                        </h6>
+
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted be-test">
+                                Je precise mes criteres de recherche et je recois toutes
+                                les
+                                offres
+                                personnalisees
+                            </h6>
+                        </div>
                     </div>
-                </div>
+                </a>
                 <a href="{{ path('app_user_edit', {'id': app.user.id}) }}">
                     <div class="card example-wrapper be-card-information mb-4" style="width: 20rem; height: 10rem">
                         <div class="card-body">
@@ -97,16 +99,16 @@
                         <h5 class="card-title">
                             <a href="{{ path('app_user_candidatures', {id: app.user.id}) }}" class="text-dark">
                                 Mes candidatures
-                            </a>
-                        </h5>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            Accéder à ma liste de candidature en cours
-                        </h6>
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Accéder à ma liste de candidature en cours
+                            </h6>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
+
         </div>
     </div>
-
 {% endblock %}
 
