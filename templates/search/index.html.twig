@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Search index{% endblock %}
+{% block title %}Recherches{% endblock %}
 
 {% block body %}
-    <h1>Search index</h1>
+    <h1>Recherches</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>City</th>
+                <th>Ville</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,8 +19,8 @@
                 <td>{{ search.id }}</td>
                 <td>{{ search.city }}</td>
                 <td>
-                    <a href="{{ path('app_search_show', {'id': search.id}) }}">show</a>
-                    <a href="{{ path('app_search_edit', {'id': search.id}) }}">edit</a>
+                    <a href="{{ path('app_search_show', {'id': search.id}) }}">Voir</a>
+                    <a href="{{ path('app_search_edit', {'id': search.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_search_new') }}">Create new</a>
+    <a href="{{ path('app_search_new') }}">Créer nouveau</a>
 {% endblock %}
