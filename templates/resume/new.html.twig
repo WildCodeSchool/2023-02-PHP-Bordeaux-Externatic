@@ -5,7 +5,7 @@
 {% block body %}
 <div class="be-form row g-3 col-7">
     <div class="d-flex mx-4">
-        <a class="be-secondary-button" href="{{ path('app_user_show', {'id': app.user.id} ) }}">Retour</a>
+        <a class="be-secondary-button" href="{{ path('app_resume_index', {'id': app.user.id} ) }}">Retour au CV</a>
     </div>
     <h2 class="be-h2">Ajouter un <span>CV</span></h2>
     {{ include('resume/_form.html.twig') }}

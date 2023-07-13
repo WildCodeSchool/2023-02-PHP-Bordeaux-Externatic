@@ -3,14 +3,15 @@
 {% block title %}Mise à jour entreprise{% endblock %}
 
 {% block body %}
-<div class="be-form row g-3 col-7">
-    <div class="d-flex m-4">
-        <a class="be-secondary-button " href="{{ path('app_company_show', {'id': company.id} ) }}">Retour au profil</a>
+    <div class="be-form row g-3 col-7">
+        <div class="d-flex m-4">
+            <a class="be-secondary-button" href="{{ path('app_company_show', {'id': company.id} ) }}">Retour au profil</a>
+        </div>
+        <h2 class="be-h2">Mes <span>informations</span></h2>
+
+        {{ include('company/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+        <div class="d-flex justify-content-end px-4">
+            {{ include('user/_delete_form.html.twig') }}
+        </div>
     </div>
-    <h2 class="be-h2">Mise à jour des <span>informations personnelles</span></h2>
-
-{{ include('company/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-</div>
-
-{{ include('company/_delete_form.html.twig') }}
 {% endblock %}
