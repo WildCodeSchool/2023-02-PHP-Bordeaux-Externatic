@@ -93,19 +93,22 @@
                     </div>
                 </div>
             </a>
+
             <div class="card example-wrapper be-card-applications mb-4" style="width: 20rem; height: 10rem">
+                <a href="{{ path('app_user_candidatures', {id: app.user.id}) }}" class="text-dark">
                 <div class="card-body">
                     <i class="fa-solid fa-building fa-2xl" style="color: #ffffff;"></i>
                     <h5 class="card-title">
-                        <a href="{{ path('app_user_candidatures', {id: app.user.id}) }}" class="text-dark">
+
                             Mes candidatures
                     </h5>
                     <h6 class="card-subtitle mb-2 text-muted">
                         Accéder à ma liste de candidature en cours
                     </h6>
                 </div>
+                </a>
             </div>
-            </a>
+
         </div>
 
     </div>
