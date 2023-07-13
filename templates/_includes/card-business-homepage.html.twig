@@ -1,3 +1,29 @@
+{% set images = [
+    'build/images/GroupWork.jpg',
+    'build/images/GroupWork2.jpg',
+    'build/images/GroupWork5.jpg',
+    'build/images/GroupWork6.jpg',
+    'build/images/GroupWork7.jpg',
+    'build/images/GroupWork8.jpg',
+    'build/images/GroupWork9.jpg',
+    'build/images/GroupWork10.jpg',
+    'build/images/GroupWork11.jpg',
+    'build/images/GroupWork12.jpg',
+    'build/images/GroupWork13.jpg',
+    'build/images/GroupWork14.jpg',
+    'build/images/GroupWork15.jpg',
+    'build/images/GroupWork16.jpg',
+    'build/images/GroupWork17.jpg',
+    'build/images/GroupWork18.jpg',
+    'build/images/GroupWork19.jpg',
+    'build/images/GroupWork20.jpg',
+    'build/images/GroupWork21.jpg',
+    'build/images/GroupWork22.jpg',
+    'build/images/GroupWork23.jpg',
+    'build/images/GroupWork24.jpg',
+    'build/images/GroupWork25.jpg',
+] %}
+
 <div class="be-container-home be-container-home-first">
     <div class="m-auto">
         <h2 class="be-h2"><span>Les entreprises </span>qui recrutent</h2>
@@ -5,16 +31,17 @@
         <div class="be-container-card m-auto d-flex  row">
 
             {% for company in companies %}
+                {% set randomIndex = random(0, images|length - 1) %}
+                {% set randomImage = images[randomIndex] %}
 
                 <div class="be-card-main col-auto col-4 mb-4 p-0 position-relative ">
                     <div class="be-card-img img-fluid position-relative">
-                        <img src="{{ company.logo }}" style="height:110px; width:350px;" alt="">
-                        <div class="be-card-containt">
-                            <img src="https://placehold.co/120x60" alt="">
+                        <img src="{{ asset(randomImage) }}"  alt="">
+                        <div class="be-card-containt d-flex justify-content-center" style="height: 60px; width: 120px">
+                            <img style="height: 60px; width: auto; margin:auto" src="{{ company.logo }}" alt="">
                         </div>
                     </div>
-
-                    <div class="be-card-footer d-flex justify-content-between w-100  align-items-lg-end">
+                    <div class="be-card-footer d-flex justify-conteZnt-between w-100  align-items-lg-end">
                         <div>
                             <h3 class="m-0">{{ company.name }}</h3>
                             {{ company.total }} postes à pouvoir
@@ -28,7 +55,6 @@
                 </div>
 
             {% endfor %}
-
         </div>
     </div>
 </div>

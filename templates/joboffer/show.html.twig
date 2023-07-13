@@ -5,6 +5,7 @@
 
 {% block body %}
     <div class="m-auto be-banner-offer d-flex justify-content-center position-md-relative ">
+
         {% if not is_granted('ROLE_COMPANY') and app.user.isInFavlist is defined %}
         <div class="position-absolute top-0 end-0 mt-2 mt-md-1 me-1">
             <a onclick="addToFavlist(event)" id="favlist" href="{{ path('app_joboffer_favlist', {id: joboffer.id}) }}">
@@ -26,26 +27,26 @@
             {% if app.user and not is_granted('ROLE_COMPANY') %}
                 <a href="#be-apply-form" class="fs-5 be-apply-button ">Postuler</a>
             {% endif %}
-             <div class=" be-card-joboffer position-absolute d-none d-sm-none d-md-none d-lg-block ">
+            <div class=" be-card-joboffer position-absolute d-none d-sm-none d-md-none d-lg-block ">
                 <div class="w-auto fs-5 fw-bold be-cardText-jobofferCompany ">{{ joboffer.company.name }}</div>
-             </div>
+            </div>
         </div>
     </div>
-<div class="d-none d-lg-block container-fluid my-5">
-    <div class="row justify-content-around">
-    <img src= "{{ asset('build/images/GourpWork2.jpg') }}" class="w-25 be-pictureStyle " alt="Groupe1">
-    <img src="{{ asset('build/images/GourpWork4.jpg') }}" class="w-25 be-pictureStyle " alt="Groupe2">
-    <img src="{{ asset('build/images/GroupWork.jpg') }}" class="w-25 be-pictureStyle " alt="Groupe3">
+    <div class="d-none d-lg-block container-fluid my-5">
+        <div class="row justify-content-around">
+            <img src= "{{ asset('build/images/GourpWork2.jpg') }}" class="w-25 be-pictureStyle " alt="Groupe1">
+            <img src="{{ asset('build/images/GourpWork4.jpg') }}" class="w-25 be-pictureStyle " alt="Groupe2">
+            <img src="{{ asset('build/images/GroupWork.jpg') }}" class="w-25 be-pictureStyle " alt="Groupe3">
+        </div>
     </div>
-</div>
 
     <div class="container-fluid my-5">
 
         <div class="d-flex justify-content-end">
 
         </div>
-    <h5 class="text-black fs-3">{{ joboffer.company.name }} recherche:</h5>
-    <p class="text-black fs-4">{{ joboffer.description }}</p>
+        <h5 class="text-black fs-3">{{ joboffer.company.name }} recherche:</h5>
+        {{ joboffer.description | raw }}
     </div>
     <div class="d-none d-lg-block container-fluid text-center my-5 ">
         <img src= "{{ asset('build/images/HommeWork.jpg') }}" class="be-pictureSize be-pictureStyle" alt="Homework">
@@ -59,14 +60,14 @@
     <div class="container-fluid d-flex justify-content-center mt-5 fs-4">
     <a class="be-primary-button btn me-4" href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">Modifier</a>
         {{ include('joboffer/_delete_form.html.twig') }}
-    </div>
+        </div>
     {% endif %}
-<div class="container-fluid">
-    {% if is_granted('ROLE_USER') and not is_granted('ROLE_COMPANY') %}
-        <div class="be-form row g-3 col-7" id="be-apply-form">
-            <h2 class="be-h2 fs-1">Cette offre t'intéresse ?</h2>
-            <h2 class="be-h2 fs-1">Postule !</h2>
-            {{ form_start(form, {'attr': {'class': 'be-chado-hidden'}}) }}
+    <div class="container-fluid">
+        {% if is_granted('ROLE_USER') and not is_granted('ROLE_COMPANY') %}
+            <div class="be-form row g-3 col-7" id="be-apply-form">
+                <h2 class="be-h2 fs-1">Cette offre t'intéresse ?</h2>
+                <h2 class="be-h2 fs-1">Postule !</h2>
+                {{ form_start(form, {'attr': {'class': 'be-chado-hidden'}}) }}
                 {{ form_errors(form) }}
                 <div class="row px-4">
                     <div class="col-md-6">
@@ -83,10 +84,10 @@
                     <label for="resume"> </label>
 
                     <select class=" be-form-input p-0" name="resume" id="resume">
-                            {% for resume in app.user.resumes %}
-                               <option value="{{ resume.path }}">{{ resume.name }}</option>
-                            {% endfor %}
-                        </select>
+                        {% for resume in app.user.resumes %}
+                            <option value="{{ resume.path }}">{{ resume.name }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="col-12 px-4">
                     <div class="form-group">
@@ -97,12 +98,12 @@
                 <div class="text-center mb-4">
                     <button class="be-primary-button" type="submit">Postuler</button>
                 </div>
-            {% do form.resumes.setRendered() %}
+                {% do form.resumes.setRendered() %}
 
-             {{ form_end(form) }}
-        </div>
-    {% endif %}
-</div>
+                {{ form_end(form) }}
+            </div>
+        {% endif %}
+    </div>
     <div class="d-flex justify-content-center mt-5">
         <a class="be-secondary-button w-auto" href="#" onclick="history.back(); return false;">Retour aux résultats</a>
     </div>
