@@ -8,7 +8,7 @@
         <div class="row">
             {#Group 1#}
             <div class="col-lg-4 col-12 order-md-first order-lg-last align-items-center d-flex flex-column">
-                <div class="card example-wrapper be-card-candidate mb-4 mt-5" style="width: 20rem; height: 21rem;">
+                <div class="card example-wrapper be-card-candidate mb-4" style="width: 20rem; height: 21rem;">
                     <div class="card-body be-card-candidat">
                         <h5 class="card-title">Bonjour {{ app.user.firstname }}</h5>
                         <p class="be-maj">Dernière mise à jour {{ app.user.updatedAt|ago }}</p>
@@ -73,7 +73,7 @@
                 </a>
             </div>
             {#Group 3#}
-            <div class="col-lg-4 col-12 align-items-center d-flex flex-column justify-content-center">
+            <div class="col-lg-4 col-12 align-items-center d-flex flex-column">
                 <a href="{{ path('app_resume_index', {'id': app.user.id}) }}">
                     <div class="card example-wrapper be-card-resume mb-4" style="width: 20rem; height: 10rem">
                         <div class="card-body">
