@@ -21,8 +21,8 @@
                                 <footer class="text-secondary fs-6">{{ joboffer.city }} / {{ joboffer.salary.min }}€ - {{ joboffer.salary.max }}€</footer>
                                 <div class="d-flex flex-row justify-content-between">
                                     <footer class="text-secondary w-50 fs-6">Annonce postée le {{ joboffer.createdAt|date('d/m/Y') }}</footer>
-                                    <a href="{{ path('app_joboffer_show', {id: joboffer.id}) }}"
-                                       class="be-secondary-button w-15 fs-5">Voir l'offre</a>
+                                    <a class="be-secondary-button w-15 fs-5" href="{{ path('app_joboffer_show', {id:
+                                        joboffer.id}) }}">Voir l'offre</a>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                                                     {% else %}
                                                         {% for resume in candidate.resumes | slice (0,1) %}
                                                             <div class="text-center w-25">
-                                                                <p><a target="_blank" href="{{ path('app_resume_read',  {'id': resume.id}) }}">voir le CV</a></p>
+                                                                <a target="_blank" href="{{ path('app_resume_read',  {'id': resume.id}) }}">voir le CV</a>
                                                             </div>
                                                         {% endfor %}
                                                     {% endif %}

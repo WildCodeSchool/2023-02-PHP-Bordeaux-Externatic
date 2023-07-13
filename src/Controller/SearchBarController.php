@@ -39,6 +39,7 @@ class SearchBarController extends AbstractController
             ]);
         }
 
+
         return $this->render('barSearch/_form.html.twig', [
             'form' => $form->createView(),
         ]);
