@@ -12,12 +12,15 @@
 .be-card-img {
     //height: calc((50 * (30 * #{$window-height}) / 100) / 100);
     position: relative;
+    height:110px;
+    width:350px;
 }
 .be-card-img img {
     width: -webkit-fill-available;
     width: -moz-available;
     border-radius: 8px 8px 0 0;
-    //object-fit: cover;
+    height:inherit;
+    object-fit: cover
 }
 .be-card-containt {
     position: absolute;
@@ -48,9 +51,7 @@
         background-color: white;
         border-radius: $border-radius;
     }
-    .be-card-img img {
-        width: max-content;
-    }
+
     .be-card-containt {
         position: absolute;
         background-color: white;
