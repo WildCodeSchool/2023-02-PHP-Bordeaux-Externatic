@@ -51,9 +51,11 @@ class JobofferController extends AbstractController
             $salary->setMax($salaryMax);
 
             $salaryRepository->save($salary, true);
+            $joboffer->setSalary($salary);
             $jobofferRepository->save($joboffer, true);
 
-            return $this->redirectToRoute('app_joboffer_index', [], Response::HTTP_SEE_OTHER);
+            $id = $joboffer->getId();
+            return $this->redirectToRoute('app_joboffer_show', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('joboffer/new.html.twig', [
@@ -130,7 +132,8 @@ class JobofferController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $jobofferRepository->save($joboffer, true);
 
-            return $this->redirectToRoute('app_joboffer_index', [], Response::HTTP_SEE_OTHER);
+            $id = $joboffer->getId();
+            return $this->redirectToRoute('app_joboffer_show', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('joboffer/edit.html.twig', [
@@ -145,8 +148,12 @@ class JobofferController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $joboffer->getId(), $request->request->get('_token'))) {
             $jobofferRepository->remove($joboffer, true);
         }
-
-        return $this->redirectToRoute('app_joboffer_index', [], Response::HTTP_SEE_OTHER);
+        $id = $joboffer->getCompany()->getId();
+        return $this->redirectToRoute(
+            'app_company_offers',
+            ['id' => $id],
+            Response::HTTP_SEE_OTHER
+        );
     }
 
     #[Route('/{id}/favlist', name: 'app_joboffer_favlist', methods: ['GET', 'POST'])]
