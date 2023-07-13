@@ -91,6 +91,7 @@ class JobofferType extends AbstractType
                     'placeholder' => '20000',
                     'class' => 'form-control be-form-input mb-md-5 mb-3' // Ajoute une classe CSS personnalisée
                 ],
+                'required' => true,
             ])
             ->add('salaryMax', NumberType::class, [
                 'label' => 'Salaire maximal',
@@ -98,6 +99,7 @@ class JobofferType extends AbstractType
                     'placeholder' => '50000',
                     'class' => 'form-control be-form-input mb-md-5 mb-3' // Ajoute une classe CSS personnalisée
                 ],
+                'required' => true,
             ])
             ->add('company', EntityType::class, [
                 'class' => Company::class,

@@ -48,6 +48,7 @@
         <h5 class="text-black fs-3">{{ joboffer.company.name }} recherche:</h5>
         {{ joboffer.description | raw }}
     </div>
+
      {% if is_granted('ROLE_COMPANY')  %}
     <div class="container-fluid d-flex justify-content-center mt-5 fs-4">
     <a class="be-primary-button btn me-4" href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">Modifier</a>

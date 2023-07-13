@@ -39,6 +39,11 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     {
         $email = $request->request->get('username');
         $user = $this->userRepository->findOneBy(['email' => $email]);
+        if (!$user) {
+            throw new CustomUserMessageAuthenticationException(
+                'L\'email n\'existe pas.'
+            );
+        }
         if ($user->isVerified() === false) {
             throw new CustomUserMessageAuthenticationException(
                 'Votre compte n\'est pas encore validé. Veuillez vérifier vos mails.'
