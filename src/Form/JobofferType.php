@@ -8,6 +8,7 @@ use App\Entity\Job;
 use App\Entity\Joboffer;
 use App\Entity\Salary;
 use Doctrine\ORM\EntityRepository;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
@@ -39,7 +40,7 @@ class JobofferType extends AbstractType
                     'class' => 'form-control mb-md-5 mb-3 be-form-input' // Ajoute une classe CSS personnalisée
                 ],
             ])
-            ->add('description', TextareaType::class, [
+            ->add('description', CKEditorType::class, [
                 'label' => 'Description',
                 'attr' => [
                     'placeholder' => 'Entre la description de l\'offre',
