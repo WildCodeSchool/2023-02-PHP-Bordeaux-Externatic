@@ -48,14 +48,6 @@
         <h5 class="text-black fs-3">{{ joboffer.company.name }} recherche:</h5>
         {{ joboffer.description | raw }}
     </div>
-    <div class="d-none d-lg-block container-fluid text-center my-5 ">
-        <img src= "{{ asset('build/images/HommeWork.jpg') }}" class="be-pictureSize be-pictureStyle" alt="Homework">
-
-    </div>
-    <div class="container-fluid">
-        <h5 class="text-black fs-3">Vous êtes:</h5>
-        <p class="text-black fs-4">{{ joboffer.description }}</p>
-    </div>
      {% if is_granted('ROLE_COMPANY')  %}
     <div class="container-fluid d-flex justify-content-center mt-5 fs-4">
     <a class="be-primary-button btn me-4" href="{{ path('app_joboffer_edit', {'id': joboffer.id}) }}">Modifier</a>
