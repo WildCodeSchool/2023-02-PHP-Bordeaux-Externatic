@@ -1,125 +1,66 @@
-# Project 3 - Starter Kit - Symfony
 
-## Presentation
+# JobIT Better
 
-This starter kit is here to easily start a repository for Wild Code School students.
+Welcome on JobIT Better by Externatic repository ! This project is our 3rd project for Wild Code School, and was developped in 2 months by Alexandre, Aline, Maxime, Itaan and Kevin. You can find us in the "author" section down below.
 
-It's symfony website-skeleton project with some additional library (webpack, fixtures) and tools to validate code standards.
+The application is designed for companies to post job offers, and for users to apply to these job offers.
 
-* GrumPHP, as pre-commit hook, will run 2 tools when `git commit` is run :
 
-    * PHP_CodeSniffer to check PSR12
-    * PHPStan focuses on finding errors in your code (without actually running it)
-    * PHPmd will check if you follow PHP best practices
+## Tech Stack
 
-  If tests fail, the commit is canceled and a warning message is displayed to developper.
+**Client:** Bootstrap, Twig, Webpack Encore
 
-* Github Action as Continuous Integration will be run when a branch with active pull request is updated on github. It will run :
+**Server:** PHP 8.2, Symfony 6.2, MySQL
 
-    * Tasks to check if vendor, .idea, env.local are not versionned,
-    * PHP_CodeSniffer, PHPStan and PHPmd with same configuration as GrumPHP.
 
-## Getting Started for Students
+## Installation
 
-### Prerequisites
+- Clone this repository
 
-1. Check composer is installed
-2. Check yarn & node are installed
-
-### Install
-
-1. Clone this project
-2. Run `composer install`
-3. Run `yarn install`
-4. Run `yarn encore dev` to build assets
-
-### Working
-
-1. Run `symfony server:start` to launch your local php web server
-2. Run `yarn run dev --watch` to launch your local server for assets (or `yarn dev-server` do the same with Hot Module Reload activated)
-
-### Testing
-
-1. Run `php ./vendor/bin/phpcs` to launch PHP code sniffer
-2. Run `php ./vendor/bin/phpstan analyse src --level max` to launch PHPStan
-3. Run `php ./vendor/bin/phpmd src text phpmd.xml` to launch PHP Mess Detector
-4. Run `./node_modules/.bin/eslint assets/js` to launch ESLint JS linter
-
-### Windows Users
-
-If you develop on Windows, you should edit you git configuration to change your end of line rules with this command:
-
-`git config --global core.autocrlf true`
-
-The `.editorconfig` file in root directory do this for you. You probably need `EditorConfig` extension if your IDE is VSCode.
-
-### Run locally with Docker
-
-1. Fill DATABASE_URL variable in .env.local file with
-`DATABASE_URL="mysql://root:password@database:3306/<choose_a_db_name>"`
-2. Install Docker Desktop an run the command:
+- Go the project directory
 ```bash
-docker-compose up -d
+  cd the-project
+  ```
+- Open the project with your favorite code editor
+- Create a .env.local file, which is a copy of the .env file but with your database informations
+
+- Install dependencies
+
+```bash
+  composer install 
+  yarn install 
+  ```
+  - Set up the local database 
+  ```bash
+  symfony console doctrine:database:create 
+  symfony console doctrine:migrations:migrate 
+  symfony console doctrine:fixtures:load 
 ```
-3. Wait a moment and visit http://localhost:8000
+- Start the local server
+ ```bash
+  symfony serve -d 
+  yarn watch
+```
 
 
-## Deployment
+## How to use the application
 
-Some files are used to manage automatic deployments (using tools as Caprover, Docker and Github Action). Please do not modify them.
+- As a company
 
-* [Dockerfile](/Dockerfile) Web app configuration for Docker container
-* [docker-entry.sh](/docker-entry.sh) shell instruction to execute when docker image is built
-* [nginx.conf](/ginx.conf) Nginx server configuration
-* [php.ini](/php.ini) Php configuration
+You can sign in as a company with the "Accès recruteur" button, verify your e-mail and log in. You can then modify your informations, and post job offers. You can see which candidates did apply for your offers in the dedicated section in your profile and in your mailbox.
 
+- As a candidate 
 
-## Built With
+You can sign in as a candidate with the 'S'inscrire" button, verify your e-mail and log in. You can then modify your informations, upload resumes or set up a research filter which will send you a notification when a job offer matching your criterias is posted by a company. You can also look for job offers with the search bar on the home page, and apply at the bottom of the page.
 
-* [Symfony](https://github.com/symfony/symfony)
-* [GrumPHP](https://github.com/phpro/grumphp)
-* [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
-* [PHPStan](https://github.com/phpstan/phpstan)
-* [PHPMD](http://phpmd.org)
-* [ESLint](https://eslint.org/)
-* [Sass-Lint](https://github.com/sasstools/sass-lint)
+- As an admin
 
-
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-
+There is also a working back-office for administrators, where they can manage everything on the application ( users, companies, job offers, ...).
 ## Authors
 
-Wild Code School trainers team
-
-## License
-
-MIT License
-
-Copyright (c) 2019 aurelien@wildcodeschool.fr
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-## Acknowledgments
+- [@Aline](https://github.com/Aline33)
+- [@Itaan](https://github.com/ItaanS)
+- [@Alex](https://github.com/Chadowww)
+- [@Maxime](https://github.com/Mgg24)
+- [@Kevin](https://github.com/KevinDavoust)
 
