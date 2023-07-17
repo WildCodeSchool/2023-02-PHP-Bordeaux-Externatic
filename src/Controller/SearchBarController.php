@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\SearchOfferType;
 use App\Repository\JobofferRepository;
 use App\Repository\SearchRepository;
+use App\Services\AlertService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +26,8 @@ class SearchBarController extends AbstractController
     public function search(
         FormFactoryInterface $formFactory,
         JobofferRepository $jobofferRepository,
-        Request $request
+        Request $request,
+        AlertService $alertService
     ): Response {
 
         $form = $formFactory->create(SearchOfferType::class);
@@ -34,8 +36,11 @@ class SearchBarController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $credentials = $form->getData();
             $results = $jobofferRepository->search($credentials);
+            $alert = $alertService->setAlert($this->getUser());
+            $alert = $alert->get();
             return $this->render('joboffer/search.html.twig', [
                 'joboffers' => $results,
+                'alerts' => $alert,
             ]);
         }
 
@@ -49,14 +54,18 @@ class SearchBarController extends AbstractController
     public function mySearch(
         Request $request,
         JobofferRepository $jobofferRepository,
-        SearchRepository $searchRepository
+        SearchRepository $searchRepository,
+        AlertService $alertService
     ): Response {
         $searchId = $request->request->get('searchId');
         $search = $searchRepository->find($searchId);
+        $alert = $alertService->setAlert($this->getUser());
+        $alert = $alert->get();
 
         $result =  $jobofferRepository->findByMySearch($search);
         return $this->render('joboffer/search.html.twig', [
             'joboffers' => $result,
+            'alerts' => $alert,
         ]);
     }
 }
