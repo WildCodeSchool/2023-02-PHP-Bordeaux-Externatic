@@ -1,11 +1,31 @@
-.be-navbar{
+.be-navbar {
     height: 10vh;
 }
-.be-img-navbar{
+
+.be-img-navbar {
     height: 5.3vh;
 }
+
+.be-search-navbar {
+    width: 40%;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.be-search-navbar button {
+    margin-left: 6px;
+}
+
+.hidden-navbar {
+    display: none;
+}
+
+.be-search-navbar input {
+    background-color: transparent;
+}
+
 @media screen and (max-width: 750px) {
-    .be-navbar{
+    .be-navbar {
         display: none;
     }
 }
