@@ -70,7 +70,7 @@ class JobofferFixtures extends Fixture implements DependentFixtureInterface
     <li>Horaires flexibles et possibilité de télétravail.</li>
   </ul>";
             $joboffer
-                ->setTitle($this->getReference('job_' . $numberJob)->getTitle())
+                ->setTitle($this->getReference('job_' . $numberJob)->getName())
                 ->setDescription($offer)
                 ->setCompany($this->getReference('company_' . $numberCompany))
                 ->setJob($this->getReference('job_' . $numberJob))
