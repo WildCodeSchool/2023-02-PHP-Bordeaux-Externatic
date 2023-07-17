@@ -2,8 +2,20 @@
     <div class="be-banner-home my-5">
         <div class="w-100 position-relative">
             <img class="be-img-home" src="{{ asset('build/images/StatsWork2.png') }}" alt="">
-            <h2 class="be-titre h2 display-3">Externatic, plus qu'un cabinet de recrutement.</br>
-                Notre job, vous aider à trouver le vôtre.</h2>
+
+                <h2 class="be-titre h2 display-3" {{ stimulus_controller('symfony/ux-typed', {
+                    strings:[
+                        'Externatic,',
+                        'Externatic, plus qu\'un cabinet de recrutement.',
+                        'Externatic, plus qu\'un cabinet de recrutement. Notre job,',
+                        'Externatic, plus qu\'un cabinet de recrutement. Notre job, vous aider à trouver le votre.'],
+                    smartBackspace: true,
+                    startDelay: 100,
+                    backSpeed: 30,
+                    backDelay: 300,
+                    typeSpeed: 25,
+                })
+                }}></h2>
         </div>
         <div class="navbar be-bg-body-tertiary px-3 form-js">
             {{ render(controller(
