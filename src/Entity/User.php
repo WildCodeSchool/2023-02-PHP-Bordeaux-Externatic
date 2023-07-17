@@ -55,6 +55,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $status = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Resume::class)]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private Collection $resumes;
 
     #[ORM\Column(type: 'boolean')]
@@ -69,9 +70,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $favlist;
 
     #[ORM\ManyToMany(targetEntity: Joboffer::class, mappedBy: 'candidate')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private Collection $joboffers;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Search::class)]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private Collection $searches;
 
     public function __construct()

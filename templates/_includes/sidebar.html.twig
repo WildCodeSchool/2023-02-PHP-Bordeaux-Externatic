@@ -15,7 +15,7 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-around flex-grow-1 h-100">
-                    {% if app.user %}
+                    {% if app.user  is defined %}
                         <li class="nav-item d-flex justify-content-center align-items-center ">
 
                             {% if is_granted('ROLE_COMPANY') %}

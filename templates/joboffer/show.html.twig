@@ -74,8 +74,7 @@
                     {{ form_row(form.email) }}
                 </div>
                 <div class="col-12 px-4 mb-4">
-                    <label for="resume"> </label>
-
+                    <label for="resume">Curriculum Vitae </label><br>
                     <select class=" be-form-input p-0" name="resume" id="resume">
                         {% for resume in app.user.resumes %}
                             <option value="{{ resume.path }}">{{ resume.name }}</option>
