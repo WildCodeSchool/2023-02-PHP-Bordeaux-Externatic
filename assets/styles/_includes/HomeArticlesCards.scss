@@ -35,10 +35,6 @@
     margin-right: 8rem;
 }
 
-.be-home-article-rectangle2 {
-    margin-left: 8rem;
-}
-
 .be-home-article-img,
 {
     margin: 15px;
@@ -46,11 +42,7 @@
     height: 200px;
 }
 
-.be-home-article-img2 {
-    margin-left: 160px;
-}
-
-@media screen and (max-width: 426px) {
+@media screen and (max-width: 430px) {
     .be-home-articles {
         margin: 10px;
     }
@@ -59,6 +51,7 @@
         display: flex;
         flex-direction: column-reverse;
         padding-left: 0;
+        margin-left: 0;
     }
     .be-home-article-rectangle2 {
 

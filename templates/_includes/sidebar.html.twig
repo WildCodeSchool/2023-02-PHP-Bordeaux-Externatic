@@ -15,10 +15,10 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-around flex-grow-1 h-100">
-                    {% if app.user %}
+                    {% if app.user  is defined %}
                         <li class="nav-item d-flex justify-content-center align-items-center ">
 
-                            {% if is_granted('ROLE_COMPANY') %}
+                            {% if is_granted('ROLE_COMPANY') and app.user.company.id is defined%}
                                 <a class="nav-link mx-2 active text-center fw-bold" aria-current="page" href="{{ path
                                     ('app_company_show', {id: app.user.company.id}) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
