@@ -31,14 +31,14 @@
                     </div>
                 {% endfor %}
             {% endfor %}
-            <div class="col-lg-9 col-12 m-auto my-5">
+            <div class="col-lg-9 col-12 m-auto mb-md-5 my-5">
                 {% block body %}{% endblock %}
             </div>
             {% include 'footer.html.twig' %}
         </main>
         <script src="/script/favlist.js"></script>
     <script>
-        if(window.innerWidth >769) {
+        if(window.innerWidth > 835) {
             const stylenav = document.querySelector('.hidden-navbar');
             window.addEventListener("scroll", function () {
                 let form = document.querySelector('.form-js').getBoundingClientRect().y;
