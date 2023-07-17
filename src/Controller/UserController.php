@@ -140,7 +140,6 @@ class UserController extends AbstractController
             $search->setJob($form->getJob());
             $search->setCity($form->getCity());
             $search->setContract($form->getContract());
-
             $search->setCompany($form->getCompany());
 
             $manager->persist($search);
