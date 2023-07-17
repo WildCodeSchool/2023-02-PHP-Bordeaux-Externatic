@@ -59,8 +59,6 @@
                 {% endif %}
 
             </ul>
-
-            <i class="fa-regular fa-bell"></i>
             {% if app.user %}
                 <a href="/logout" class="href">
                     <button class="be-secondary-button mx-3">Déconnexion</button>
@@ -76,7 +74,7 @@
                 </a>
             {% endif %}
             {% if is_granted('ROLE_USER') %}
-                {% if is_granted('ROLE_COMPANY') %}
+                {% if is_granted('ROLE_COMPANY') and app.user.company.id is defined %}
                     {# L'utilisateur a à la fois le rôle User et Company #}
                     <a href="{{ path('app_company_show', {id: app.user.company.id}) }}" class="href">
                         <button class="be-secondary-button mx-3">Mon profil</button>

@@ -6,6 +6,7 @@ use App\Entity\Joboffer;
 use App\Entity\Search;
 use App\Form\UserPersonalSearchType;
 use App\Repository\JobofferRepository;
+use App\Repository\SalaryRepository;
 use DateTime;
 use App\Entity\User;
 use App\Form\UserType;
@@ -13,6 +14,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -79,6 +81,8 @@ class UserController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user, true);
         }
+        $request->getSession()->invalidate();
+        $this->container->get('security.token_storage')->setToken(null);
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -118,8 +122,12 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/search', name: 'app_user_search', methods: ['GET', 'POST'])]
-    public function mySearch(User $user, Request $request, EntityManagerInterface $manager): Response
-    {
+    public function mySearch(
+        User $user,
+        Request $request,
+        EntityManagerInterface $manager,
+        SalaryRepository $salaryRepository
+    ): Response {
         $joboffer = new Joboffer();
         $search = new Search();
         $user = $this->getUser();
@@ -132,7 +140,6 @@ class UserController extends AbstractController
             $search->setJob($form->getJob());
             $search->setCity($form->getCity());
             $search->setContract($form->getContract());
-            $search->setSalary($form->getSalary());
             $search->setCompany($form->getCompany());
 
             $manager->persist($search);

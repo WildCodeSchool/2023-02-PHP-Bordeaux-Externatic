@@ -9,7 +9,7 @@
     </div>
     <h2 class="be-h2 text-center">Mes <span>recherches</span></h2>
     <div class="container m-auto d-flex justify-content-around align-items-center my-5">
-        <ul class="be-joboffer-card-template-ul">
+        <ul class="be-joboffer-card-template-ul ">
             {% if app.user.searches is empty %}
                 <div class="container m-auto d-flex justify-content-around align-items-center my-5">
                     <h2 class="be-h3">Vous n'avez pas de recherche enregistrée</h2>
@@ -82,11 +82,6 @@
             </div>
             <div class="col-md-6">
                 {{ form_row(form.contract) }}
-            </div>
-        </div>
-        <div class="row px-4">
-            <div class="col-md-6">
-                {{ form_row(form.salary) }}
             </div>
         </div>
         <div class="text-center mt-4 mb-5">

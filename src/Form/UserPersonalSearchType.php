@@ -68,16 +68,7 @@ class UserPersonalSearchType extends AbstractType
                 'attr' => [
                     'class' => 'form-control be-form-input mb-md-5 mb-3 be-input-color'
                 ],
-            ])
-            ->add('salary', IntegerType::class, [
-                'required' => false, // Le champ n'est pas obligatoire
-                'label' => 'Quel salaire minimum ?',
-                'attr' => [
-                    'placeholder' => 'Renseigne ton salaire minimum',
-                    'class' => 'form-control be-form-input mb-md-5 mb-3'
-                ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
