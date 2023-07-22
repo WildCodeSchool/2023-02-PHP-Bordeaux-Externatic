@@ -37,20 +37,5 @@
             {% include 'footer.html.twig' %}
         </main>
         <script src="/script/favlist.js"></script>
-    <script>
-        if(window.innerWidth > 835) {
-            const stylenav = document.querySelector('.hidden-navbar');
-            window.addEventListener("scroll", function () {
-                let form = document.querySelector('.form-js').getBoundingClientRect().y;
-                let nav = document.querySelector('.navbar-js').getBoundingClientRect().y;
-                if (nav > form) {
-                    stylenav.style.display = "initial";
-                    console.log(document.querySelector('.form-js').getBoundingClientRect().y, window.scrollY);
-                } else {
-                    stylenav.style.display = "none";
-                }
-            });
-        }
-    </script>
     </body>
 </html>
