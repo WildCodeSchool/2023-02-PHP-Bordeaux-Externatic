@@ -15,7 +15,7 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-around flex-grow-1 h-100">
-                    {% if app.user  is defined %}
+                    {% if app.user %}
                         <li class="nav-item d-flex justify-content-center align-items-center ">
 
                             {% if is_granted('ROLE_COMPANY') and app.user.company.id is defined%}
@@ -48,44 +48,43 @@
                             {% endif %}
                         </li>
                     {% else %}
-                        <div class="accordion be-no-border" id="accordionExample">
-                            <div class="accordion-item be-no-border">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button be-accordion-button-sidebar" type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <a class="nav-link mx-2 active text-center d-block fw-bold" href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                                 class="bi bi-person" viewBox="0 0 16 16">
-                                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-                                            </svg>
-                                            Inscription
-                                        </a>
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="be-no-border accordion-collapse collapse"
-                                     aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body ">
-                                        <ul class="be-no-border d-flex flex-column justify-content-center align-items-center">
-                                            <li class="list-group-item">
-                                                <a class="fw-bold text-dark" href="{{ path('app_register_company') }}">Inscription recruteur</a>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <a class="fw-bold text-dark" href="{{ path('app_register') }}">Inscription candidat</a>
-                                            </li>
-                                        </ul>
+
+                        <li class="nav-item d-flex justify-content-center align-items-center">
+                            <div class="accordion be-no-border" id="accordionExample">
+                                <div class="accordion-item be-no-border">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button be-accordion-button-sidebar" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <a class="nav-link mx-2 active text-center d-block fw-bold" href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                                     class="bi bi-person" viewBox="0 0 16 16">
+                                                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                                                </svg>
+                                                Inscription
+                                            </a>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="be-no-border accordion-collapse collapse"
+                                         aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body ">
+                                            <ul class="be-no-border d-flex flex-column justify-content-center align-items-center">
+                                                <li class="list-group-item">
+                                                    <a class="fw-bold text-dark" href="{{ path('app_register_company') }}">Inscription recruteur</a>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <a class="fw-bold text-dark" href="{{ path('app_register') }}">Inscription candidat</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {#                        <li class="nav-item d-flex justify-content-center align-items-center dropdown">#}
-                        {#                        <li class="nav-item dropdown mx-3 d-flex flex-column align-items-center justify-content-center">#}
-                        {#                                #}
-                        {#                      #}
-                        {#                        </li>#}
+                        </li>
+
                         <hr class="hr">
 
-                        <li class="nav-item d-flex justify-content-center align-items-center ">
+                        <li class="nav-item d-flex justify-content-center align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
                             </svg>
