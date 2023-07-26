@@ -71,14 +71,26 @@
                 {{ form_errors(form) }}
                 <div class="row px-4">
                     <div class="col-md-6">
-                        {{ form_row(form.firstname) }}
+                        {{ form_row(form.firstname, {
+                            'attr': {
+                                'readOnly': true
+                            }
+                        }) }}
                     </div>
                     <div class="col-md-6">
-                        {{ form_row(form.lastname) }}
+                        {{ form_row(form.lastname, {
+                            'attr': {
+                                'readOnly': true
+                            }
+                        }) }}
                     </div>
                 </div>
                 <div class="col-12 px-4">
-                    {{ form_row(form.email) }}
+                    {{ form_row(form.email, {
+                        'attr': {
+                            'readOnly': true
+                        }
+                    }) }}
                 </div>
                 <div class="col-12 px-4 mb-4">
                     <label for="resume">Curriculum Vitae </label><br>
