@@ -9,21 +9,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Vous avez reçu une candidature</title>
-
 </head>
+<body style="
+    width: 100%;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+    background-color: whitesmoke;">
 
-<body>
-
-<h1>Nouvelle candidature de {{ user.firstname}} {{ user.lastname}} </h1>
-
-<p>{{ user.firstname }} postule pour l'offre {{ joboffer.title }}.</p>
-
-{% if message is defined %}
-    <p>{{ message }}</p>
-{% endif %}
-
-
-
+<div style="
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: whitesmoke;">
+    <div style="
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;">Nouvelle <span style="color: green">candidature</span> </div>
+    <div style="
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+      text-decoration: underline;
+">{{ user.firstname}} {{ user.lastname}} <br> a postulé à votre offre {{ joboffer.title}}</div>
+    <div style="
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;">
+        Un candidat a été intéressé par votre offre. Vous pouvez le contacter à l'adresse suivante : {{ user.email }}
+        vous retrouverez son CV en pièce jointe ou dans la rubrique mes candidature de votre
+        <a href="{{path('app_company_show', {'id' : joboffer.company.id})}}">espace entreprise</a>
+    </div>
+</div>
 </body>
-
 </html>
+
