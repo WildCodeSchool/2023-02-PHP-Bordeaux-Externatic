@@ -91,8 +91,8 @@ class JobofferController extends AbstractController
                     $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume
                 );
                 $email = (new TemplatedEmail())
-                    ->from('your_email@example.com')
-                    ->to('a.sale@hotmail.fr')
+                    ->from($_ENV['MAIL_ADMIN'])
+                    ->to($joboffer->getCompany()->getUser()->getEmail())
                     ->subject('Nouvelle candidature')
                     ->addPart(new DataPart(fopen($attachment, 'r')))
                     ->html($this->renderView('joboffer/jobOfferEmail.html.twig', [
