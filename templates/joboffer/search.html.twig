@@ -16,11 +16,13 @@ be-search-div-top">
 
     {{ include ('_includes/joboffer-card-template.html.twig') }}
 
-    <div class="be-container-sidebar sidebar d-none d-lg-block">
-        <div class="p4 p5">
-            {{ include ('_includes/cards-search-page.html.twig') }}
+    {% if app.user %}
+        <div class="be-container-sidebar sidebar d-none d-lg-block">
+            <div class="p4 p5">
+                {{ include ('_includes/cards-search-page.html.twig') }}
+            </div>
         </div>
-    </div>
+    {% endif %}
 </div>
 
 {% endblock %}
