@@ -1,10 +1,60 @@
-<h1>Bonjour</h1>
 
-<p>Pour réinitialiser votre mot de passe suivez le lien suivant</p>
 
-<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
 
-<p>Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData,
-        'ResetPasswordBundle') }}.</p>
 
-<p>Cheers!</p>
+
+{#<p>Cheers!</p>#}
+
+
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Vous avez reçu une candidature</title>
+</head>
+<body style="
+    width: 100%;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+    background-color: whitesmoke;">
+
+<div style="
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: whitesmoke;">
+    <div style="
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;">Réinitialisation du  <span style="color: green">Mot de passe</span> </div>
+    <div style="
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+      text-decoration: underline;
+">Pour réinitialiser votre mot de passe suivez le lien suivan</div>
+    <div style="
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;">
+        Après avoir cliqué sur le lien vous serez redirigé vers une page pour entre un nouveau mot de passe<br><br>
+        <a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a> <br><br>
+        <p>Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData,
+                'ResetPasswordBundle') }}.</p>
+    </div>
+</div>
+</body>
+</html>
+
