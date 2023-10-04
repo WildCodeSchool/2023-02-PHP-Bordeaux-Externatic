@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Resume;
+use App\Entity\User;
 use App\Form\ResumeType;
 use App\Repository\ResumeRepository;
 use App\Services\AlertService;
@@ -87,11 +88,13 @@ class ResumeController extends AbstractController
     public function readResume(Resume $resume, AlertService $alertService): bool|int
     {
         $user = $this->getUser();
-        $id = $resume->getUser()->getId();
+        $resumeUser = $resume->getUser();
 
 
-        if (in_array('ROLE_COMPANY', $user->getRoles())) {
-            $alertService->addAlert($id, $user);
+        if ($resumeUser && $user && is_array($user->getRoles()) && in_array('ROLE_COMPANY', $user->getRoles(), true)) {
+            $alertService->addAlert($user, $resumeUser);
+        } else {
+            $this->addFlash('error', 'Un erreur est survenu');
         }
 
         $file = $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume->getPath();
