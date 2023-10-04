@@ -4,11 +4,19 @@
             Mes Alertes
         </div>
         <div class="card-body">
-            <h5 class="card-title">Pour ne rien rater</h5>
+            <h5 class="card-title text-center">Votre CV a été consulté par</h5>
             <p class="card-text"></p>
-            <button type="button" class="be-secondary-button m-auto " data-toggle="modal" data-target="#exampleModal">
-                Créer une alerte
-            </button>
+            <ul>
+                {% if alerts is defined %}
+                    {% for alert in alerts | slice (0, 3) %}
+                        <li>
+                            <a class="text-dark" href="{{ path('app_joboffer_show', {'id': alert.company.id}) }}">
+                                {{ alert.firstname }} {{ alert.lastname }} de {{ alert.company.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
         </div>
     </div>
     <div class="card be-card-candidatures" style="width: 100%; min-height: 13.75rem;">

@@ -3,9 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Resume;
+use App\Entity\User;
 use App\Form\ResumeType;
 use App\Repository\ResumeRepository;
+use App\Services\AlertService;
+use Doctrine\Common\Cache\CacheProvider;
+use Doctrine\ORM\Cache;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -80,8 +85,18 @@ class ResumeController extends AbstractController
     }
 
     #[Route('/{id}/read', name: 'app_resume_read', methods: ['GET'])]
-    public function readResume(Resume $resume): bool|int
+    public function readResume(Resume $resume, AlertService $alertService): bool|int
     {
+        $user = $this->getUser();
+        $resumeUser = $resume->getUser();
+
+
+        if ($resumeUser && $user && is_array($user->getRoles()) && in_array('ROLE_COMPANY', $user->getRoles(), true)) {
+            $alertService->addAlert($user, $resumeUser);
+        } else {
+            $this->addFlash('error', 'Un erreur est survenu');
+        }
+
         $file = $this->getParameter('kernel.project_dir') . '/public/uploads/resume/' . $resume->getPath();
         header('Content-type: application/pdf');
         return readfile($file);

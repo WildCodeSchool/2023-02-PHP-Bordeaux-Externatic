@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\SearchOfferType;
 use App\Repository\JobofferRepository;
 use App\Repository\SearchRepository;
+use App\Services\AlertService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +26,7 @@ class SearchBarController extends AbstractController
     public function search(
         FormFactoryInterface $formFactory,
         JobofferRepository $jobofferRepository,
-        Request $request
+        Request $request,
     ): Response {
 
         $form = $formFactory->create(SearchOfferType::class);
@@ -49,7 +50,7 @@ class SearchBarController extends AbstractController
     public function mySearch(
         Request $request,
         JobofferRepository $jobofferRepository,
-        SearchRepository $searchRepository
+        SearchRepository $searchRepository,
     ): Response {
         $searchId = $request->request->get('searchId');
         $search = $searchRepository->find($searchId);

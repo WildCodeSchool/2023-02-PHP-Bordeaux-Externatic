@@ -4,11 +4,12 @@
 
 {% block body %}
     <h1>Réinitialiser votre mot de passe</h1>
-
-    {{ form_start(resetForm) }}
+-    {{ form_start(resetForm) }}
+    {% if error.messageKey is defined %}
     <div class="alert alert-danger">
-        {{ error.messageKey|trans(error.messageData, 'security') }}
+            {{ error.messageKey|trans(error.messageData, 'security') }}
     </div>
+    {% endif %}
 
     {{ form_row(resetForm.plainPassword) }}
         <button class="btn btn-primary">Réinitialiser votre mot de passe</button>
